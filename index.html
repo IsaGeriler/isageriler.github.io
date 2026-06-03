@@ -68,6 +68,15 @@
   .shot.empty .ph small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em}
   figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic}
 
+  /* before/after comparison slider */
+  .compare{position:relative; aspect-ratio:16/9; border-radius:8px; overflow:hidden; border:1px solid var(--line); --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:none}
+  .compare img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none}
+  .compare .cmp-top{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+  .compare .cmp-handle{position:absolute; top:0; bottom:0; left:var(--pos); width:2px; background:var(--accent); transform:translateX(-1px); pointer-events:none}
+  .compare .cmp-handle::after{content:"\2194"; position:absolute; top:50%; left:50%; width:36px; height:36px; transform:translate(-50%,-50%); border:2px solid var(--accent); border-radius:50%; background:rgba(10,11,14,.65); color:var(--accent); font-family:var(--mono); font-size:14px; display:flex; align-items:center; justify-content:center}
+  .compare .cmp-tag{position:absolute; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px; pointer-events:none}
+  .compare .cmp-tag.l{left:12px} .compare .cmp-tag.r{right:12px}
+
   section{padding:78px 0; position:relative}
   .sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:42px}
   .sec-head h2{font-family:var(--serif); font-weight:400; font-size:clamp(28px,4vw,40px); letter-spacing:-.01em}
@@ -106,10 +115,6 @@
   .card p{color:#B9BEC7; font-size:14.5px; margin:14px 0 0; line-height:1.65}
   @media(max-width:680px){ .more{grid-template-columns:1fr} }
 
-  .reel-frame{position:relative; aspect-ratio:16/9; border-radius:8px; overflow:hidden; border:1px dashed rgba(111,227,210,.35); background:repeating-linear-gradient(45deg,#0e1015,#0e1015 12px,#101319 12px,#101319 24px); display:flex; align-items:center; justify-content:center}
-  .ph-reel{font-family:var(--mono); font-size:13px; letter-spacing:.08em; color:var(--accent); text-align:center; padding:18px}
-  .ph-reel small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em; font-size:11px}
-  .reel-cap{color:#C7CBD2; margin-top:18px; font-size:15px; max-width:72ch}
 
   .about{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start}
   .about p{font-size:18px; line-height:1.8; color:#D3D7DD}
@@ -140,7 +145,6 @@
     <a href="#top" class="brand">ISA <b>GERILER</b></a>
     <div class="navlinks">
       <a href="#work">Work</a>
-      <a href="#reel">Reel</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
       <a href="assets/CV-IsaGeriler.pdf" class="cv">CV &#8595;</a>
@@ -186,22 +190,25 @@
         <p>Simulates highly realistic lighting and materials using industry-standard math and data structures, dramatically reducing render times and visual noise through spatial optimizations and Intel AI denoising.</p>
       </div>
       <ul class="detail">
-        <li><b>Architecture:</b> three integrators in one engine: Path Tracing, Instant Radiosity, and Light Tracing. Uses a Halton quasi-Monte Carlo sampler relying on prime bases for the Radical Inverse.</li>
-        <li><b>Material framework:</b> GGX microfacets (Conductor BSDF, sampled proportionally to the NDF), Plastic (Phong), Oren-Nayar, and a Layered BSDF evaluating Beer's Law for attenuation.</li>
-        <li><b>Performance:</b> render time and variance optimized with a Binned SAH BVH, tile-based multithreading, and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
+        <li><b>Architecture:</b> three integrators in one engine: Path Tracing, Light Tracing, and Instant Radiosity (which uses a Halton quasi-Monte Carlo sampler relying on prime bases for the Radical Inverse).</li>
+        <li><b>Material framework:</b> GGX microfacets (Conductor BSDF, sampled proportionally to the NDF), Plastic (Phong), Diffuse, Oren-Nayar, Glass, Mirror, and a Layered BSDF evaluating Beer's Law for attenuation.</li>
+        <li><b>Performance:</b> render time and variance optimized with a Binned SAH BVH (Surface Area Heuristics Bounding Volume Hierarchy), tile-based multithreading, and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
         <li><b>Denoising:</b> custom AOV outputs feed directly into Intel OIDN for machine-learning-based post-process denoising.</li>
       </ul>
       <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
       <figure class="media">
-        <div class="media two">
-          <div class="shot r169 empty"><img src="assets/Kitchen128SPP.png" alt="Kitchen scene, 128 spp" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>Kitchen128SPP.png</small></div></div>
-          <div class="shot r169 empty"><img src="assets/Kitchen16SPPDenoised.png" alt="Kitchen scene, 16 spp denoised" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>Kitchen16SPPDenoised.png</small></div></div>
+        <div class="compare" id="cmp-kitchen">
+          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Kitchen scene, 16 spp denoised with Intel OIDN">
+          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Kitchen scene, 128 spp reference">
+          <div class="cmp-handle"></div>
+          <span class="cmp-tag l">128 spp reference</span>
+          <span class="cmp-tag r">16 spp + OIDN</span>
         </div>
-        <figcaption>128 spp reference (left) vs. 16 spp denoised with Intel OIDN (right). Comparable fidelity at a fraction of the compute cost.</figcaption>
+        <figcaption>Drag to compare: 128 spp reference vs. 16 spp denoised with Intel OIDN. Comparable fidelity at a fraction of the compute cost.</figcaption>
       </figure>
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>MaterialsScene128SPP.png</small></div></div>
-        <figcaption>Materials test, showing the surface models the renderer supports.</figcaption>
+        <figcaption>Materials test: GGX conductor, Plastic, Oren-Nayar, Glass, and Mirror BSDFs.</figcaption>
       </figure>
     </article>
 
@@ -251,7 +258,7 @@
       <span class="idx">004</span>
       <h3><a href="https://github.com/IsaGeriler/RayTracer" target="_blank" rel="noopener">Offline Ray Tracer (WIP)</a></h3>
       <div class="role">C++ · In progress</div>
-      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al.) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build are both parallelized using C++17 <code>std::execution::par</code> to maximize CPU utilization.</p>
+      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build are both parallelized using C++17 <code>std::execution::par</code> to maximize CPU utilization.</p>
       <div class="tags"><span>C++17</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>RTMB.jpg</small></div></div>
@@ -301,22 +308,9 @@
   </div>
 </section>
 
-<section id="reel">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="num">02</span><h2>Showreel</h2><span class="rule"></span></div>
-    <div class="rv">
-      <!-- SHOWREEL: paste a YouTube/Vimeo <iframe> here, or drop assets/showreel.mp4 and use a <video> tag. Delete the placeholder once added. -->
-      <div class="reel-frame">
-        <div class="ph-reel">SHOWREEL<small>embed a YouTube / Vimeo link, or drop assets/showreel.mp4</small></div>
-      </div>
-      <p class="reel-cap">A short reel of work running: the renderers, the UE5 game, and rasterizer captures. [Add a caption noting your technical contribution on each clip.]</p>
-    </div>
-  </div>
-</section>
-
 <section id="about">
   <div class="wrap">
-    <div class="sec-head rv"><span class="num">03</span><h2>About</h2><span class="rule"></span></div>
+    <div class="sec-head rv"><span class="num">02</span><h2>About</h2><span class="rule"></span></div>
     <div class="about">
       <div class="rv">
         <p>I'm a Software Engineering graduate pursuing a Master's in Games Engineering at <span class="hl">WMG, University of Warwick</span>. I spend most of my time on real-time rendering and computer graphics: writing renderers, reading papers, and figuring out why the image looks wrong. I play video games too (shocking, I know 🎮), and I'm aiming to specialize as a Graphics Programmer.</p>
@@ -355,6 +349,16 @@
   const glow = document.getElementById('glow');
   window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
   window.addEventListener('pointerleave', ()=> glow.style.opacity=0);
+
+  // before/after comparison sliders
+  document.querySelectorAll('.compare').forEach(c=>{
+    let drag=false;
+    const set=(clientX)=>{ const r=c.getBoundingClientRect(); let p=(clientX-r.left)/r.width*100; p=Math.max(0,Math.min(100,p)); c.style.setProperty('--pos', p+'%'); };
+    c.addEventListener('pointerdown', e=>{ drag=true; c.setPointerCapture(e.pointerId); set(e.clientX); });
+    c.addEventListener('pointermove', e=>{ if(drag) set(e.clientX); });
+    c.addEventListener('pointerup', ()=> drag=false);
+    c.addEventListener('pointercancel', ()=> drag=false);
+  });
 </script>
 </body>
 </html>
