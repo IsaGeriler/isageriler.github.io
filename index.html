@@ -1,78 +1,360 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
-		<title>Isa's Portfolio Website</title>
-		<link rel="stylesheet" href="assets/css/main.css"/>
-	</head>
-	<body class="is-preload">
-			<header id="header">
-				<div class="inner">
-					<a href="#" class="image avatar"><img src="images/isa_img_01.jpeg" alt=""/></a>
-					<h1><strong>I am Isa Berk Geriler</strong>, a software<br/>engineering student at FMV Isik<br/>University.</h1>
-				</div>
-			</header>
-			<div id="main">
-					<section id="one">
-						<header class="major">
-							<h2>About Me</h2>
-						</header>
-						<p>I'm a 20 year old software engineering student who loves computers, video-games, and Puroresu (Japanese Proffesional Wrestling).
-							Along with my university studies, I'm actively focusing on my self-improvement journey and also training BJJ
-							(Brazilian Jiu-Jitsu, which is based on ground fighting and submission holds/grappling). Sometimes I play video-games as well
-							and when I do, I aim to achieve 100% completion on them (as of writing this, I'm placed at rank #149 on PSNProfiles, in the Turkish leaderboard).
-						</p>
-					</section>
-					<section id="two">
-						<h2>My Projects</h2>
-						<div class="row">
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/alien-gen-full.png" class="image fit thumb"><img src="images/thumbs/alien.jpg" alt=""/></a>
-								<h3><a href="https://github.com/IsaGeriler/AlienGeneticsSimulation/blob/master/src/AlienGeneticsSimulation.java"
-									target="_blank">Alien Genetics Simulation</a></h3>
-								<p>The aim of this project is to create a alien life form called "compAlien", that's genetic material is coded by 
-									'X', 'Y', 'Z' with a code lenght of 128, and manage/extract information on this generated life form under specific rules
-									(view the thumbnail for the rules).</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/dart-game-full.png" class="image fit thumb"><img src="images/thumbs/darts.jpg" alt=""/></a>
-								<h3><a href="https://github.com/IsaGeriler/DartGame/blob/master/src/DartGame.java"
-									target="_blank">Dart Game</a></h3>
-								<p>The aim of this project is to play a game of darts and locate the position of the thrown darts on the board, under specific rules
-									(view the thumbnail for the rules).</p>
-							</article>
-							<article class="col-6 col-12-xsmall work-item">
-								<a href="images/fulls/integer-digit-full.png" class="image fit thumb"><img src="images/thumbs/int_digit_man.png" alt=""/></a>
-								<h3><a href="https://github.com/IsaGeriler/IntegerDigitManipulation/blob/master/src/IntegerDigitManipulation.java"
-									target="_blank">Integer Digit Manipulation</a></h3>
-								<p>The aim of this project is to manipulate the digits of a given integer, by the user's input, under specific conditions
-									(view the thumbnail for the rules).</p>
-							</article>
-						</div>
-						<ul class="actions">
-							<li><a href="#" class="button">Full Portfolio</a></li>
-						</ul>
-					</section>
-			<footer id="footer">
-				<div class="inner">
-					<ul class="icons">
-						<li><a href="https://github.com/IsaGeriler" target="_blank" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="https://www.linkedin.com/in/isa-berk-geriler-1baa03241" target="_blank" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
-						<li><a href="https://www.instagram.com/isageriler012302/" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="https://psnprofiles.com/XxIsa-GxX?order=percent" target="_blank" class="icon brands fa-playstation"><span class="label">PSNProfiles</span></a></li>
-						<li><a href="mailto:isathedoge@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
-					</ul>
-					<ul class="copyright">
-						<li>&copy; 2022 Isa Berk Geriler</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-					</ul>
-				</div>
-			</footer>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.poptrox.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-	</body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Isa Geriler · Graphics / Rendering Programmer</title>
+<meta name="description" content="Isa Geriler. Graphics and rendering programmer. Path tracer, software rasterizer, DX12 engine, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b0e; --bg-2:#101218; --panel:#13161d;
+    --ink:#ECECE8; --muted:#888E9B; --faint:#5A606C;
+    --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.05);
+    --accent:#6FE3D2; --accent-2:#E8A24A;
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:"Space Mono",ui-monospace,Menlo,monospace;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden}
+  body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+    background:radial-gradient(60vw 60vw at 78% -10%, rgba(111,227,210,.10), transparent 60%),radial-gradient(50vw 50vw at -10% 25%, rgba(232,162,74,.07), transparent 60%),var(--bg)}
+  body::after{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  #glow{position:fixed; width:520px; height:520px; left:0; top:0; z-index:-1; pointer-events:none;
+    background:radial-gradient(circle, rgba(111,227,210,.08), transparent 65%); transform:translate(-50%,-50%); transition:opacity .4s; opacity:0}
+  a{color:inherit; text-decoration:none}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
+  .mono{font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+
+  nav{position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:blur(10px); background:rgba(10,11,14,.55); border-bottom:1px solid var(--line-2)}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:64px}
+  .brand{font-family:var(--mono); font-weight:700; letter-spacing:.18em; font-size:14px}
+  .brand b{color:var(--accent)}
+  .navlinks{display:flex; gap:26px}
+  .navlinks a{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); transition:color .2s}
+  .navlinks a:hover{color:var(--ink)}
+  .navlinks a.cv{color:var(--accent)}
+  @media(max-width:680px){ .navlinks{gap:16px} .navlinks a:not(.cv){display:none} }
+
+  header{padding:128px 0 60px; position:relative}
+  .kicker{margin-bottom:22px}
+  h1{font-family:var(--serif); font-weight:400; font-size:clamp(52px,9vw,108px); line-height:.96; letter-spacing:-.02em}
+  h1 .it{font-style:italic; color:var(--accent)}
+  .lede{font-family:var(--serif); font-size:clamp(20px,2.6vw,27px); color:var(--ink); max-width:32ch; margin:26px 0 0; line-height:1.3}
+  .status{display:inline-flex; align-items:center; gap:9px; margin-top:30px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--ink)}
+  .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 rgba(111,227,210,.6); animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(111,227,210,.5)}70%{box-shadow:0 0 0 10px rgba(111,227,210,0)}100%{box-shadow:0 0 0 0 rgba(111,227,210,0)}}
+  .cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
+  .btn{font-family:var(--mono); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; padding:13px 22px; border-radius:4px; border:1px solid var(--line); transition:.22s; color:var(--ink)}
+  .btn:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px)}
+  .btn.solid{background:var(--accent); color:#06201c; border-color:var(--accent)}
+  .btn.solid:hover{background:#8ff0e1; color:#06201c}
+  .hero-shot{margin-top:60px}
+
+  .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
+  .shot.wide{aspect-ratio:21/6}
+  .shot.r169{aspect-ratio:16/9}
+  .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease}
+  .shot .tag{position:absolute; left:12px; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px}
+  .shot.empty{display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(45deg,#0e1015,#0e1015 12px,#101319 12px,#101319 24px); border:1px dashed rgba(111,227,210,.35)}
+  .shot.empty img{display:none}
+  .shot.empty .ph{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--accent); text-align:center; padding:18px}
+  .shot.empty .ph small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em}
+  figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic}
+
+  section{padding:78px 0; position:relative}
+  .sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:42px}
+  .sec-head h2{font-family:var(--serif); font-weight:400; font-size:clamp(28px,4vw,40px); letter-spacing:-.01em}
+  .sec-head .num{font-family:var(--mono); color:var(--accent); font-size:13px; letter-spacing:.1em}
+  .rule{height:1px; background:var(--line); flex:1}
+
+  .proj{margin-bottom:84px}
+  .proj .idx{font-family:var(--mono); color:var(--accent-2); font-size:13px; letter-spacing:.12em}
+  .proj h3{font-family:var(--serif); font-weight:500; font-size:clamp(24px,3vw,32px); margin:8px 0 4px; line-height:1.1}
+  .proj h3 a{border-bottom:1px solid transparent; transition:.2s}
+  .proj h3 a:hover{border-color:var(--accent); color:var(--accent)}
+  .proj .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
+  .proj .lead{color:#D3D7DD; margin:16px 0 0; font-size:17px; line-height:1.7}
+  .callout{margin:20px 0 0; padding:16px 20px; border-left:3px solid var(--accent); background:linear-gradient(90deg,rgba(111,227,210,.07),transparent); border-radius:0 6px 6px 0}
+  .callout.warn{border-left-color:var(--accent-2); background:linear-gradient(90deg,rgba(232,162,74,.08),transparent)}
+  .callout .label{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px}
+  .callout.warn .label{color:var(--accent-2)}
+  .callout p{color:#C7CBD2; font-size:15px; line-height:1.65; margin:0}
+  ul.detail{list-style:none; margin:18px 0 0; padding:0}
+  ul.detail li{position:relative; padding-left:18px; color:#C7CBD2; font-size:15.5px; line-height:1.65; margin:9px 0}
+  ul.detail li::before{content:"\203A"; position:absolute; left:0; color:var(--accent)}
+  ul.detail b{color:var(--ink); font-weight:600}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
+  .tags span{font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); border:1px solid var(--line); padding:5px 10px; border-radius:5px}
+  .media{margin-top:24px}
+  .media.two{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .media.three{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px}
+  .proj:hover .shot img{transform:scale(1.03)}
+  @media(max-width:680px){ .media.two,.media.three{grid-template-columns:1fr} }
+
+  .more{display:grid; grid-template-columns:1fr 1fr; gap:24px}
+  .card{border:1px solid var(--line); border-radius:8px; padding:26px; background:linear-gradient(180deg,var(--panel),transparent); transition:.25s}
+  .card:hover{border-color:rgba(111,227,210,.4); transform:translateY(-3px)}
+  .card h4{font-family:var(--serif); font-weight:500; font-size:21px; margin-bottom:4px}
+  .card .role{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
+  .card p{color:#B9BEC7; font-size:14.5px; margin:14px 0 0; line-height:1.65}
+  @media(max-width:680px){ .more{grid-template-columns:1fr} }
+
+  .reel-frame{position:relative; aspect-ratio:16/9; border-radius:8px; overflow:hidden; border:1px dashed rgba(111,227,210,.35); background:repeating-linear-gradient(45deg,#0e1015,#0e1015 12px,#101319 12px,#101319 24px); display:flex; align-items:center; justify-content:center}
+  .ph-reel{font-family:var(--mono); font-size:13px; letter-spacing:.08em; color:var(--accent); text-align:center; padding:18px}
+  .ph-reel small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em; font-size:11px}
+  .reel-cap{color:#C7CBD2; margin-top:18px; font-size:15px; max-width:72ch}
+
+  .about{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start}
+  .about p{font-size:18px; line-height:1.8; color:#D3D7DD}
+  .about p+p{margin-top:20px}
+  .about p .hl{color:var(--accent)}
+  .skills{display:flex; flex-direction:column; gap:20px}
+  .skill h5{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px}
+  .skill p{font-size:15px; color:#C7CBD2; line-height:1.6}
+  @media(max-width:820px){ .about{grid-template-columns:1fr; gap:36px} }
+
+  .contact{text-align:center; padding:104px 0}
+  .contact h2{font-family:var(--serif); font-weight:400; font-size:clamp(32px,6vw,64px); letter-spacing:-.02em; line-height:1.05}
+  .contact .links{display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:36px}
+  footer{border-top:1px solid var(--line-2); padding:30px 0; text-align:center}
+  footer .mono{font-size:11px}
+
+  .rv{opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv.in{opacity:1; transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.dot{animation:none}}
+</style>
+</head>
+<body>
+<div id="glow"></div>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand">ISA <b>GERILER</b></a>
+    <div class="navlinks">
+      <a href="#work">Work</a>
+      <a href="#reel">Reel</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="assets/CV-IsaGeriler.pdf" class="cv">CV &#8595;</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <div class="kicker mono rv">Graphics / Rendering Programmer</div>
+    <h1 class="rv d1">Isa <span class="it">Geriler</span></h1>
+    <p class="lede rv d2">I build renderers and the math underneath them.</p>
+    <div class="status rv d3"><span class="dot"></span>Open to graphics roles &amp; internships · Summer 2026</div>
+    <div class="cta rv d4">
+      <a href="#work" class="btn solid">View work</a>
+      <a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a>
+      <a href="assets/CV-IsaGeriler.pdf" class="btn">Download CV</a>
+    </div>
+
+    <!-- HERO: your own render strip. Put Banner.png in this site's assets/ folder. -->
+    <figure class="hero-shot rv d4">
+      <div class="shot wide empty">
+        <img src="assets/Banner.png" alt="A strip of frames from my ray tracer"
+             onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')">
+        <div class="ph">RENDER STRIP<small>assets/Banner.png</small></div>
+      </div>
+      <figcaption>A few frames from my own ray tracer.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">01</span><h2>Selected Work</h2><span class="rule"></span></div>
+
+    <article class="proj rv">
+      <span class="idx">001</span>
+      <h3><a href="https://github.com/IsaGeriler/RTBase_5749205" target="_blank" rel="noopener">Path Tracer &amp; Light Transport Engine</a></h3>
+      <div class="role">C++ · University of Warwick</div>
+      <p class="lead">A multithreaded, physically based CPU renderer in C++, built to explore advanced light transport and microfacet models.</p>
+      <div class="callout">
+        <span class="label">Why it matters</span>
+        <p>Simulates highly realistic lighting and materials using industry-standard math and data structures, dramatically reducing render times and visual noise through spatial optimizations and Intel AI denoising.</p>
+      </div>
+      <ul class="detail">
+        <li><b>Architecture:</b> three integrators in one engine: Path Tracing, Instant Radiosity, and Light Tracing. Uses a Halton quasi-Monte Carlo sampler relying on prime bases for the Radical Inverse.</li>
+        <li><b>Material framework:</b> GGX microfacets (Conductor BSDF, sampled proportionally to the NDF), Plastic (Phong), Oren-Nayar, and a Layered BSDF evaluating Beer's Law for attenuation.</li>
+        <li><b>Performance:</b> render time and variance optimized with a Binned SAH BVH, tile-based multithreading, and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
+        <li><b>Denoising:</b> custom AOV outputs feed directly into Intel OIDN for machine-learning-based post-process denoising.</li>
+      </ul>
+      <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
+      <figure class="media">
+        <div class="media two">
+          <div class="shot r169 empty"><img src="assets/Kitchen128SPP.png" alt="Kitchen scene, 128 spp" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>Kitchen128SPP.png</small></div></div>
+          <div class="shot r169 empty"><img src="assets/Kitchen16SPPDenoised.png" alt="Kitchen scene, 16 spp denoised" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>Kitchen16SPPDenoised.png</small></div></div>
+        </div>
+        <figcaption>128 spp reference (left) vs. 16 spp denoised with Intel OIDN (right). Comparable fidelity at a fraction of the compute cost.</figcaption>
+      </figure>
+      <figure class="media">
+        <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>MaterialsScene128SPP.png</small></div></div>
+        <figcaption>Materials test, showing the surface models the renderer supports.</figcaption>
+      </figure>
+    </article>
+
+    <article class="proj rv">
+      <span class="idx">002</span>
+      <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentRasterizer5749205" target="_blank" rel="noopener">Optimized Software Rasterizer</a></h3>
+      <div class="role">C++, SIMD · University of Warwick</div>
+      <p class="lead">A CPU implementation of the graphics pipeline, hand-optimized for throughput using hardware-level parallelization (SIMD and multithreading).</p>
+      <div class="callout warn">
+        <span class="label">Hardware profiling · the "thread plateau"</span>
+        <p>I profiled how performance scales with thread count on my Intel Core Ultra 7 155H, a hybrid CPU with 6 Performance cores, 8 Efficiency cores, and 2 Low-Power Efficiency cores (16 cores / 22 threads). SIMD (SSE/AVX) plus multithreading gave large early gains, but the speedup peaks at roughly 2.8x around 6 threads and then degrades. That inflection lines up with the Performance-core count: the first threads land on the fast P-cores, and scaling past them onto the slower E-cores, LP-cores, and hyperthreads adds workers that are both slower and competing for shared resources, so throughput stops improving and starts to regress.</p>
+      </div>
+      <div class="tags"><span>C++</span><span>SIMD (SSE/AVX)</span><span>Multithreading</span><span>Performance Profiling</span></div>
+      <figure class="media">
+        <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">GRAPH<small>Scene3Speedup.png</small></div></div>
+        <figcaption>Scene 3 profiling: speedup peaks near the Performance-core count, then degrades as work spills onto slower cores and hyperthreads.</figcaption>
+      </figure>
+      <figure class="media">
+        <div class="media three">
+          <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 1<small>Scene1.png</small></div></div>
+          <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 2<small>Scene2.png</small></div></div>
+          <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 3<small>Scene3.png</small></div></div>
+        </div>
+      </figure>
+    </article>
+
+    <article class="proj rv">
+      <span class="idx">003</span>
+      <h3><a href="https://github.com/IsaGeriler/DX12Engine" target="_blank" rel="noopener">DX12 Engine (WIP)</a></h3>
+      <div class="role">DirectX 12 · In progress</div>
+      <p class="lead">A modern, custom rendering engine being built from scratch using DirectX 12 to master low-level GPU programming.</p>
+      <div class="callout">
+        <span class="label">Why it matters</span>
+        <p>Transitioning from CPU rendering to modern, explicit GPU APIs. Focuses on manual memory management, synchronization, and resource binding.</p>
+      </div>
+      <ul class="detail">
+        <li><b>Current features:</b> working through Descriptor Heaps, Root Signatures, and Pipeline State Objects (PSOs).</li>
+        <li><b>Evolution:</b> a re-architected, highly scalable improvement over my initial <a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener" style="color:var(--accent)">DirectX 12 Coursework Framework</a>.</li>
+      </ul>
+      <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
+      <figure class="media">
+        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>AfterRoughnessMapping.png</small></div></div>
+      </figure>
+    </article>
+
+    <article class="proj rv">
+      <span class="idx">004</span>
+      <h3><a href="https://github.com/IsaGeriler/RayTracer" target="_blank" rel="noopener">Offline Ray Tracer (WIP)</a></h3>
+      <div class="role">C++ · In progress</div>
+      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al.) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build are both parallelized using C++17 <code>std::execution::par</code> to maximize CPU utilization.</p>
+      <div class="tags"><span>C++17</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
+      <figure class="media">
+        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>RTMB.jpg</small></div></div>
+        <figcaption>Integrated motion blur.</figcaption>
+      </figure>
+    </article>
+
+    <article class="proj rv">
+      <span class="idx">005</span>
+      <h3><a href="https://github.com/IsaGeriler/Rasterizer" target="_blank" rel="noopener">Software Rasterizer (Foundations)</a></h3>
+      <div class="role">C++</div>
+      <p class="lead">An engine built entirely from scratch to deeply understand the math behind graphics APIs. Instead of using existing math libraries (like GLM), I wrote the matrix, vector, and homogeneous-coordinate mathematics myself. Implements the full Model-View-Projection (MVP) chain, perspective-correct interpolation, depth buffering (Z-buffer), and Lambertian lighting, parsing .gem meshes to render pixel-perfect geometry.</p>
+      <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
+      <figure class="media">
+        <div class="media two">
+          <div class="shot r169 empty"><img src="assets/BunnyShaded.jpg" alt="Stanford bunny, shaded" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>BunnyShaded.jpg</small></div></div>
+          <div class="shot r169 empty"><img src="assets/BunnyGeometry.jpg" alt="Stanford bunny, geometry" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>BunnyGeometry.jpg</small></div></div>
+        </div>
+        <figcaption>Stanford bunny parsed from a .gem mesh: Lambertian shaded (left) and raw geometry (right).</figcaption>
+      </figure>
+    </article>
+
+    <article class="proj rv">
+      <span class="idx">006</span>
+      <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentChatRoom5749205" target="_blank" rel="noopener">C++ Client-Server Chat Room</a></h3>
+      <div class="role">C++ · Networking</div>
+      <p class="lead">A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications.</p>
+      <div class="tags"><span>C++</span><span>Multithreading</span><span>WinSock</span><span>Dear ImGui</span><span>FMOD</span></div>
+      <figure class="media">
+        <div class="shot r169 empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCREENSHOT<small>ChatRoom.png</small></div></div>
+      </figure>
+    </article>
+
+    <div class="sec-head rv" style="margin-top:8px"><span class="num">+</span><h2 style="font-size:clamp(22px,3vw,30px)">Also Built</h2><span class="rule"></span></div>
+    <div class="more">
+      <div class="card rv">
+        <span class="role">Unreal Engine 5 · Team project · University of Warwick</span>
+        <h4>UE5 Game</h4>
+        <p>A team game built in Unreal Engine 5 with a 42-person team organized into 7 groups, each responsible for a level. I owned the visual look: custom materials and shaders, volumetric fog, and lighting.</p>
+      </div>
+      <div class="card rv d1">
+        <span class="role">Python · Team graduation project · IEEE SIU 2025</span>
+        <h4>Real-Time Face Recognition</h4>
+        <p>On-premise authentication to replace ID cards and QR codes. OpenCV Haar Cascade detection, FaceNet 512-dimensional embeddings, and PostgreSQL + pgvector KNN search verify identities in under five seconds, behind a Flask staff dashboard with role-based access and 2FA. Selected to present a poster at the 33rd IEEE SIU 2025 conference.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reel">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">02</span><h2>Showreel</h2><span class="rule"></span></div>
+    <div class="rv">
+      <!-- SHOWREEL: paste a YouTube/Vimeo <iframe> here, or drop assets/showreel.mp4 and use a <video> tag. Delete the placeholder once added. -->
+      <div class="reel-frame">
+        <div class="ph-reel">SHOWREEL<small>embed a YouTube / Vimeo link, or drop assets/showreel.mp4</small></div>
+      </div>
+      <p class="reel-cap">A short reel of work running: the renderers, the UE5 game, and rasterizer captures. [Add a caption noting your technical contribution on each clip.]</p>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">03</span><h2>About</h2><span class="rule"></span></div>
+    <div class="about">
+      <div class="rv">
+        <p>I'm a Software Engineering graduate pursuing a Master's in Games Engineering at <span class="hl">WMG, University of Warwick</span>. I spend most of my time on real-time rendering and computer graphics: writing renderers, reading papers, and figuring out why the image looks wrong. I play video games too (shocking, I know 🎮), and I'm aiming to specialize as a Graphics Programmer.</p>
+        <p>I was recently selected for a graphics-focused dissertation on <span class="hl">path guiding</span>, supervised by Dr. Thomas Bashford-Rogers, and most of my current work is groundwork for it.</p>
+      </div>
+      <div class="skills rv d2" id="skills">
+        <div class="skill"><h5>Languages</h5><p>C++, Python, HLSL, Java, SQL</p></div>
+        <div class="skill"><h5>Graphics &amp; rendering</h5><p>DirectX 12, ray / path tracing, BVH acceleration, MIS, GGX &amp; microfacet BSDFs, SIMD (SSE/AVX/AVX2), multithreading, RenderDoc</p></div>
+        <div class="skill"><h5>Engines &amp; tools</h5><p>Unreal Engine 5 (materials, shaders, lighting), Dear ImGui, FMOD, WinSock, OpenCV, PostgreSQL / pgvector, Flask, Docker, Git</p></div>
+        <div class="skill"><h5>Spoken</h5><p>Turkish (native), English (IELTS 8.0, C1), Japanese (beginner)</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="mono rv" style="margin-bottom:18px">Let's talk rendering</div>
+    <h2 class="rv d1">Get in touch.</h2>
+    <div class="links rv d2">
+      <a href="mailto:gerilerisaberk@gmail.com" class="btn solid">Email me</a>
+      <a href="https://www.linkedin.com/in/isa-berk-geriler/" class="btn" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:Isa.Geriler@warwick.ac.uk" class="btn">Warwick email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap mono">© 2026 Isa Geriler · Built with care, not templates</div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  const glow = document.getElementById('glow');
+  window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
+  window.addEventListener('pointerleave', ()=> glow.style.opacity=0);
+</script>
+</body>
 </html>
