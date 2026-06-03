@@ -68,14 +68,23 @@
   .shot.empty .ph small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em}
   figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic}
 
-  /* before/after comparison slider */
-  .compare{position:relative; aspect-ratio:16/9; border-radius:8px; overflow:hidden; border:1px solid var(--line); --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:none}
-  .compare img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; pointer-events:none}
-  .compare .cmp-top{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+  /* Dynamic comparison slider */
+  .compare{position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--line); --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:none}
+  .compare img{display:block; pointer-events:none}
+  /* Base image sets container height dynamically */
+  .compare .cmp-base{width:100%; height:auto}
+  /* Top image overlays the base and covers slight pixel diffs gracefully */
+  .compare .cmp-top{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
   .compare .cmp-handle{position:absolute; top:0; bottom:0; left:var(--pos); width:2px; background:var(--accent); transform:translateX(-1px); pointer-events:none}
   .compare .cmp-handle::after{content:"\2194"; position:absolute; top:50%; left:50%; width:36px; height:36px; transform:translate(-50%,-50%); border:2px solid var(--accent); border-radius:50%; background:rgba(10,11,14,.65); color:var(--accent); font-family:var(--mono); font-size:14px; display:flex; align-items:center; justify-content:center}
   .compare .cmp-tag{position:absolute; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px; pointer-events:none}
   .compare .cmp-tag.l{left:12px} .compare .cmp-tag.r{right:12px}
+
+  /* Scene switchers for sliders */
+  .picker{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px}
+  .picker button{background:rgba(10,11,14,.5); border:1px solid var(--line); color:var(--muted); font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:6px 14px; border-radius:999px; cursor:pointer; transition:all .2s}
+  .picker button:hover{border-color:rgba(111,227,210,.5); color:var(--ink)}
+  .picker button.active{background:rgba(111,227,210,.1); border-color:var(--accent); color:var(--accent)}
 
   section{padding:78px 0; position:relative}
   .sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:42px}
@@ -114,7 +123,6 @@
   .card .role{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
   .card p{color:#B9BEC7; font-size:14.5px; margin:14px 0 0; line-height:1.65}
   @media(max-width:680px){ .more{grid-template-columns:1fr} }
-
 
   .about{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start}
   .about p{font-size:18px; line-height:1.8; color:#D3D7DD}
@@ -164,7 +172,6 @@
       <a href="assets/CV-IsaGeriler.pdf" class="btn">Download CV</a>
     </div>
 
-    <!-- HERO: your own render strip. Put Banner.png in this site's assets/ folder. -->
     <figure class="hero-shot rv d4">
       <div class="shot wide empty">
         <img src="assets/Banner.png" alt="A strip of frames from my ray tracer"
@@ -196,16 +203,48 @@
         <li><b>Denoising:</b> custom AOV outputs feed directly into Intel OIDN for machine-learning-based post-process denoising.</li>
       </ul>
       <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
+      
+      <!-- Multi-scene Denoising Slider -->
       <figure class="media">
-        <div class="compare" id="cmp-kitchen">
-          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Kitchen scene, 16 spp denoised with Intel OIDN">
-          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Kitchen scene, 128 spp reference">
+        <div class="compare" id="cmp-denoise">
+          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Right Side">
+          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Left Side">
           <div class="cmp-handle"></div>
           <span class="cmp-tag l">128 spp reference</span>
           <span class="cmp-tag r">16 spp + OIDN</span>
         </div>
-        <figcaption>Drag to compare: 128 spp reference vs. 16 spp denoised with Intel OIDN. Comparable fidelity at a fraction of the compute cost.</figcaption>
+        <div class="picker" data-target="cmp-denoise">
+          <button class="active" data-top="assets/Kitchen128SPP.png" data-base="assets/Kitchen16SPPDenoised.png">Kitchen</button>
+          <button data-top="assets/Bathroom128SPP.png" data-base="assets/Bathroom16SPPDenoised.png">Bathroom</button>
+          <button data-top="assets/Classroom128SPP.png" data-base="assets/Classroom16SPPDenoised.png">Classroom</button>
+          <button data-top="assets/Sibenik128SPP.png" data-base="assets/Sibenik16SPPDenoised.png">Sibenik</button>
+        </div>
+        <figcaption>Drag to compare: 128 spp reference vs. 16 spp denoised with Intel OIDN. Automatically adjusts to scene aspect ratios.</figcaption>
       </figure>
+
+      <!-- Multi-integrator Cornell Box Slider -->
+      <figure class="media">
+        <div class="compare" id="cmp-cornell">
+          <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Right Side">
+          <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Left Side">
+          <div class="cmp-handle"></div>
+          <span class="cmp-tag l">Path Tracing</span>
+          <span class="cmp-tag r">Light Tracing</span>
+        </div>
+        <div class="picker" data-target="cmp-cornell">
+          <button class="active" 
+            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" 
+            data-base="assets/CornellBoxLT.png" data-tag-r="Light Tracing">PT vs LT</button>
+          <button 
+            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" 
+            data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity">PT vs IR</button>
+          <button 
+            data-top="assets/CornellBoxLT.png" data-tag-l="Light Tracing" 
+            data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity">LT vs IR</button>
+        </div>
+        <figcaption>Comparing integrators in the Cornell Box: Path Tracing, Light Tracing, and Instant Radiosity.</figcaption>
+      </figure>
+
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>MaterialsScene128SPP.png</small></div></div>
         <figcaption>Materials test: GGX conductor, Plastic, Oren-Nayar, Glass, and Mirror BSDFs.</figcaption>
@@ -273,11 +312,15 @@
       <p class="lead">An engine built entirely from scratch to deeply understand the math behind graphics APIs. Instead of using existing math libraries (like GLM), I wrote the matrix, vector, and homogeneous-coordinate mathematics myself. Implements the full Model-View-Projection (MVP) chain, perspective-correct interpolation, depth buffering (Z-buffer), and Lambertian lighting, parsing .gem meshes to render pixel-perfect geometry.</p>
       <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
       <figure class="media">
-        <div class="media two">
-          <div class="shot r169 empty"><img src="assets/BunnyShaded.jpg" alt="Stanford bunny, shaded" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>BunnyShaded.jpg</small></div></div>
-          <div class="shot r169 empty"><img src="assets/BunnyGeometry.jpg" alt="Stanford bunny, geometry" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>BunnyGeometry.jpg</small></div></div>
+        <div class="compare" id="cmp-bunny">
+          <!-- The container covers the minor 1280x939 vs 1280x941 diff cleanly via object-fit -->
+          <img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny geometry">
+          <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny shaded">
+          <div class="cmp-handle"></div>
+          <span class="cmp-tag l">Lambertian Shaded</span>
+          <span class="cmp-tag r">Wireframe / Geometry</span>
         </div>
-        <figcaption>Stanford bunny parsed from a .gem mesh: Lambertian shaded (left) and raw geometry (right).</figcaption>
+        <figcaption>Stanford bunny parsed from a .gem mesh: Drag to compare shaded rendering vs. raw geometry.</figcaption>
       </figure>
     </article>
 
@@ -350,7 +393,7 @@
   window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
   window.addEventListener('pointerleave', ()=> glow.style.opacity=0);
 
-  // before/after comparison sliders
+  // Before/after comparison sliders
   document.querySelectorAll('.compare').forEach(c=>{
     let drag=false;
     const set=(clientX)=>{ const r=c.getBoundingClientRect(); let p=(clientX-r.left)/r.width*100; p=Math.max(0,Math.min(100,p)); c.style.setProperty('--pos', p+'%'); };
@@ -358,6 +401,35 @@
     c.addEventListener('pointermove', e=>{ if(drag) set(e.clientX); });
     c.addEventListener('pointerup', ()=> drag=false);
     c.addEventListener('pointercancel', ()=> drag=false);
+  });
+
+  // Scene switchers for multi-image sliders
+  document.querySelectorAll('.picker').forEach(picker => {
+    const targetId = picker.getAttribute('data-target');
+    const container = document.getElementById(targetId);
+    if(!container) return;
+
+    const baseImg = container.querySelector('.cmp-base');
+    const topImg = container.querySelector('.cmp-top');
+    const tagL = container.querySelector('.cmp-tag.l');
+    const tagR = container.querySelector('.cmp-tag.r');
+    const btns = picker.querySelectorAll('button');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Swap images (the container height dynamically follows baseImg)
+        if(btn.hasAttribute('data-base')) baseImg.src = btn.getAttribute('data-base');
+        if(btn.hasAttribute('data-top')) topImg.src = btn.getAttribute('data-top');
+        
+        // Optionally update the tags if the button defines them
+        if(btn.hasAttribute('data-tag-l') && tagL) tagL.textContent = btn.getAttribute('data-tag-l');
+        if(btn.hasAttribute('data-tag-r') && tagR) tagR.textContent = btn.getAttribute('data-tag-r');
+      });
+    });
   });
 </script>
 </body>
