@@ -76,6 +76,9 @@
   
   a:focus-visible, button:focus-visible, .compare:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:4px; }
   
+  /* UX FIX: Styled inline code snippet tag */
+  code { font-family:var(--mono); font-size:0.85em; background:rgba(255,255,255,0.06); padding:0.2em 0.4em; border-radius:4px; color:var(--accent); }
+  
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
   .mono{font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
 
@@ -108,12 +111,21 @@
   .status{display:inline-flex; align-items:center; gap:9px; margin-top:30px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--ink)}
   .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 rgba(111,227,210,.6); animation:pulse 2.4s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(111,227,210,.5)}70%{box-shadow:0 0 0 10px rgba(111,227,210,0)}100%{box-shadow:0 0 0 0 rgba(111,227,210,0)}}
+  
   .cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
-  .btn{font-family:var(--mono); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; padding:13px 22px; border-radius:4px; border:1px solid var(--line); transition:.22s; color:var(--ink)}
+  .btn{font-family:var(--mono); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; padding:13px 22px; border-radius:4px; border:1px solid var(--line); transition:.2s; color:var(--ink)}
   .btn:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px)}
+  /* UX FIX: Tactile active state for clicks */
+  .btn:active{transform:translateY(0); border-color:var(--accent)}
   .btn.solid{background:var(--accent); color:#06201c; border-color:var(--accent)}
   .btn.solid:hover{background:#8ff0e1; color:#06201c}
   .hero-shot{margin-top:60px}
+
+  /* UX FIX: Mobile above-the-fold layout adjustment */
+  @media(max-width:680px){
+    header{padding:104px 0 40px;}
+    .hero-shot{margin-top:40px;}
+  }
 
   .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
   .shot.wide{aspect-ratio:4/1}
@@ -123,7 +135,6 @@
   
   .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease, opacity .4s ease; opacity:1}
   
-  /* UX FIX: Professional Skeleton Loader for missing/loading images */
   .shot.empty {
     background: var(--panel);
     animation: skeletonPulse 1.5s ease-in-out infinite;
@@ -501,16 +512,13 @@
 </footer>
 
 <script>
-  // Scroll reveal intersections
   const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.1});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
   
-  // Mouse glow effect
   const glow = document.getElementById('glow');
   window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
   window.addEventListener('pointerleave', ()=> glow.style.opacity=0);
 
-  // Scroll-Spy for Navigation Navigation Wayfinding
   const sections = document.querySelectorAll('section, header');
   const navLinks = document.querySelectorAll('.navlinks a:not(.cv)');
   window.addEventListener('scroll', () => {
@@ -528,7 +536,6 @@
     });
   }, { passive: true });
 
-  // Interactive Comparison Sliders
   document.querySelectorAll('.compare').forEach(c=>{
     let drag=false;
     
@@ -557,7 +564,6 @@
     });
   });
 
-  // Scene switchers for multi-image sliders
   document.querySelectorAll('.picker').forEach(picker => {
     const targetId = picker.getAttribute('data-target');
     const container = document.getElementById(targetId);
