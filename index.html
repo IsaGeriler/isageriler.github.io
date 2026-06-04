@@ -65,7 +65,6 @@
   
   a{color:inherit; text-decoration:none}
   
-  /* External Link Indicator (excluding buttons) */
   a[target="_blank"]:not(.btn)::after {
     content: " \2197";
     font-family: var(--sans);
@@ -75,7 +74,6 @@
     transform: translateY(-1px);
   }
   
-  /* Accessibility focus states */
   a:focus-visible, button:focus-visible, .compare:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:4px; }
   
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
@@ -120,19 +118,26 @@
   .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
   .shot.wide{aspect-ratio:4/1}
   .shot.r169{aspect-ratio:16/9}
-
-  .shot.natural { aspect-ratio: auto; }
-  .shot.natural img { height: auto; }
+  .shot.natural{aspect-ratio:auto}
+  .shot.natural img{height:auto}
   
   .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease, opacity .4s ease; opacity:1}
-  .shot.empty img{opacity:0; display:block}
+  
+  /* UX FIX: Professional Skeleton Loader for missing/loading images */
+  .shot.empty {
+    background: var(--panel);
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+  }
+  .shot.empty img { opacity:0; display:block; }
+  
+  @keyframes skeletonPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 0.8; }
+    100% { opacity: 0.5; }
+  }
   
   .shot .tag{position:absolute; left:12px; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px}
-  .shot.empty{display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(45deg,#0e1015,#0e1015 12px,#101319 12px,#101319 24px); border:1px dashed rgba(111,227,210,.35)}
-  .shot.empty .ph{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--accent); text-align:center; padding:18px}
-  .shot.empty .ph small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em}
   
-  /* UX FIX: Constrain line length for readability */
   figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic; max-width:75ch; margin-inline:auto}
   .sub-cap{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-top:10px; text-align:center}
 
@@ -174,7 +179,6 @@
   .proj h3 a:hover{border-color:var(--accent); color:var(--accent)}
   .proj .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
   
-  /* UX FIX: Better inline link hovers for paragraphs and lists */
   .proj .lead{color:#D3D7DD; margin:16px 0 0; font-size:17px; line-height:1.7}
   .proj .lead a, ul.detail li a { color:var(--accent); transition:color .2s, text-decoration .2s; }
   .proj .lead a:hover, ul.detail li a:hover { color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
@@ -277,7 +281,6 @@
       <div class="shot wide empty">
         <img src="assets/Banner.png" alt="A strip of frames from my ray tracer"
              onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')">
-        <div class="ph">RENDER STRIP<small>assets/Banner.png</small></div>
       </div>
       <figcaption>A few frames from my own ray tracer.</figcaption>
     </figure>
@@ -345,7 +348,7 @@
       </figure>
 
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>MaterialsScene128SPP.png</small></div></div>
+        <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
         <figcaption>Materials test: GGX conductor, Plastic, Oren-Nayar, Glass, and Mirror BSDFs.</figcaption>
       </figure>
     </article>
@@ -362,22 +365,22 @@
       <div class="tags"><span>C++</span><span>SIMD (SSE/AVX)</span><span>Multithreading</span><span>Performance Profiling</span></div>
       
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">GRAPH<small>Scene3Speedup.png</small></div></div>
+        <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
         <figcaption>Scene 3 profiling: speedup peaks near the Performance-core count, then degrades as work spills onto slower cores and hyperthreads.</figcaption>
       </figure>
       
       <figure class="media">
         <div class="media three">
           <div>
-            <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 1<small>Scene1.png</small></div></div>
+            <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
             <div class="sub-cap">Scene 1</div>
           </div>
           <div>
-            <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 2<small>Scene2.png</small></div></div>
+            <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
             <div class="sub-cap">Scene 2</div>
           </div>
           <div>
-            <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 3<small>Scene3.png</small></div></div>
+            <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
             <div class="sub-cap">Scene 3</div>
           </div>
         </div>
@@ -399,7 +402,7 @@
       </ul>
       <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>AfterRoughnessMapping.png</small></div></div>
+        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
         <figcaption>Reference render from my previous DX12 framework. The current WIP engine is a complete re-architecture designed to improve scalability and graphically extend the original implementation.</figcaption>
       </figure>
     </article>
@@ -411,7 +414,7 @@
       <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build are both parallelized using C++17 <code>std::execution::par</code> to maximize CPU utilization.</p>
       <div class="tags"><span>C++17</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>RTMB.jpg</small></div></div>
+        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
         <figcaption>Integrated motion blur.</figcaption>
       </figure>
     </article>
@@ -441,7 +444,7 @@
         <p class="lead">A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications.</p>
           <div class="tags"><span>C++</span><span>Multithreading</span><span>WinSock</span><span>Dear ImGui</span><span>FMOD</span></div>
             <figure class="media">
-                <div class="shot natural empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">INTERFACE<small>ChatRoom.png</small></div></div>
+                <div class="shot natural empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
               <figcaption>Dear ImGui client interface showing global server broadcasts (top window) and private 1-to-1 direct messaging (bottom window).</figcaption>
             </figure>
     </article>
