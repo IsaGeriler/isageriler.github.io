@@ -20,9 +20,25 @@
     --mono:"Space Mono",ui-monospace,Menlo,monospace;
     --maxw:1120px;
   }
-  *{box-sizing:border-box;margin:0;padding:0}
   
-  html{scroll-behavior:smooth; scroll-padding-top:80px}
+  /* UX FIX: Remove mobile tap flash highlight */
+  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
+  
+  /* UX FIX: Firefox Scrollbar support & smooth scroll */
+  html{
+    scroll-behavior:smooth; scroll-padding-top:80px;
+    scrollbar-width:thin; scrollbar-color:var(--panel) var(--bg);
+  }
+  
+  /* UX FIX: Brand-matching text selection */
+  ::selection { background:var(--accent); color:#06201c; }
+  ::-moz-selection { background:var(--accent); color:#06201c; }
+
+  /* UX FIX: Custom Webkit Scrollbar */
+  ::-webkit-scrollbar { width:10px; }
+  ::-webkit-scrollbar-track { background:var(--bg); border-left:1px solid var(--line-2); }
+  ::-webkit-scrollbar-thumb { background:var(--panel); border:1px solid var(--line); border-radius:5px; }
+  ::-webkit-scrollbar-thumb:hover { background:var(--faint); }
   
   body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden}
   body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
@@ -37,6 +53,16 @@
   
   a{color:inherit; text-decoration:none}
   
+  /* External Link Indicator (excluding buttons) */
+  a[target="_blank"]:not(.btn)::after {
+    content: " \2197"; /* Unicode for North East Arrow */
+    font-family: var(--sans);
+    font-size: 0.85em;
+    opacity: 0.5;
+    display: inline-block;
+    transform: translateY(-1px);
+  }
+  
   /* Accessibility focus states */
   a:focus-visible, button:focus-visible, .compare:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:4px; }
   
@@ -49,7 +75,6 @@
   .brand b{color:var(--accent)}
   .navlinks{display:flex; gap:26px}
   
-  /* Scroll-Spy nav links (Transparent border prevents layout jitter) */
   .navlinks a{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); transition:color .2s, border-color .2s; border-bottom:2px solid transparent; padding-bottom:4px}
   .navlinks a:hover{color:var(--ink)}
   .navlinks a.active-section{color:var(--ink); border-color:var(--accent)}
@@ -83,19 +108,23 @@
   .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
   .shot.wide{aspect-ratio:21/6}
   .shot.r169{aspect-ratio:16/9}
-  .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease}
+  
+  /* UX FIX: Smooth fade-in for images */
+  .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease, opacity .4s ease; opacity:1}
+  .shot.empty img{opacity:0; display:block}
+  
   .shot .tag{position:absolute; left:12px; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px}
   .shot.empty{display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(45deg,#0e1015,#0e1015 12px,#101319 12px,#101319 24px); border:1px dashed rgba(111,227,210,.35)}
-  .shot.empty img{display:none}
   .shot.empty .ph{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--accent); text-align:center; padding:18px}
   .shot.empty .ph small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em}
+  
   figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic}
+  .sub-cap{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-top:10px; text-align:center}
 
   /* Dynamic comparison slider */
   .compare{
     position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--line); 
     --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:pan-y;
-    /* UX FIX: Prevent blue text highlighting and context menus while dragging */
     -webkit-user-select:none; user-select:none; -webkit-touch-callout:none;
   }
   .compare:active{cursor:grabbing}
@@ -112,7 +141,6 @@
     background:rgba(10,11,14,.5); border:1px solid var(--line); color:var(--muted); font-family:var(--mono); 
     font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:8px 16px; border-radius:999px; 
     cursor:pointer; transition:all .2s;
-    /* UX FIX: Stop fast clicking from highlighting text inside the button */
     -webkit-user-select:none; user-select:none;
   }
   .picker button:hover{border-color:rgba(111,227,210,.5); color:var(--ink)}
@@ -140,8 +168,16 @@
   ul.detail li{position:relative; padding-left:18px; color:#C7CBD2; font-size:15.5px; line-height:1.65; margin:9px 0}
   ul.detail li::before{content:"\203A"; position:absolute; left:0; color:var(--accent)}
   ul.detail b{color:var(--ink); font-weight:600}
+  
+  /* UX FIX: Add tactile depth and hover interaction to tags */
   .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
-  .tags span{font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); border:1px solid var(--line); padding:5px 10px; border-radius:5px}
+  .tags span{
+    font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); 
+    border:1px solid var(--line); padding:5px 10px; border-radius:5px;
+    background:rgba(255,255,255,0.02); transition:color .2s, border-color .2s, background .2s; cursor:default;
+  }
+  .tags span:hover { color:var(--ink); border-color:rgba(111,227,210,.3); background:rgba(111,227,210,.05); }
+  
   .media{margin-top:24px}
   .media.two{display:grid; grid-template-columns:1fr 1fr; gap:14px}
   .media.three{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px}
@@ -186,16 +222,8 @@
     .shot, .compare { border: 1px solid #ccc !important; page-break-inside: avoid; }
     h1, h2, h3, h4, p, li, span, div { color: black !important; }
     a { text-decoration: underline; color: #000 !important; }
-    /* Show only the top image of the slider on print */
     .compare .cmp-top { clip-path: inset(0 0 0 0) !important; }
     .compare .cmp-tag { display: none !important; }
-  }
-
-  a[target="_blank"]::after {
-    content: " \2197"; /* Unicode for North East Arrow */
-    font-family: var(--sans);
-    font-size: 0.9em;
-    opacity: 0.6;
   }
 </style>
 </head>
@@ -278,7 +306,7 @@
 
       <!-- Multi-integrator Cornell Box Slider -->
       <figure class="media">
-        <div class="compare" id="cmp-cornell" tabindex="0">
+        <div class="compare" id="cmp-cornell" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Right Side">
           <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Left Side">
           <div class="cmp-handle"></div>
@@ -315,15 +343,27 @@
         <p>I profiled how performance scales with thread count on my Intel Core Ultra 7 155H, a hybrid CPU with 6 Performance cores, 8 Efficiency cores, and 2 Low-Power Efficiency cores (16 cores / 22 threads). SIMD (SSE/AVX) plus multithreading gave large early gains, but the speedup peaks at roughly 2.8x around 6 threads and then degrades. That inflection lines up with the Performance-core count: the first threads land on the fast P-cores, and scaling past them onto the slower E-cores, LP-cores, and hyperthreads adds workers that are both slower and competing for shared resources, so throughput stops improving and starts to regress.</p>
       </div>
       <div class="tags"><span>C++</span><span>SIMD (SSE/AVX)</span><span>Multithreading</span><span>Performance Profiling</span></div>
+      
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">GRAPH<small>Scene3Speedup.png</small></div></div>
         <figcaption>Scene 3 profiling: speedup peaks near the Performance-core count, then degrades as work spills onto slower cores and hyperthreads.</figcaption>
       </figure>
+      
+      <!-- UX FIX: Added contextual captions under the grid scenes -->
       <figure class="media">
         <div class="media three">
-          <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 1<small>Scene1.png</small></div></div>
-          <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 2<small>Scene2.png</small></div></div>
-          <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 3<small>Scene3.png</small></div></div>
+          <div>
+            <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 1<small>Scene1.png</small></div></div>
+            <div class="sub-cap">Scene 1</div>
+          </div>
+          <div>
+            <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 2<small>Scene2.png</small></div></div>
+            <div class="sub-cap">Scene 2</div>
+          </div>
+          <div>
+            <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 3<small>Scene3.png</small></div></div>
+            <div class="sub-cap">Scene 3</div>
+          </div>
         </div>
       </figure>
     </article>
@@ -366,7 +406,8 @@
       <p class="lead">An engine built entirely from scratch to deeply understand the math behind graphics APIs. Instead of using existing math libraries (like GLM), I wrote the matrix, vector, and homogeneous-coordinate mathematics myself. Implements the full Model-View-Projection (MVP) chain, perspective-correct interpolation, depth buffering (Z-buffer), and Lambertian lighting, parsing .gem meshes to render pixel-perfect geometry.</p>
       <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
       <figure class="media">
-        <div class="compare" id="cmp-bunny" tabindex="0">
+        <!-- UX FIX: Added missing ARIA attributes to this slider -->
+        <div class="compare" id="cmp-bunny" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny geometry">
           <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny shaded">
           <div class="cmp-handle"></div>
@@ -472,7 +513,15 @@
   // Interactive Comparison Sliders
   document.querySelectorAll('.compare').forEach(c=>{
     let drag=false;
-    const set=(clientX)=>{ const r=c.getBoundingClientRect(); let p=(clientX-r.left)/r.width*100; p=Math.max(0,Math.min(100,p)); c.style.setProperty('--pos', p+'%'); };
+    
+    // UX FIX: Update aria-valuenow during mouse/touch drag for screen readers
+    const set=(clientX)=>{ 
+      const r=c.getBoundingClientRect(); 
+      let p=(clientX-r.left)/r.width*100; 
+      p=Math.max(0,Math.min(100,p)); 
+      c.style.setProperty('--pos', p+'%'); 
+      c.setAttribute('aria-valuenow', Math.round(p)); 
+    };
     
     // Mouse/Touch Dragging
     c.addEventListener('pointerdown', e=>{ drag=true; c.setPointerCapture(e.pointerId); set(e.clientX); });
