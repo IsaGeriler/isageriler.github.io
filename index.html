@@ -281,7 +281,7 @@
     <div class="kicker mono rv">Graphics / Rendering Programmer</div>
     <h1 class="rv d1">Isa <span class="it">Geriler</span></h1>
     <p class="lede rv d2">I build renderers and the math underneath them.</p>
-    <div class="status rv d3"><span class="dot"></span>Open to graphics roles &amp; internships · Summer 2026</div>
+    <div class="status rv d3"><span class="dot"></span>Open to graphics roles &amp; internships · Summer 2026 onward</div>
     <div class="cta rv d4">
       <a href="#work" class="btn solid">View work</a>
       <a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a>
@@ -312,10 +312,10 @@
         <p>Simulates highly realistic lighting and materials using industry-standard math and data structures, dramatically reducing render times and visual noise through spatial optimizations and Intel AI denoising.</p>
       </div>
       <ul class="detail">
-        <li><b>Architecture:</b> three integrators in one engine: Path Tracing, Light Tracing, and Instant Radiosity (which uses a Halton quasi-Monte Carlo sampler relying on prime bases for the Radical Inverse).</li>
+        <li><b>Architecture:</b> Three integrators in one engine: Path Tracing, Light Tracing, and Instant Radiosity (which uses a Halton quasi-Monte Carlo sampler relying on prime bases for the Radical Inverse).</li>
         <li><b>Material framework:</b> GGX microfacets (Conductor BSDF, sampled proportionally to the NDF), Plastic (Phong), Diffuse, Oren-Nayar, Glass, Mirror, and a Layered BSDF evaluating Beer's Law for attenuation.</li>
-        <li><b>Performance:</b> render time and variance optimized with a Binned SAH BVH (Surface Area Heuristics Bounding Volume Hierarchy), tile-based multithreading, and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
-        <li><b>Denoising:</b> custom AOV outputs feed directly into Intel OIDN for machine-learning-based post-process denoising.</li>
+        <li><b>Performance:</b> Render time and variance optimized with a Binned SAH BVH (Surface Area Heuristics Bounding Volume Hierarchy), tile-based multithreading, and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
+        <li><b>Denoising:</b> Custom AOV outputs feed directly into Intel OIDN for machine-learning-based post-process denoising.</li>
       </ul>
       <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
       
@@ -422,8 +422,8 @@
       <span class="idx">004</span>
       <h3><a href="https://github.com/IsaGeriler/RayTracer" target="_blank" rel="noopener">Offline Ray Tracer (WIP)</a></h3>
       <div class="role">C++ · In progress</div>
-      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build are both parallelized using C++17 <code>std::execution::par</code> to maximize CPU utilization.</p>
-      <div class="tags"><span>C++17</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
+      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build (sorting was parallelized via C++17's <code>std::execution::par</code>) are both parallelized to maximize CPU utilization.</p>
+      <div class="tags"><span>C++</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
         <figcaption>Integrated motion blur.</figcaption>
