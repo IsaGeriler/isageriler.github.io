@@ -122,8 +122,12 @@
   .hero-shot{margin-top:60px}
 
   .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
-  .shot.wide{aspect-ratio:21/6}
+  /*.shot.wide{aspect-ratio:21/6}*/
+  .shot.wide{aspect-ratio:4/1}
   .shot.r169{aspect-ratio:16/9}
+
+  .shot.natural { aspect-ratio: auto; }
+  .shot.natural img { height: auto; }
   
   /* UX FIX: Smooth fade-in for images */
   .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease, opacity .4s ease; opacity:1}
@@ -400,6 +404,7 @@
       <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>AfterRoughnessMapping.png</small></div></div>
+        <figcaption>Reference render from my previous DX12 framework. The current WIP engine is a complete low-level re-architecture to improve scalability and resource binding.</figcaption>
       </figure>
     </article>
 
@@ -438,11 +443,14 @@
       <span class="idx">006</span>
       <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentChatRoom5749205" target="_blank" rel="noopener">C++ Client-Server Chat Room</a></h3>
       <div class="role">C++ · Networking</div>
-      <p class="lead">A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications.</p>
-      <div class="tags"><span>C++</span><span>Multithreading</span><span>WinSock</span><span>Dear ImGui</span><span>FMOD</span></div>
-      <figure class="media">
-        <div class="shot r169 empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCREENSHOT<small>ChatRoom.png</small></div></div>
-      </figure>
+        <p class="lead">A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications.</p>
+          <div class="tags"><span>C++</span><span>Multithreading</span><span>WinSock</span><span>Dear ImGui</span><span>FMOD</span></div>
+            <figure class="media">
+              <!-- Changed 'r169' to 'natural' so it stops cropping the sides -->
+                <div class="shot natural empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCREENSHOT<small>ChatRoom.png</small></div></div>
+              <!-- Added context caption -->
+              <figcaption>Dear ImGui client interface showing global server broadcasts (top window) and private 1-to-1 direct messaging (bottom window).</figcaption>
+            </figure>
     </article>
 
     <div class="sec-head rv" style="margin-top:8px"><span class="num">+</span><h2 style="font-size:clamp(22px,3vw,30px)">Also Built</h2><span class="rule"></span></div>
