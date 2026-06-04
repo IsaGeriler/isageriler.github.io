@@ -37,20 +37,16 @@
     --maxw:1120px;
   }
   
-  /* UX FIX: Remove mobile tap flash highlight */
   *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
   
-  /* UX FIX: Firefox Scrollbar support & smooth scroll */
   html{
     scroll-behavior:smooth; scroll-padding-top:80px;
     scrollbar-width:thin; scrollbar-color:var(--panel) var(--bg);
   }
   
-  /* UX FIX: Brand-matching text selection */
   ::selection { background:var(--accent); color:#06201c; }
   ::-moz-selection { background:var(--accent); color:#06201c; }
 
-  /* UX FIX: Custom Webkit Scrollbar */
   ::-webkit-scrollbar { width:10px; }
   ::-webkit-scrollbar-track { background:var(--bg); border-left:1px solid var(--line-2); }
   ::-webkit-scrollbar-thumb { background:var(--panel); border:1px solid var(--line); border-radius:5px; }
@@ -71,7 +67,7 @@
   
   /* External Link Indicator (excluding buttons) */
   a[target="_blank"]:not(.btn)::after {
-    content: " \2197"; /* Unicode for North East Arrow */
+    content: " \2197";
     font-family: var(--sans);
     font-size: 0.85em;
     opacity: 0.5;
@@ -122,14 +118,12 @@
   .hero-shot{margin-top:60px}
 
   .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
-  /*.shot.wide{aspect-ratio:21/6}*/
   .shot.wide{aspect-ratio:4/1}
   .shot.r169{aspect-ratio:16/9}
 
   .shot.natural { aspect-ratio: auto; }
   .shot.natural img { height: auto; }
   
-  /* UX FIX: Smooth fade-in for images */
   .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease, opacity .4s ease; opacity:1}
   .shot.empty img{opacity:0; display:block}
   
@@ -138,7 +132,8 @@
   .shot.empty .ph{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--accent); text-align:center; padding:18px}
   .shot.empty .ph small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em}
   
-  figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic}
+  /* UX FIX: Constrain line length for readability */
+  figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic; max-width:75ch; margin-inline:auto}
   .sub-cap{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-top:10px; text-align:center}
 
   /* Dynamic comparison slider */
@@ -178,7 +173,12 @@
   .proj h3 a{border-bottom:1px solid transparent; transition:.2s}
   .proj h3 a:hover{border-color:var(--accent); color:var(--accent)}
   .proj .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
+  
+  /* UX FIX: Better inline link hovers for paragraphs and lists */
   .proj .lead{color:#D3D7DD; margin:16px 0 0; font-size:17px; line-height:1.7}
+  .proj .lead a, ul.detail li a { color:var(--accent); transition:color .2s, text-decoration .2s; }
+  .proj .lead a:hover, ul.detail li a:hover { color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
+  
   .callout{margin:20px 0 0; padding:16px 20px; border-left:3px solid var(--accent); background:linear-gradient(90deg,rgba(111,227,210,.07),transparent); border-radius:0 6px 6px 0}
   .callout.warn{border-left-color:var(--accent-2); background:linear-gradient(90deg,rgba(232,162,74,.08),transparent)}
   .callout .label{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px}
@@ -189,7 +189,6 @@
   ul.detail li::before{content:"\203A"; position:absolute; left:0; color:var(--accent)}
   ul.detail b{color:var(--ink); font-weight:600}
   
-  /* UX FIX: Add tactile depth and hover interaction to tags */
   .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
   .tags span{
     font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); 
@@ -306,7 +305,6 @@
       </ul>
       <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
       
-      <!-- Multi-scene Denoising Slider -->
       <figure class="media">
         <div class="compare" id="cmp-denoise" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Right Side">
@@ -324,7 +322,6 @@
         <figcaption>Drag to compare: 128 spp reference vs. 16 spp denoised with Intel OIDN. Automatically adjusts to scene aspect ratios.</figcaption>
       </figure>
 
-      <!-- Multi-integrator Cornell Box Slider -->
       <figure class="media">
         <div class="compare" id="cmp-cornell" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Right Side">
@@ -369,7 +366,6 @@
         <figcaption>Scene 3 profiling: speedup peaks near the Performance-core count, then degrades as work spills onto slower cores and hyperthreads.</figcaption>
       </figure>
       
-      <!-- UX FIX: Added contextual captions under the grid scenes -->
       <figure class="media">
         <div class="media three">
           <div>
@@ -399,12 +395,12 @@
       </div>
       <ul class="detail">
         <li><b>Current features:</b> working through Descriptor Heaps, Root Signatures, and Pipeline State Objects (PSOs).</li>
-        <li><b>Evolution:</b> a re-architected, highly scalable improvement over my initial <a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener" style="color:var(--accent)">DirectX 12 Coursework Framework</a>.</li>
+        <li><b>Evolution:</b> a re-architected, highly scalable improvement over my initial <a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener">DirectX 12 Coursework Framework</a>.</li>
       </ul>
       <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>AfterRoughnessMapping.png</small></div></div>
-        <figcaption>Reference render from my previous DX12 framework. The current WIP engine is a complete low-level re-architecture to improve scalability and resource binding.</figcaption>
+        <figcaption>Reference render from my previous DX12 framework. The current WIP engine is a complete re-architecture designed to improve scalability and graphically extend the original implementation.</figcaption>
       </figure>
     </article>
 
@@ -427,7 +423,6 @@
       <p class="lead">An engine built entirely from scratch to deeply understand the math behind graphics APIs. Instead of using existing math libraries (like GLM), I wrote the matrix, vector, and homogeneous-coordinate mathematics myself. Implements the full Model-View-Projection (MVP) chain, perspective-correct interpolation, depth buffering (Z-buffer), and Lambertian lighting, parsing .gem meshes to render pixel-perfect geometry.</p>
       <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
       <figure class="media">
-        <!-- UX FIX: Added missing ARIA attributes to this slider -->
         <div class="compare" id="cmp-bunny" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny geometry">
           <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny shaded">
@@ -446,9 +441,7 @@
         <p class="lead">A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications.</p>
           <div class="tags"><span>C++</span><span>Multithreading</span><span>WinSock</span><span>Dear ImGui</span><span>FMOD</span></div>
             <figure class="media">
-              <!-- Changed 'r169' to 'natural' so it stops cropping the sides -->
-                <div class="shot natural empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCREENSHOT<small>ChatRoom.png</small></div></div>
-              <!-- Added context caption -->
+                <div class="shot natural empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">INTERFACE<small>ChatRoom.png</small></div></div>
               <figcaption>Dear ImGui client interface showing global server broadcasts (top window) and private 1-to-1 direct messaging (bottom window).</figcaption>
             </figure>
     </article>
@@ -520,25 +513,22 @@
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(sec => {
-      // Offset by 150px to trigger just as the section nears the top of the viewport
       if (window.scrollY >= (sec.offsetTop - 150)) {
         current = sec.getAttribute('id');
       }
     });
     navLinks.forEach(link => {
       link.classList.remove('active-section');
-      // Substring removes the '#' from the href for an exact match against the section ID
       if (link.getAttribute('href').substring(1) === current) {
         link.classList.add('active-section');
       }
     });
-  }, { passive: true }); // passive true keeps scrolling 60/120fps smooth
+  }, { passive: true });
 
   // Interactive Comparison Sliders
   document.querySelectorAll('.compare').forEach(c=>{
     let drag=false;
     
-    // UX FIX: Update aria-valuenow during mouse/touch drag for screen readers
     const set=(clientX)=>{ 
       const r=c.getBoundingClientRect(); 
       let p=(clientX-r.left)/r.width*100; 
@@ -547,18 +537,16 @@
       c.setAttribute('aria-valuenow', Math.round(p)); 
     };
     
-    // Mouse/Touch Dragging
     c.addEventListener('pointerdown', e=>{ drag=true; c.setPointerCapture(e.pointerId); set(e.clientX); });
     c.addEventListener('pointermove', e=>{ if(drag) set(e.clientX); });
     c.addEventListener('pointerup', ()=> drag=false);
     c.addEventListener('pointercancel', ()=> drag=false);
 
-    // Keyboard Arrow Controls (A11y)
     c.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault(); // Stop page scrolling when moving slider
+        e.preventDefault(); 
         let currentPos = parseFloat(c.style.getPropertyValue('--pos')) || 50;
-        currentPos += (e.key === 'ArrowRight' ? 5 : -5); // Jump in 5% increments
+        currentPos += (e.key === 'ArrowRight' ? 5 : -5); 
         currentPos = Math.max(0, Math.min(100, currentPos));
         c.setAttribute('aria-valuenow', Math.round(currentPos)); 
         c.style.setProperty('--pos', currentPos + '%');
@@ -579,13 +567,11 @@
     const btns = picker.querySelectorAll('button');
 
     btns.forEach(btn => {
-      // Preload the specific scene images gracefully when a user hovers 
       btn.addEventListener('mouseenter', () => {
         if(btn.hasAttribute('data-base')) new Image().src = btn.getAttribute('data-base');
         if(btn.hasAttribute('data-top')) new Image().src = btn.getAttribute('data-top');
       });
 
-      // Handle the actual swap on click
       btn.addEventListener('click', () => {
         btns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
