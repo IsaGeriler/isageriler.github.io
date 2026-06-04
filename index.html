@@ -5,6 +5,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Isa Geriler · Graphics / Rendering Programmer</title>
 <meta name="description" content="Isa Geriler. Graphics and rendering programmer. Path tracer, software rasterizer, DX12 engine, and more.">
+
+<!-- Open Graph / social sharing (uses the deployed site URL, not a github.com blob URL) -->
+<meta property="og:title" content="Isa Geriler · Graphics / Rendering Programmer">
+<meta property="og:description" content="Path tracer, software rasterizer, DX12 engine, and more.">
+<meta property="og:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png">
+<meta property="og:url" content="https://isageriler.github.io/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Isa Geriler · Graphics / Rendering Programmer">
+<meta name="twitter:description" content="Path tracer, software rasterizer, DX12 engine, and more.">
+<meta name="twitter:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0b0e'/%3E%3Ccircle cx='50' cy='50' r='26' fill='none' stroke='%236FE3D2' stroke-width='8'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -20,9 +34,9 @@
     --maxw:1120px;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  
+
   html{scroll-behavior:smooth; scroll-padding-top:80px}
-  
+
   body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden}
   body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
     background:radial-gradient(60vw 60vw at 78% -10%, rgba(111,227,210,.10), transparent 60%),radial-gradient(50vw 50vw at -10% 25%, rgba(232,162,74,.07), transparent 60%),var(--bg)}
@@ -30,12 +44,12 @@
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   #glow{position:fixed; width:520px; height:520px; left:0; top:0; z-index:-1; pointer-events:none;
     background:radial-gradient(circle, rgba(111,227,210,.08), transparent 65%); transform:translate(-50%,-50%); transition:opacity .4s; opacity:0}
-  
+
   a{color:inherit; text-decoration:none}
-  
+
   /* Accessibility focus states */
   a:focus-visible, button:focus-visible, .compare:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:4px; }
-  
+
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
   .mono{font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
 
@@ -44,16 +58,14 @@
   .brand{font-family:var(--mono); font-weight:700; letter-spacing:.18em; font-size:14px}
   .brand b{color:var(--accent)}
   .navlinks{display:flex; gap:26px}
-  
-  /* Scroll-Spy nav links (Transparent border prevents layout jitter) */
+
+  /* Scroll-spy nav links (transparent border prevents layout jitter) */
   .navlinks a{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); transition:color .2s, border-color .2s; border-bottom:2px solid transparent; padding-bottom:4px}
   .navlinks a:hover{color:var(--ink)}
   .navlinks a.active-section{color:var(--ink); border-color:var(--accent)}
   .navlinks a.cv{color:var(--accent)}
-  
-  @media(max-width:680px){ 
-    .navlinks{gap:14px} 
-  }
+
+  @media(max-width:680px){ .navlinks{gap:14px} }
   @media(max-width:480px){
     .wrap{padding:0 18px}
     .brand{font-size:12px; letter-spacing:.1em}
@@ -77,18 +89,20 @@
   .hero-shot{margin-top:60px}
 
   .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
-  .shot.wide{aspect-ratio:21/6}
+  /* Hero banner: keep the strip's natural ratio (no crop) */
+  .shot.wide{aspect-ratio:auto; min-height:140px}
+  .shot.wide img{height:auto; object-fit:contain}
   .shot.r169{aspect-ratio:16/9}
   .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease}
   .shot .tag{position:absolute; left:12px; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px}
-  .shot.empty{display:flex; align-items:center; justify-content:center; background:repeating-linear-gradient(45deg,#0e1015,#0e1015 12px,#101319 12px,#101319 24px); border:1px dashed rgba(111,227,210,.35)}
+  .shot.empty{display:flex; align-items:center; justify-content:center; min-height:160px; background:repeating-linear-gradient(45deg,#0e1015,#0e1015 12px,#101319 12px,#101319 24px); border:1px dashed rgba(111,227,210,.35)}
   .shot.empty img{display:none}
   .shot.empty .ph{font-family:var(--mono); font-size:12px; letter-spacing:.08em; color:var(--accent); text-align:center; padding:18px}
   .shot.empty .ph small{display:block; color:var(--faint); margin-top:8px; letter-spacing:.04em}
   figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic}
 
   /* Dynamic comparison slider */
-  .compare{position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--line); --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:pan-y}
+  .compare{position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--line); --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:pan-y; min-height:220px}
   .compare:active{cursor:grabbing}
   .compare img{display:block; pointer-events:none}
   .compare .cmp-base{width:100%; height:auto}
@@ -159,21 +173,20 @@
   .rv{opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
   .rv.in{opacity:1; transform:none}
   .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
-  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.dot{animation:none}}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.dot{animation:none} html{scroll-behavior:auto}}
 
   /* Print optimizations */
   @media print {
-    body { background: white !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body::before, body::after, #glow, nav, .status, .cta, .picker, .cmp-handle { display: none !important; }
-    header { padding: 40px 0; }
-    section { padding: 40px 0; border-top: 1px solid #eee; }
-    .callout, .card { border: 1px solid #ccc !important; background: transparent !important; page-break-inside: avoid; }
-    .shot, .compare { border: 1px solid #ccc !important; page-break-inside: avoid; }
-    h1, h2, h3, h4, p, li, span, div { color: black !important; }
-    a { text-decoration: underline; color: #000 !important; }
-    /* Show only the top image of the slider on print */
-    .compare .cmp-top { clip-path: inset(0 0 0 0) !important; }
-    .compare .cmp-tag { display: none !important; }
+    body { background:white !important; color:black !important; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+    body::before, body::after, #glow, nav, .status, .cta, .picker, .cmp-handle { display:none !important; }
+    header { padding:40px 0; }
+    section { padding:40px 0; border-top:1px solid #eee; }
+    .callout, .card { border:1px solid #ccc !important; background:transparent !important; page-break-inside:avoid; }
+    .shot, .compare { border:1px solid #ccc !important; page-break-inside:avoid; }
+    h1, h2, h3, h4, p, li, span, div { color:black !important; }
+    a { text-decoration:underline; color:#000 !important; }
+    .compare .cmp-top { clip-path:inset(0 0 0 0) !important; }
+    .compare .cmp-tag { display:none !important; }
   }
 </style>
 </head>
@@ -235,50 +248,52 @@
         <li><b>Denoising:</b> custom AOV outputs feed directly into Intel OIDN for machine-learning-based post-process denoising.</li>
       </ul>
       <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
-      
-      <!-- Multi-scene Denoising Slider -->
+
+      <!-- Multi-scene denoising slider -->
       <figure class="media">
-        <div class="compare" id="cmp-denoise" tabindex="0">
-          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Right Side">
-          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Left Side">
+        <div class="compare" id="cmp-denoise" tabindex="0" role="slider"
+             aria-label="Compare 128 spp reference with 16 spp denoised render" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Kitchen scene, 16 spp denoised with Intel OIDN" loading="lazy" decoding="async">
+          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Kitchen scene, 128 spp reference" loading="lazy" decoding="async">
           <div class="cmp-handle"></div>
           <span class="cmp-tag l">128 spp reference</span>
           <span class="cmp-tag r">16 spp + OIDN</span>
         </div>
         <div class="picker" data-target="cmp-denoise">
-          <button class="active" data-top="assets/Kitchen128SPP.png" data-base="assets/Kitchen16SPPDenoised.png">Kitchen</button>
-          <button data-top="assets/Bathroom128SPP.png" data-base="assets/Bathroom16SPPDenoised.png">Bathroom</button>
-          <button data-top="assets/Classroom128SPP.png" data-base="assets/Classroom16SPPDenoised.png">Classroom</button>
-          <button data-top="assets/Sibenik128SPP.png" data-base="assets/Sibenik16SPPDenoised.png">Sibenik</button>
+          <button class="active" aria-pressed="true" data-top="assets/Kitchen128SPP.png" data-base="assets/Kitchen16SPPDenoised.png">Kitchen</button>
+          <button aria-pressed="false" data-top="assets/Bathroom128SPP.png" data-base="assets/Bathroom16SPPDenoised.png">Bathroom</button>
+          <button aria-pressed="false" data-top="assets/Classroom128SPP.png" data-base="assets/Classroom16SPPDenoised.png">Classroom</button>
+          <button aria-pressed="false" data-top="assets/Sibenik128SPP.png" data-base="assets/Sibenik16SPPDenoised.png">Sibenik</button>
         </div>
-        <figcaption>Drag to compare: 128 spp reference vs. 16 spp denoised with Intel OIDN. Automatically adjusts to scene aspect ratios.</figcaption>
+        <figcaption>Drag to compare: 128 spp reference vs. 16 spp denoised with Intel OIDN. Adjusts to each scene's aspect ratio.</figcaption>
       </figure>
 
-      <!-- Multi-integrator Cornell Box Slider -->
+      <!-- Multi-integrator Cornell Box slider -->
       <figure class="media">
-        <div class="compare" id="cmp-cornell" tabindex="0">
-          <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Right Side">
-          <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Left Side">
+        <div class="compare" id="cmp-cornell" tabindex="0" role="slider"
+             aria-label="Compare rendering integrators in the Cornell Box" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Cornell Box rendered with Light Tracing" loading="lazy" decoding="async">
+          <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Cornell Box rendered with Path Tracing" loading="lazy" decoding="async">
           <div class="cmp-handle"></div>
           <span class="cmp-tag l">Path Tracing</span>
           <span class="cmp-tag r">Light Tracing</span>
         </div>
         <div class="picker" data-target="cmp-cornell">
-          <button class="active" 
-            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" 
+          <button class="active" aria-pressed="true"
+            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing"
             data-base="assets/CornellBoxLT.png" data-tag-r="Light Tracing">PT vs LT</button>
-          <button 
-            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" 
+          <button aria-pressed="false"
+            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing"
             data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity">PT vs IR</button>
-          <button 
-            data-top="assets/CornellBoxLT.png" data-tag-l="Light Tracing" 
+          <button aria-pressed="false"
+            data-top="assets/CornellBoxLT.png" data-tag-l="Light Tracing"
             data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity">LT vs IR</button>
         </div>
         <figcaption>Comparing integrators in the Cornell Box: Path Tracing, Light Tracing, and Instant Radiosity.</figcaption>
       </figure>
 
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>MaterialsScene128SPP.png</small></div></div>
+        <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>MaterialsScene128SPP.png</small></div></div>
         <figcaption>Materials test: GGX conductor, Plastic, Oren-Nayar, Glass, and Mirror BSDFs.</figcaption>
       </figure>
     </article>
@@ -294,14 +309,14 @@
       </div>
       <div class="tags"><span>C++</span><span>SIMD (SSE/AVX)</span><span>Multithreading</span><span>Performance Profiling</span></div>
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">GRAPH<small>Scene3Speedup.png</small></div></div>
+        <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">GRAPH<small>Scene3Speedup.png</small></div></div>
         <figcaption>Scene 3 profiling: speedup peaks near the Performance-core count, then degrades as work spills onto slower cores and hyperthreads.</figcaption>
       </figure>
       <figure class="media">
         <div class="media three">
-          <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 1<small>Scene1.png</small></div></div>
-          <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 2<small>Scene2.png</small></div></div>
-          <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 3<small>Scene3.png</small></div></div>
+          <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 1<small>Scene1.png</small></div></div>
+          <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 2<small>Scene2.png</small></div></div>
+          <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCENE 3<small>Scene3.png</small></div></div>
         </div>
       </figure>
     </article>
@@ -321,7 +336,7 @@
       </ul>
       <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>AfterRoughnessMapping.png</small></div></div>
+        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>AfterRoughnessMapping.png</small></div></div>
       </figure>
     </article>
 
@@ -332,7 +347,7 @@
       <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build are both parallelized using C++17 <code>std::execution::par</code> to maximize CPU utilization.</p>
       <div class="tags"><span>C++17</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>RTMB.jpg</small></div></div>
+        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">RENDER<small>RTMB.jpg</small></div></div>
         <figcaption>Integrated motion blur.</figcaption>
       </figure>
     </article>
@@ -344,14 +359,15 @@
       <p class="lead">An engine built entirely from scratch to deeply understand the math behind graphics APIs. Instead of using existing math libraries (like GLM), I wrote the matrix, vector, and homogeneous-coordinate mathematics myself. Implements the full Model-View-Projection (MVP) chain, perspective-correct interpolation, depth buffering (Z-buffer), and Lambertian lighting, parsing .gem meshes to render pixel-perfect geometry.</p>
       <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
       <figure class="media">
-        <div class="compare" id="cmp-bunny" tabindex="0">
-          <img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny geometry">
-          <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny shaded">
+        <div class="compare" id="cmp-bunny" tabindex="0" role="slider"
+             aria-label="Compare shaded bunny render with raw geometry" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny, raw geometry" loading="lazy" decoding="async">
+          <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny, Lambertian shaded" loading="lazy" decoding="async">
           <div class="cmp-handle"></div>
           <span class="cmp-tag l">Lambertian Shaded</span>
-          <span class="cmp-tag r">Wireframe / Geometry</span>
+          <span class="cmp-tag r">Geometry</span>
         </div>
-        <figcaption>Stanford bunny parsed from a .gem mesh: Drag to compare shaded rendering vs. raw geometry.</figcaption>
+        <figcaption>Stanford bunny parsed from a .gem mesh: drag to compare shaded rendering vs. raw geometry.</figcaption>
       </figure>
     </article>
 
@@ -362,7 +378,7 @@
       <p class="lead">A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications.</p>
       <div class="tags"><span>C++</span><span>Multithreading</span><span>WinSock</span><span>Dear ImGui</span><span>FMOD</span></div>
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCREENSHOT<small>ChatRoom.png</small></div></div>
+        <div class="shot r169 empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"><div class="ph">SCREENSHOT<small>ChatRoom.png</small></div></div>
       </figure>
     </article>
 
@@ -418,87 +434,85 @@
 </footer>
 
 <script>
-  // Scroll reveal intersections
+  // Scroll reveal
   const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.1});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-  
+
   // Mouse glow effect
   const glow = document.getElementById('glow');
   window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
   window.addEventListener('pointerleave', ()=> glow.style.opacity=0);
 
-  // Scroll-Spy for Navigation Navigation Wayfinding
+  // Scroll-spy navigation wayfinding
   const sections = document.querySelectorAll('section, header');
   const navLinks = document.querySelectorAll('.navlinks a:not(.cv)');
   window.addEventListener('scroll', () => {
     let current = '';
     sections.forEach(sec => {
-      // Offset by 150px to trigger just as the section nears the top of the viewport
-      if (window.scrollY >= (sec.offsetTop - 150)) {
-        current = sec.getAttribute('id');
-      }
+      if (window.scrollY >= (sec.offsetTop - 150)) { current = sec.getAttribute('id'); }
     });
     navLinks.forEach(link => {
       link.classList.remove('active-section');
-      // Substring removes the '#' from the href for an exact match against the section ID
-      if (link.getAttribute('href').substring(1) === current) {
-        link.classList.add('active-section');
-      }
+      if (link.getAttribute('href').substring(1) === current) { link.classList.add('active-section'); }
     });
-  }, { passive: true }); // passive true keeps scrolling 60/120fps smooth
+  }, { passive: true });
 
-  // Interactive Comparison Sliders
+  // Interactive comparison sliders
   document.querySelectorAll('.compare').forEach(c=>{
     let drag=false;
-    const set=(clientX)=>{ const r=c.getBoundingClientRect(); let p=(clientX-r.left)/r.width*100; p=Math.max(0,Math.min(100,p)); c.style.setProperty('--pos', p+'%'); };
-    
-    // Mouse/Touch Dragging
+    const set=(clientX)=>{
+      const r=c.getBoundingClientRect();
+      let p=(clientX-r.left)/r.width*100; p=Math.max(0,Math.min(100,p));
+      c.style.setProperty('--pos', p+'%');
+      c.setAttribute('aria-valuenow', Math.round(p));
+    };
     c.addEventListener('pointerdown', e=>{ drag=true; c.setPointerCapture(e.pointerId); set(e.clientX); });
     c.addEventListener('pointermove', e=>{ if(drag) set(e.clientX); });
     c.addEventListener('pointerup', ()=> drag=false);
     c.addEventListener('pointercancel', ()=> drag=false);
 
-    // Keyboard Arrow Controls (A11y)
+    // Keyboard arrow controls (a11y)
     c.addEventListener('keydown', e => {
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault(); // Stop page scrolling when moving slider
-        let currentPos = parseFloat(c.style.getPropertyValue('--pos')) || 50;
-        currentPos += (e.key === 'ArrowRight' ? 5 : -5); // Jump in 5% increments
-        currentPos = Math.max(0, Math.min(100, currentPos));
-        c.style.setProperty('--pos', currentPos + '%');
+        e.preventDefault();
+        let pos = parseFloat(c.style.getPropertyValue('--pos')) || 50;
+        pos += (e.key === 'ArrowRight' ? 5 : -5);
+        pos = Math.max(0, Math.min(100, pos));
+        c.style.setProperty('--pos', pos + '%');
+        c.setAttribute('aria-valuenow', Math.round(pos));
       }
     });
   });
 
   // Scene switchers for multi-image sliders
   document.querySelectorAll('.picker').forEach(picker => {
-    const targetId = picker.getAttribute('data-target');
-    const container = document.getElementById(targetId);
+    const container = document.getElementById(picker.getAttribute('data-target'));
     if(!container) return;
-
     const baseImg = container.querySelector('.cmp-base');
-    const topImg = container.querySelector('.cmp-top');
+    const topImg  = container.querySelector('.cmp-top');
     const tagL = container.querySelector('.cmp-tag.l');
     const tagR = container.querySelector('.cmp-tag.r');
     const btns = picker.querySelectorAll('button');
 
     btns.forEach(btn => {
-      // Preload the specific scene images gracefully when a user hovers 
+      // Preload scene images on hover for a snappier swap
       btn.addEventListener('mouseenter', () => {
-        if(btn.hasAttribute('data-base')) new Image().src = btn.getAttribute('data-base');
-        if(btn.hasAttribute('data-top')) new Image().src = btn.getAttribute('data-top');
+        if(btn.dataset.base) new Image().src = btn.dataset.base;
+        if(btn.dataset.top)  new Image().src = btn.dataset.top;
       });
-
-      // Handle the actual swap on click
       btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+        btns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+        btn.classList.add('active'); btn.setAttribute('aria-pressed','true');
 
-        if(btn.hasAttribute('data-base')) baseImg.src = btn.getAttribute('data-base');
-        if(btn.hasAttribute('data-top')) topImg.src = btn.getAttribute('data-top');
-        
-        if(btn.hasAttribute('data-tag-l') && tagL) tagL.textContent = btn.getAttribute('data-tag-l');
-        if(btn.hasAttribute('data-tag-r') && tagR) tagR.textContent = btn.getAttribute('data-tag-r');
+        if(btn.dataset.base) baseImg.src = btn.dataset.base;
+        if(btn.dataset.top)  topImg.src  = btn.dataset.top;
+        if(btn.dataset.tagL && tagL) tagL.textContent = btn.dataset.tagL;
+        if(btn.dataset.tagR && tagR) tagR.textContent = btn.dataset.tagR;
+
+        // Keep alt text in sync with what is shown
+        const scene = btn.textContent.trim();
+        if(topImg)  topImg.alt  = (tagL ? tagL.textContent : 'Reference') + ' · ' + scene;
+        if(baseImg) baseImg.alt = (tagR ? tagR.textContent : 'Comparison') + ' · ' + scene;
       });
     });
   });
