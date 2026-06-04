@@ -88,7 +88,12 @@
   figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic}
 
   /* Dynamic comparison slider */
-  .compare{position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--line); --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:pan-y}
+  .compare{
+    position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--line); 
+    --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:pan-y;
+    /* UX FIX: Prevent blue text highlighting and context menus while dragging */
+    -webkit-user-select:none; user-select:none; -webkit-touch-callout:none;
+  }
   .compare:active{cursor:grabbing}
   .compare img{display:block; pointer-events:none}
   .compare .cmp-base{width:100%; height:auto}
@@ -99,7 +104,13 @@
   .compare .cmp-tag.l{left:12px} .compare .cmp-tag.r{right:12px}
 
   .picker{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px}
-  .picker button{background:rgba(10,11,14,.5); border:1px solid var(--line); color:var(--muted); font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:8px 16px; border-radius:999px; cursor:pointer; transition:all .2s}
+  .picker button{
+    background:rgba(10,11,14,.5); border:1px solid var(--line); color:var(--muted); font-family:var(--mono); 
+    font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:8px 16px; border-radius:999px; 
+    cursor:pointer; transition:all .2s;
+    /* UX FIX: Stop fast clicking from highlighting text inside the button */
+    -webkit-user-select:none; user-select:none;
+  }
   .picker button:hover{border-color:rgba(111,227,210,.5); color:var(--ink)}
   .picker button.active{background:rgba(111,227,210,.1); border-color:var(--accent); color:var(--accent)}
 
