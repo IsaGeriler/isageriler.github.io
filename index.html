@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0b0e">
 <title>Isa Geriler · Graphics / Rendering Programmer</title>
-<meta name="description" content="Isa Geriler. Graphics and rendering programmer. Path tracer, software rasterizer, DX12 engine, and more.">
+<meta name="description" content="Isa Geriler. Graphics and rendering programmer. Path tracer, software rasterizer, SDF sphere tracing, DX12 engine, and more.">
 
 <!-- Open Graph Meta Tags (For LinkedIn, Discord, etc. Previews) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://isageriler.github.io/"> 
 <meta property="og:title" content="Isa Geriler · Graphics / Rendering Programmer">
-<meta property="og:description" content="Path tracer, software rasterizer, DX12 engine, and more.">
+<meta property="og:description" content="Path tracer, software rasterizer, SDF sphere tracing, DX12 engine, and more.">
 <meta property="og:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png"> 
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Isa Geriler · Graphics / Rendering Programmer">
-<meta name="twitter:description" content="Path tracer, software rasterizer, DX12 engine, and more.">
+<meta name="twitter:description" content="Path tracer, software rasterizer, SDF sphere tracing, DX12 engine, and more.">
 <meta name="twitter:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌑</text></svg>">
@@ -57,11 +57,13 @@
     background:radial-gradient(60vw 60vw at 78% -10%, rgba(111,227,210,.10), transparent 60%),radial-gradient(50vw 50vw at -10% 25%, rgba(232,162,74,.07), transparent 60%),var(--bg)}
   body::after{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* FIXED: the @media block was nested inside this rule, with a declaration
+     after it. Declarations following a nested rule are the fragile part of
+     CSS nesting, and it meant the mobile override never reliably applied. */
   #glow{position:fixed; width:520px; height:520px; left:0; top:0; z-index:-1; pointer-events:none;
-    @media (hover: none) and (pointer: coarse) {
-      #glow { display: none !important; }
-    }
     background:radial-gradient(circle, rgba(111,227,210,.08), transparent 65%); transform:translate(-50%,-50%); transition:opacity .4s; opacity:0}
+  @media (hover:none) and (pointer:coarse){ #glow{display:none !important} }
   
   a{color:inherit; text-decoration:none}
   
@@ -130,6 +132,7 @@
   .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
   .shot.wide{aspect-ratio:4/1}
   .shot.r169{aspect-ratio:16/9}
+  .shot.r32{aspect-ratio:3/2}          /* NEW: matches raw UE captures (1.49 / 1.65) with less cropping */
   .shot.natural{aspect-ratio:auto}
   .shot.natural img{height:auto}
   
@@ -151,6 +154,10 @@
   
   figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic; max-width:75ch; margin-inline:auto}
   .sub-cap{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-top:10px; text-align:center}
+
+  /* NEW: video. Plain YouTube embed. */
+  .video{position:relative; aspect-ratio:16/9; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
+  .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
 
   /* Dynamic comparison slider */
   .compare{
@@ -253,7 +260,7 @@
     header { padding: 40px 0; }
     section { padding: 40px 0; border-top: 1px solid #eee; }
     .callout, .card { border: 1px solid #ccc !important; background: transparent !important; page-break-inside: avoid; }
-    .shot, .compare { border: 1px solid #ccc !important; page-break-inside: avoid; }
+    .shot, .compare, .video { border: 1px solid #ccc !important; page-break-inside: avoid; }
     h1, h2, h3, h4, p, li, span, div { color: black !important; }
     a { text-decoration: underline; color: #000 !important; }
     .compare .cmp-top { clip-path: inset(0 0 0 0) !important; }
@@ -281,7 +288,8 @@
     <div class="kicker mono rv">Graphics / Rendering Programmer</div>
     <h1 class="rv d1">Isa <span class="it">Geriler</span></h1>
     <p class="lede rv d2">I build renderers and the math underneath them.</p>
-    <div class="status rv d3"><span class="dot"></span>Open to graphics roles &amp; internships · Summer 2026 onward</div>
+    <!-- UPDATED: the old pill said "Summer 2026 onward", which now reads as a window that already closed. -->
+    <div class="status rv d3"><span class="dot"></span>Finishing my MSc at WMG · Open to graphics roles now</div>
     <div class="cta rv d4">
       <a href="#work" class="btn solid">View work</a>
       <a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a>
@@ -368,7 +376,8 @@
       <span class="idx">002</span>
       <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentRasterizer5749205" target="_blank" rel="noopener">Optimized Software Rasterizer</a></h3>
       <div class="role">C++, SIMD · University of Warwick</div>
-      <p class="lead">A CPU implementation of the graphics pipeline, hand-optimized for throughput using hardware-level parallelization (SIMD and multithreading).</p>
+      <!-- UPDATED: the headline result (49.3% / 86.4s -> 43.8s) was on the CV but nowhere on the site. -->
+      <p class="lead">A CPU implementation of the graphics pipeline, hand-optimized for throughput using hardware-level parallelization (SIMD and multithreading). Sequential optimizations cut mean execution time by <b>49.3%</b>: the 1,600-object benchmark scene fell from 86.4 s to 43.8 s, averaged over 10 runs.</p>
       <div class="callout warn">
         <span class="label">Hardware profiling · the "thread plateau"</span>
         <p>I profiled how performance scales with thread count on my Intel Core Ultra 7 155H, a hybrid CPU with 6 Performance cores, 8 Efficiency cores, and 2 Low-Power Efficiency cores (16 cores / 22 threads). SIMD (SSE/AVX) plus multithreading gave large early gains, but the speedup peaks at roughly 2.8x around 6 threads and then degrades. That inflection lines up with the Performance-core count: the first threads land on the fast P-cores, and scaling past them onto the slower E-cores, LP-cores, and hyperthreads adds workers that are both slower and competing for shared resources, so throughput stops improving and starts to regress.</p>
@@ -398,35 +407,89 @@
       </figure>
     </article>
 
+    <!-- ============================ NEW: FRONTROOMS ============================ -->
     <article class="proj rv">
       <span class="idx">003</span>
-      <h3><a href="https://github.com/IsaGeriler/DX12Engine" target="_blank" rel="noopener">DX12 Engine (WIP)</a></h3>
-      <div class="role">DirectX 12 · In progress</div>
-      <p class="lead">A modern, custom rendering engine being built from scratch using DirectX 12 to master low-level GPU programming.</p>
+      <h3><a href="https://github.com/IsaGeriler/StealthHorrorGame" target="_blank" rel="noopener">Frontrooms</a></h3>
+      <div class="role">Unreal Engine 5 · C++ / HLSL · University of Warwick</div>
+      <p class="lead">A stealth-horror game whose core mechanic is a denoiser. Enemies are signed distance fields sphere-traced in HLSL and hidden under visual noise. Holding still lets the image resolve and reveals where they are, but holding still is also what lets them close the distance.</p>
       <div class="callout">
         <span class="label">Why it matters</span>
-        <p>Transitioning from CPU rendering to modern, explicit GPU APIs. Focuses on manual memory management, synchronization, and resource binding.</p>
+        <p>It began as a critical literature review of SDF rendering and denoising, and the research became the design rather than a footnote to it. Sample convergence is normally invisible plumbing; here the convergence rate is the risk/reward curve the player is reading. Same territory as the Intel OIDN work in 001, turned into a mechanic instead of a post-process.</p>
       </div>
       <ul class="detail">
-        <li><b>Current features:</b> working through Descriptor Heaps, Root Signatures, and Pipeline State Objects (PSOs).</li>
-        <li><b>Evolution:</b> a re-architected, highly scalable improvement over my initial <a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener">DirectX 12 Coursework Framework</a>.</li>
+        <li><b>Enemy rendering:</b> enemies are signed distance fields sphere-traced in an HLSL shader, each with independently configurable appearance parameters, so a new silhouette is authored as SDF parameters rather than as a mesh.</li>
+        <li><b>The mechanic:</b> screen-space noise resolves while the player holds still, tying denoise convergence directly to enemy visibility and to how much ground the enemy gains while you wait.</li>
+        <li><b>AI:</b> enemy vision, pursuit and retreat written in C++, with debug draw visualization used to verify detection state during development.</li>
+        <li><b>Iteration:</b> built in the open with fortnightly demos to staff and peers. Movement speeds were retuned and a tutorial added directly off the back of playtest feedback.</li>
       </ul>
-      <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
+      <div class="tags"><span>Unreal Engine 5</span><span>C++</span><span>HLSL</span><span>SDF Sphere Tracing</span><span>Denoising</span><span>Game AI</span></div>
+
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
-        <figcaption>Reference render from my previous DX12 framework. The current WIP engine is a complete re-architecture designed to improve scalability and graphically extend the original implementation.</figcaption>
+        <div class="video" data-yt="https://youtu.be/2l4lNxIRDQw" data-title="Frontrooms playthrough"></div>
+        <figcaption>The noise clears while the player holds still, and the enemy closes the distance.</figcaption>
       </figure>
     </article>
 
+    <!-- ============================ NEW: SKYFIRE UPRISING ============================ -->
     <article class="proj rv">
       <span class="idx">004</span>
-      <h3><a href="https://github.com/IsaGeriler/RayTracer" target="_blank" rel="noopener">Offline Ray Tracer (WIP)</a></h3>
-      <div class="role">C++ · In progress</div>
-      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build (sorting was parallelized via C++17's <code>std::execution::par</code>) are both parallelized to maximize CPU utilization.</p>
-      <div class="tags"><span>C++</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
+      <h3>Skyfire Uprising · Level 2</h3>
+      <div class="role">Unreal Engine 5.4 · Tech Art &amp; Group Lead · University of Warwick</div>
+      <p class="lead">Led a six-person group building one level of a game made by a 42-person distributed studio split across seven levels. I ran task delegation and pipeline flow for the group while owning the level's visual tech myself: weather, materials, lighting, and the damage-feedback post-process stack.</p>
+      <div class="callout">
+        <span class="label">Shipping inside a 42-person studio</span>
+        <p>Seven groups each owned a level against one shared art direction, so anything I wrote had to survive other people's hands. Every material exposed its parameters upward, letting teammates tune rain intensity, wetness and fog against their own set dressing without opening a shader graph or coming back to me.</p>
+      </div>
+      <ul class="detail">
+        <li><b>Weather &amp; materials:</b> Gerstner wave water, a Niagara rain system with splashes and puddle accumulation, and a reusable wetness layer that darkens albedo and drops roughness across the level's surfaces.</li>
+        <li><b>Lighting &amp; atmosphere:</b> volumetric fog tuned across the whole level footprint, and interior lighting passes for the warehouse spaces the level routes players through.</li>
+        <li><b>Damage feedback:</b> a full post-process state stack — a red screen-space response on taking damage, a chromatic-aberration and slice-displacement glitch on death, and a grid overlay marking respawn invulnerability.</li>
+        <li><b>Performance:</b> Cull Distance Volumes used to scale the level's draw load across a large outdoor footprint.</li>
+      </ul>
+      <div class="tags"><span>Unreal Engine 5.4</span><span>HLSL</span><span>Niagara</span><span>Post-Processing</span><span>Volumetric Fog</span><span>Team Lead</span></div>
+
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
-        <figcaption>Integrated motion blur.</figcaption>
+        <div class="compare" id="cmp-wetness" tabindex="0" role="slider" aria-label="Wetness comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+          <img class="cmp-base" src="assets/AfterWetness.png" alt="The same courtyard in rain, with the wetness layer active">
+          <img class="cmp-top" src="assets/BeforeWetness.png" alt="A dry courtyard before the wetness layer is applied">
+          <div class="cmp-handle"></div>
+          <span class="cmp-tag l">Dry base materials</span>
+          <span class="cmp-tag r">Rain + wetness layer</span>
+        </div>
+        <figcaption>Drag to compare: the wetness layer darkens albedo and drops roughness, so the rain system has something to read against.</figcaption>
+      </figure>
+
+      <figure class="media">
+        <div class="media three">
+          <div>
+            <div class="shot r169 empty"><img src="assets/TakeDamage.png" alt="Red screen-space post-process on taking damage" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="sub-cap">Taking damage</div>
+          </div>
+          <div>
+            <div class="shot r169 empty"><img src="assets/Death.png" alt="Chromatic aberration and slice displacement glitch on death" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="sub-cap">Death</div>
+          </div>
+          <div>
+            <div class="shot r169 empty"><img src="assets/Invincibility.png" alt="Grid overlay marking respawn invulnerability" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="sub-cap">Invulnerable</div>
+          </div>
+        </div>
+        <figcaption>One post-process stack, three readable player states: hit, dead, and briefly invulnerable after respawn.</figcaption>
+      </figure>
+
+      <figure class="media">
+        <div class="media two">
+          <div>
+            <div class="shot r32 empty"><img src="assets/FogGodView.png" alt="The whole level footprint seen through volumetric fog" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="sub-cap">Volumetric fog · level footprint</div>
+          </div>
+          <div>
+            <div class="shot r32 empty"><img src="assets/WarehouseLighted.png" alt="Warehouse interior lighting pass" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="sub-cap">Warehouse interior lighting</div>
+          </div>
+        </div>
+        <figcaption>Fog tuned across the full level footprint, and the interior lighting pass for the warehouses.</figcaption>
       </figure>
     </article>
 
@@ -450,22 +513,42 @@
 
     <article class="proj rv">
       <span class="idx">006</span>
-      <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentChatRoom5749205" target="_blank" rel="noopener">C++ Client-Server Chat Room</a></h3>
-      <div class="role">C++ · Networking</div>
-        <p class="lead">A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications.</p>
-          <div class="tags"><span>C++</span><span>Multithreading</span><span>WinSock</span><span>Dear ImGui</span><span>FMOD</span></div>
-            <figure class="media">
-                <div class="shot natural empty"><img src="assets/ChatRoom.png" alt="Dear ImGui chat client" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
-              <figcaption>Dear ImGui client interface showing global server broadcasts (top window) and private 1-to-1 direct messaging (bottom window).</figcaption>
-            </figure>
+      <h3><a href="https://github.com/IsaGeriler/DX12Engine" target="_blank" rel="noopener">DX12 Engine (WIP)</a></h3>
+      <div class="role">DirectX 12 · In progress</div>
+      <p class="lead">A modern, custom rendering engine being built from scratch using DirectX 12 to master low-level GPU programming.</p>
+      <div class="callout">
+        <span class="label">Why it matters</span>
+        <p>Transitioning from CPU rendering to modern, explicit GPU APIs. Focuses on manual memory management, synchronization, and resource binding.</p>
+      </div>
+      <ul class="detail">
+        <li><b>Current features:</b> working through Descriptor Heaps, Root Signatures, and Pipeline State Objects (PSOs).</li>
+        <li><b>Evolution:</b> a re-architected, highly scalable improvement over my initial <a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener">DirectX 12 Coursework Framework</a>.</li>
+      </ul>
+      <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
+      <figure class="media">
+        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+        <figcaption>Reference render from my previous DX12 framework. The current WIP engine is a complete re-architecture designed to improve scalability and graphically extend the original implementation.</figcaption>
+      </figure>
+    </article>
+
+    <article class="proj rv">
+      <span class="idx">007</span>
+      <h3><a href="https://github.com/IsaGeriler/RayTracer" target="_blank" rel="noopener">Offline Ray Tracer (WIP)</a></h3>
+      <div class="role">C++ · In progress</div>
+      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build (sorting was parallelized via C++17's <code>std::execution::par</code>) are both parallelized to maximize CPU utilization.</p>
+      <div class="tags"><span>C++</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
+      <figure class="media">
+        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+        <figcaption>Integrated motion blur.</figcaption>
+      </figure>
     </article>
 
     <div class="sec-head rv" style="margin-top:8px"><span class="num">+</span><h2 style="font-size:clamp(22px,3vw,30px)">Also Built</h2><span class="rule"></span></div>
     <div class="more">
       <div class="card rv">
-        <span class="role">Unreal Engine 5.4 · Tech Art & Team Lead · University of Warwick</span>
-        <h4>Skyfire Uprising</h4>
-        <p>Led a cross-functional sub-team within a 42-person distributed studio to ship a complete game level. I managed task delegation and pipeline flow while solely owning the level's visual tech. My rendering work included custom HLSL shaders (e.g. Gerstner Wave water), post-processing, volumetric lighting, responsive rain system (via Niagara) with splashes, puddles and wetness material, and performance scaling via Cull Distance Volumes.</p>
+        <span class="role">C++ · Networking · University of Warwick</span>
+        <h4>Client-Server Chat Room</h4>
+        <p>A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications. <a href="https://github.com/IsaGeriler/WM9M4AssignmentChatRoom5749205" target="_blank" rel="noopener">Source</a></p>
       </div>
       <div class="card rv d1">
         <span class="role">Python · Team Graduation Project · IEEE SIU 2025 · Isik University</span>
@@ -486,8 +569,8 @@
       </div>
       <div class="skills rv d2" id="skills">
         <div class="skill"><h5>Languages</h5><p>C++, Python, HLSL, Java, SQL</p></div>
-        <div class="skill"><h5>Graphics &amp; Rendering</h5><p>DirectX 12, Ray Tracing / Path Tracing, BVH Acceleration, MIS, GGX &amp; Microfacet BSDFs, SIMD (SSE/AVX/AVX2), Multithreading, RenderDoc</p></div>
-        <div class="skill"><h5>Engines &amp; Tools</h5><p>Unreal Engine 5, Dear ImGui, FMOD, WinSock, OpenCV, PostgreSQL (pgvector), Flask, Docker, Git</p></div>
+        <div class="skill"><h5>Graphics &amp; Rendering</h5><p>DirectX 12, Ray Tracing / Path Tracing, BVH Acceleration, MIS, GGX &amp; Microfacet BSDFs, SDF Sphere Tracing, SIMD (SSE/AVX/AVX2), Multithreading, RenderDoc</p></div>
+        <div class="skill"><h5>Engines &amp; Tools</h5><p>Unreal Engine 5, Niagara, Dear ImGui, FMOD, WinSock, OpenCV, PostgreSQL (pgvector), Flask, Docker, Git</p></div>
         <div class="skill"><h5>Spoken</h5><p>Turkish (native), English (IELTS 8.0, C1), Japanese (beginner)</p></div>
       </div>
     </div>
@@ -519,22 +602,33 @@
   window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
   window.addEventListener('pointerleave', ()=> glow.style.opacity=0);
 
-  const sections = document.querySelectorAll('section, header');
+  /* REPLACED: the old scroll handler read sec.offsetTop for every section on
+     every scroll event, forcing a layout each time. Same result, no reflow. */
   const navLinks = document.querySelectorAll('.navlinks a:not(.cv)');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= (sec.offsetTop - 150)) {
-        current = sec.getAttribute('id');
-      }
+  const navIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const id = e.target.getAttribute('id');
+      navLinks.forEach(l => l.classList.toggle('active-section', l.getAttribute('href') === '#'+id));
     });
-    navLinks.forEach(link => {
-      link.classList.remove('active-section');
-      if (link.getAttribute('href').substring(1) === current) {
-        link.classList.add('active-section');
-      }
-    });
-  }, { passive: true });
+  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+  document.querySelectorAll('section[id]').forEach(s => navIo.observe(s));
+
+  /* NEW: YouTube embed. Paste any YouTube link into data-yt and this builds the iframe. */
+  document.querySelectorAll('.video[data-yt]').forEach(box=>{
+    const raw = (box.getAttribute('data-yt') || '').trim();
+    const id = /^[\w-]{11}$/.test(raw)
+      ? raw
+      : (raw.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/) || [])[1];
+    if(!id) return;
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0';
+    f.title = box.getAttribute('data-title') || 'Video';
+    f.loading = 'lazy';
+    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    f.allowFullscreen = true;
+    box.appendChild(f);
+  });
 
   document.querySelectorAll('.compare').forEach(c=>{
     let drag=false;
