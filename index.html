@@ -4,20 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0a0b0e">
-<title>Isa Geriler · Graphics / Rendering Programmer</title>
-<meta name="description" content="Isa Geriler. Graphics and rendering programmer. Path tracer, software rasterizer, SDF sphere tracing, DX12 engine, and more.">
+<title>Isa Geriler · C++ Software Engineer · Graphics &amp; Rendering</title>
+<meta name="description" content="Isa Geriler. C++ software engineer working across graphics, gameplay and systems. Path tracing, software rasterization, SDF sphere tracing and DirectX 12.">
 
 <!-- Open Graph Meta Tags (For LinkedIn, Discord, etc. Previews) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://isageriler.github.io/"> 
-<meta property="og:title" content="Isa Geriler · Graphics / Rendering Programmer">
-<meta property="og:description" content="Path tracer, software rasterizer, SDF sphere tracing, DX12 engine, and more.">
+<meta property="og:title" content="Isa Geriler · C++ Software Engineer · Graphics &amp; Rendering">
+<meta property="og:description" content="C++ projects in graphics, gameplay and systems: path tracing, software rasterization, SDF sphere tracing and DirectX 12.">
 <meta property="og:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png"> 
 
 <!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Isa Geriler · Graphics / Rendering Programmer">
-<meta name="twitter:description" content="Path tracer, software rasterizer, SDF sphere tracing, DX12 engine, and more.">
+<meta name="twitter:title" content="Isa Geriler · C++ Software Engineer · Graphics &amp; Rendering">
+<meta name="twitter:description" content="C++ projects in graphics, gameplay and systems: path tracing, software rasterization, SDF sphere tracing and DirectX 12.">
 <meta name="twitter:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png">
 
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌑</text></svg>">
@@ -90,7 +90,7 @@
   .brand b{color:var(--accent)}
   .navlinks{display:flex; gap:26px}
   
-  .navlinks a{font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); transition:color .2s, border-color .2s; border-bottom:2px solid transparent; padding-bottom:4px}
+  .navlinks a{display:inline-flex; align-items:center; min-height:44px; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); transition:color .2s, border-color .2s; border-bottom:2px solid transparent; padding:4px 0}
   .navlinks a:hover{color:var(--ink)}
   .navlinks a.active-section{color:var(--ink); border-color:var(--accent)}
   .navlinks a.cv{color:var(--accent)}
@@ -102,7 +102,10 @@
     .wrap{padding:0 18px}
     .brand{font-size:12px; letter-spacing:.1em}
     .navlinks{gap:10px}
-    .navlinks a{font-size:10.5px; letter-spacing:.02em}
+    .navlinks a{font-size:12px; letter-spacing:0}
+  }
+  @media(max-width:360px){
+    nav .wrap{height:auto; min-height:64px; flex-wrap:wrap; justify-content:center; gap:0 18px; padding-top:8px}
   }
 
   header{padding:128px 0 60px; position:relative}
@@ -110,8 +113,8 @@
   h1{font-family:var(--serif); font-weight:400; font-size:clamp(52px,9vw,108px); line-height:.96; letter-spacing:-.02em}
   h1 .it{font-style:italic; color:var(--accent)}
   .lede{font-family:var(--serif); font-size:clamp(20px,2.6vw,27px); color:var(--ink); max-width:32ch; margin:26px 0 0; line-height:1.3}
-  .status{display:inline-flex; align-items:center; gap:9px; margin-top:30px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--ink)}
-  .dot{width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 rgba(111,227,210,.6); animation:pulse 2.4s infinite}
+  .status{display:inline-flex; align-items:center; gap:9px; max-width:100%; margin-top:30px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--ink)}
+  .dot{flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 rgba(111,227,210,.6); animation:pulse 2.4s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(111,227,210,.5)}70%{box-shadow:0 0 0 10px rgba(111,227,210,0)}100%{box-shadow:0 0 0 0 rgba(111,227,210,0)}}
   
   .cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
@@ -177,7 +180,7 @@
   .picker{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px}
   .picker button{
     background:rgba(10,11,14,.5); border:1px solid var(--line); color:var(--muted); font-family:var(--mono); 
-    font-size:11px; letter-spacing:.08em; text-transform:uppercase; padding:8px 16px; border-radius:999px; 
+    min-height:44px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:8px 16px; border-radius:999px; 
     cursor:pointer; transition:all .2s;
     -webkit-user-select:none; user-select:none;
   }
@@ -248,13 +251,21 @@
   footer{border-top:1px solid var(--line-2); padding:30px 0; text-align:center}
   footer .mono{font-size:11px}
 
-  .rv{opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+  .rv{opacity:1; transform:none; transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
+  html.reveal-enabled .rv:not(.in){opacity:0; transform:translateY(22px)}
   .rv.in{opacity:1; transform:none}
   .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
-  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.dot{animation:none}}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *, *::before, *::after{animation:none !important; transition:none !important}
+    html.reveal-enabled .rv:not(.in){opacity:1;transform:none}
+    #glow{display:none}
+    .proj:hover .shot img, .card:hover, .btn:hover{transform:none}
+  }
 
   /* Print optimizations */
   @media print {
+    html.reveal-enabled .rv:not(.in){opacity:1;transform:none}
     body { background: white !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body::before, body::after, #glow, nav, .status, .cta, .picker, .cmp-handle { display: none !important; }
     header { padding: 40px 0; }
@@ -278,22 +289,21 @@
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
-      <a href="assets/CV-IsaGeriler.pdf" class="cv">CV &#8595;</a>
+      <a href="assets/CV-IsaGeriler.pdf" class="cv" download>CV &#8595;</a>
     </div>
   </div>
 </nav>
 
 <header id="top">
   <div class="wrap">
-    <div class="kicker mono rv">Graphics / Rendering Programmer</div>
+    <div class="kicker mono rv">C++ Software Engineer · Graphics / Rendering</div>
     <h1 class="rv d1">Isa <span class="it">Geriler</span></h1>
     <p class="lede rv d2">I build renderers and the math underneath them.</p>
-    <!-- UPDATED: the old pill said "Summer 2026 onward", which now reads as a window that already closed. -->
-    <div class="status rv d3"><span class="dot"></span>Finishing my MSc at WMG · Open to graphics roles now</div>
+    <div class="status rv d3"><span class="dot" aria-hidden="true"></span><span>Finishing my MSc at WMG · Open to graphics roles now</span></div>
     <div class="cta rv d4">
       <a href="#work" class="btn solid">View work</a>
       <a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a>
-      <a href="assets/CV-IsaGeriler.pdf" class="btn">Download CV</a>
+      <a href="assets/CV-IsaGeriler.pdf" class="btn" download>Download CV</a>
     </div>
 
     <figure class="hero-shot rv d4">
@@ -312,9 +322,9 @@
 
     <article class="proj rv">
       <span class="idx">001</span>
-      <h3><a href="https://github.com/IsaGeriler/RTBase_5749205" target="_blank" rel="noopener">Path Tracer &amp; Light Transport Engine</a></h3>
-      <div class="role">C++ · University of Warwick</div>
-      <p class="lead">A multithreaded, physically based CPU renderer in C++, built to explore advanced light transport and microfacet models.</p>
+      <h3><a href="https://github.com/IsaGeriler/RTBase_5749205" target="_blank" rel="noopener">Path Tracer &amp; Light Transport Renderer</a></h3>
+      <div class="role">C++ · Multithreading · Intel Open Image Denoise · University of Warwick · 2026</div>
+      <p class="lead">Extended a CPU path tracer in C++ with light tracing, instant radiosity, and material models for metal, glass and layered surfaces to explore light transport and material behaviour.</p>
       <div class="callout">
         <span class="label">Why it matters</span>
         <p>Simulates highly realistic lighting and materials using industry-standard math and data structures, dramatically reducing render times and visual noise through spatial optimizations and Intel AI denoising.</p>
@@ -322,15 +332,15 @@
       <ul class="detail">
         <li><b>Architecture:</b> Three integrators in one engine: Path Tracing, Light Tracing, and Instant Radiosity (which uses a Halton quasi-Monte Carlo sampler relying on prime bases for the Radical Inverse).</li>
         <li><b>Material framework:</b> GGX microfacets (Conductor BSDF, sampled proportionally to the NDF), Plastic (Phong), Diffuse, Oren-Nayar, Glass, Mirror, and a Layered BSDF evaluating Beer's Law for attenuation.</li>
-        <li><b>Performance:</b> Render time and variance optimized with a Binned SAH BVH (Surface Area Heuristics Bounding Volume Hierarchy), tile-based multithreading, and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
-        <li><b>Denoising:</b> Custom AOV outputs feed directly into Intel OIDN for machine-learning-based post-process denoising.</li>
+        <li><b>Performance:</b> Rendering distributed across CPU threads in 32 × 32 tiles, with a Binned SAH BVH (surface area heuristic bounding volume hierarchy) to reduce geometry searches and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
+        <li><b>Denoising:</b> Integrated Intel Open Image Denoise using colour, albedo and normal buffers, producing denoised images at 16 samples per pixel across four test scenes.</li>
       </ul>
       <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
       
       <figure class="media">
-        <div class="compare" id="cmp-denoise" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Right Side">
-          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Left Side">
+        <div class="compare" id="cmp-denoise" tabindex="0" role="slider" aria-label="Denoising comparison" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Kitchen rendered at 16 samples per pixel and denoised with Intel OIDN">
+          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Kitchen reference rendered at 128 samples per pixel">
           <div class="cmp-handle"></div>
           <span class="cmp-tag l">128 spp reference</span>
           <span class="cmp-tag r">16 spp + OIDN</span>
@@ -341,13 +351,13 @@
           <button data-top="assets/Classroom128SPP.png" data-base="assets/Classroom16SPPDenoised.png">Classroom</button>
           <button data-top="assets/Sibenik128SPP.png" data-base="assets/Sibenik16SPPDenoised.png">Sibenik</button>
         </div>
-        <figcaption>Drag to compare: 128 spp reference vs. 16 spp denoised with Intel OIDN. Automatically adjusts to scene aspect ratios.</figcaption>
+        <figcaption>Drag to compare a 128 spp reference with a 16 spp render denoised by Intel OIDN. Focus the comparison and use the arrow keys to adjust it.</figcaption>
       </figure>
 
       <figure class="media">
-        <div class="compare" id="cmp-cornell" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Right Side">
-          <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Left Side">
+        <div class="compare" id="cmp-cornell" tabindex="0" role="slider" aria-label="Cornell Box light transport comparison" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+          <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Cornell Box rendered with light tracing">
+          <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Cornell Box rendered with path tracing">
           <div class="cmp-handle"></div>
           <span class="cmp-tag l">Path Tracing</span>
           <span class="cmp-tag r">Light Tracing</span>
@@ -374,19 +384,18 @@
 
     <article class="proj rv">
       <span class="idx">002</span>
-      <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentRasterizer5749205" target="_blank" rel="noopener">Optimized Software Rasterizer</a></h3>
-      <div class="role">C++, SIMD · University of Warwick</div>
-      <!-- UPDATED: the headline result (49.3% / 86.4s -> 43.8s) was on the CV but nowhere on the site. -->
-      <p class="lead">A CPU implementation of the graphics pipeline, hand-optimized for throughput using hardware-level parallelization (SIMD and multithreading). Sequential optimizations cut mean execution time by <b>49.3%</b>: the 1,600-object benchmark scene fell from 86.4 s to 43.8 s, averaged over 10 runs.</p>
+      <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentRasterizer5749205" target="_blank" rel="noopener">Software Rasterizer Optimisation</a></h3>
+      <div class="role">C++ · SIMD · Multithreading · University of Warwick · 2026</div>
+      <p class="lead">Optimised a supplied CPU rasterizer by profiling bottlenecks, applying SIMD instructions, and caching transformed vertices to avoid repeated calculations. Sequential optimisations cut mean execution time by <b>49.3%</b>: the 1,600-object benchmark scene fell from 86.4 s to 43.8 s across 10 runs on an Intel Core Ultra 7 155H. I also evaluated a thread pool across three test scenes to investigate CPU scaling.</p>
       <div class="callout warn">
         <span class="label">Hardware profiling · the "thread plateau"</span>
-        <p>I profiled how performance scales with thread count on my Intel Core Ultra 7 155H, a hybrid CPU with 6 Performance cores, 8 Efficiency cores, and 2 Low-Power Efficiency cores (16 cores / 22 threads). SIMD (SSE/AVX) plus multithreading gave large early gains, but the speedup peaks at roughly 2.8x around 6 threads and then degrades. That inflection lines up with the Performance-core count: the first threads land on the fast P-cores, and scaling past them onto the slower E-cores, LP-cores, and hyperthreads adds workers that are both slower and competing for shared resources, so throughput stops improving and starts to regress.</p>
+        <p>I profiled how performance scales with thread count on my Intel Core Ultra 7 155H. In the Scene 3 results below, speedup peaks at roughly 2.8× around 6 threads, then degrades. This thread-scaling experiment is separate from the sequential optimisation benchmark above; thread count alone does not establish the cause of the plateau.</p>
       </div>
       <div class="tags"><span>C++</span><span>SIMD (SSE/AVX)</span><span>Multithreading</span><span>Performance Profiling</span></div>
       
       <figure class="media">
         <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
-        <figcaption>Scene 3 profiling: speedup peaks near the Performance-core count, then degrades as work spills onto slower cores and hyperthreads.</figcaption>
+        <figcaption>Scene 3 thread-pool profiling: speedup peaks around 6 threads, then declines as more workers are added.</figcaption>
       </figure>
       
       <figure class="media">
@@ -411,7 +420,7 @@
     <article class="proj rv">
       <span class="idx">003</span>
       <h3><a href="https://github.com/IsaGeriler/StealthHorrorGame" target="_blank" rel="noopener">Frontrooms</a></h3>
-      <div class="role">Unreal Engine 5 · C++ / HLSL · University of Warwick</div>
+      <div class="role">Individual game · Unreal Engine 5 · C++ / HLSL / Blueprints · University of Warwick · 2026</div>
       <p class="lead">A stealth-horror game whose core mechanic is a denoiser. Enemies are signed distance fields sphere-traced in HLSL and hidden under visual noise. Holding still lets the image resolve and reveals where they are, but holding still is also what lets them close the distance.</p>
       <div class="callout">
         <span class="label">Why it matters</span>
@@ -435,8 +444,8 @@
     <article class="proj rv">
       <span class="idx">004</span>
       <h3>Skyfire Uprising · Level 2</h3>
-      <div class="role">Unreal Engine 5.4 · Tech Art &amp; Group Lead · University of Warwick</div>
-      <p class="lead">Led a six-person group building one level of a game made by a 42-person distributed studio split across seven levels. I ran task delegation and pipeline flow for the group while owning the level's visual tech myself: weather, materials, lighting, and the damage-feedback post-process stack.</p>
+      <div class="role">Team game · Unreal Engine 5.4 · Tech Art &amp; Group Lead · University of Warwick · 2026</div>
+      <p class="lead">Led a six-person group responsible for Level 2 within a 42-person international team split across seven level teams. I coordinated the group's work and kept the level consistent with the shared art direction while developing its weather, materials, lighting, and damage-feedback post-process stack.</p>
       <div class="callout">
         <span class="label">Shipping inside a 42-person studio</span>
         <p>Seven groups each owned a level against one shared art direction, so anything I wrote had to survive other people's hands. Every material exposed its parameters upward, letting teammates tune rain intensity, wetness and fog against their own set dressing without opening a shader graph or coming back to me.</p>
@@ -500,7 +509,7 @@
       <p class="lead">An engine built entirely from scratch to deeply understand the math behind graphics APIs. Instead of using existing math libraries (like GLM), I wrote the matrix, vector, and homogeneous-coordinate mathematics myself. Implements the full Model-View-Projection (MVP) chain, perspective-correct interpolation, depth buffering (Z-buffer), and Lambertian lighting, parsing .gem meshes to render pixel-perfect geometry.</p>
       <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
       <figure class="media">
-        <div class="compare" id="cmp-bunny" tabindex="0" role="slider" aria-label="Image comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+        <div class="compare" id="cmp-bunny" tabindex="0" role="slider" aria-label="Stanford bunny shading comparison" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
           <img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny geometry">
           <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny shaded">
           <div class="cmp-handle"></div>
@@ -513,21 +522,21 @@
 
     <article class="proj rv">
       <span class="idx">006</span>
-      <h3><a href="https://github.com/IsaGeriler/DX12Engine" target="_blank" rel="noopener">DX12 Engine (WIP)</a></h3>
-      <div class="role">DirectX 12 · In progress</div>
-      <p class="lead">A modern, custom rendering engine being built from scratch using DirectX 12 to master low-level GPU programming.</p>
+      <h3><a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener">DirectX 12 Rendering Framework</a></h3>
+      <div class="role">C++ · DirectX 12 · HLSL · 2025</div>
+      <p class="lead">Built a framework to load and display 3D models, using GPU instancing to draw repeated instances of each mesh in a single draw call. Camera controls, surface mapping and animated grass support interactive scene exploration.</p>
       <div class="callout">
-        <span class="label">Why it matters</span>
-        <p>Transitioning from CPU rendering to modern, explicit GPU APIs. Focuses on manual memory management, synchronization, and resource binding.</p>
+        <span class="label">From CPU rendering to DirectX 12</span>
+        <p>Working with an explicit GPU API brought together resource binding, memory management and synchronisation. I used RenderDoc to inspect the framework's rendering.</p>
       </div>
       <ul class="detail">
-        <li><b>Current features:</b> working through Descriptor Heaps, Root Signatures, and Pipeline State Objects (PSOs).</li>
-        <li><b>Evolution:</b> a re-architected, highly scalable improvement over my initial <a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener">DirectX 12 Coursework Framework</a>.</li>
+        <li><b>Framework features:</b> GPU instancing, camera controls, normal mapping, parallax occlusion mapping and animated grass.</li>
+        <li><b>Further development (WIP):</b> my separate <a href="https://github.com/IsaGeriler/DX12Engine" target="_blank" rel="noopener">DX12 Engine</a> re-architects this framework, with ongoing work on Descriptor Heaps, Root Signatures and Pipeline State Objects (PSOs).</li>
       </ul>
-      <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Memory Management</span></div>
+      <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Instancing</span><span>RenderDoc</span></div>
       <figure class="media">
-        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DX12 engine, roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
-        <figcaption>Reference render from my previous DX12 framework. The current WIP engine is a complete re-architecture designed to improve scalability and graphically extend the original implementation.</figcaption>
+        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DirectX 12 rendering framework with roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+        <figcaption>Render from the DirectX 12 framework. The separate DX12 Engine re-architecture remains a work in progress.</figcaption>
       </figure>
     </article>
 
@@ -546,14 +555,14 @@
     <div class="sec-head rv" style="margin-top:8px"><span class="num">+</span><h2 style="font-size:clamp(22px,3vw,30px)">Also Built</h2><span class="rule"></span></div>
     <div class="more">
       <div class="card rv">
-        <span class="role">C++ · Networking · University of Warwick</span>
-        <h4>Client-Server Chat Room</h4>
-        <p>A multithreaded networking application showcasing system-level programming outside of graphics. A custom client-server architecture using WinSock: the server concurrently handles multiple clients, while the client uses a Dear ImGui interface with public broadcasting, private 1-to-1 direct messages, and real-time FMOD audio notifications. <a href="https://github.com/IsaGeriler/WM9M4AssignmentChatRoom5749205" target="_blank" rel="noopener">Source</a></p>
+        <span class="role">C++ · Networking · University of Warwick · 2026</span>
+        <h4>Client-Server Chat Application</h4>
+        <p>A multiuser desktop chat application built with C++, multithreading and WinSock. The server handles username validation, public broadcasts and private message routing, connected to a Dear ImGui client interface and FMOD audio notifications. <a href="https://github.com/IsaGeriler/WM9M4AssignmentChatRoom5749205" target="_blank" rel="noopener">Source</a></p>
       </div>
       <div class="card rv d1">
         <span class="role">Python · Team Graduation Project · IEEE SIU 2025 · Isik University</span>
-        <h4>Real-Time Face Recognition</h4>
-        <p>On-premise authentication to replace ID cards and QR codes. OpenCV Haar Cascade detection, FaceNet 512-dimensional embeddings, and PostgreSQL + pgvector KNN search verify identities in under five seconds, behind a Flask staff dashboard with role-based access and 2FA. Selected to present a poster at the 33rd IEEE SIU 2025 conference.</p>
+        <h4>Face Recognition for Authentication</h4>
+        <p>Co-developed an authentication prototype using Python, OpenCV, FaceNet, Flask and PostgreSQL, with face matching, a staff dashboard, access permissions and two-factor authentication. Selected for the IEEE SIU 2025 Undergraduate Projects Competition and presented as a poster.</p>
       </div>
     </div>
   </div>
@@ -564,14 +573,14 @@
     <div class="sec-head rv"><span class="num">02</span><h2>About</h2><span class="rule"></span></div>
     <div class="about">
       <div class="rv">
-        <p>I'm a Software Engineering graduate pursuing a Master's in Games Engineering at <span class="hl">WMG, University of Warwick</span>. I spend most of my time on real-time rendering and computer graphics: writing renderers, reading papers, and figuring out why the image looks wrong. I play video games too (shocking, I know 🎮), and I'm aiming to specialize as a Graphics Programmer.</p>
-        <p>I was recently selected for a graphics-focused dissertation on <span class="hl">path guiding</span>, supervised by Dr. Thomas Bashford-Rogers, and most of my current work is groundwork for it.</p>
+        <p>I'm a C++ software engineer working across graphics, gameplay and systems, based in Leamington Spa, UK. I graduated in Software Engineering from Isik University in July 2025 and am completing an MSc in Games Engineering at <span class="hl">WMG, University of Warwick</span> (September 2025–September 2026). I spend most of my time on real-time rendering and computer graphics: writing renderers, reading papers, and figuring out why the image looks wrong. I play video games too (shocking, I know 🎮), and I'm aiming to specialize as a Graphics Programmer.</p>
+        <p>My MSc dissertation is <span class="hl">Path Guiding in Primary Sample Space via BSDF Inversion</span>, supervised by Dr. Thomas Bashford-Rogers. My literature review of signed distance field rendering and denoising also informed the core mechanic and renderer of Frontrooms.</p>
       </div>
       <div class="skills rv d2" id="skills">
         <div class="skill"><h5>Languages</h5><p>C++, Python, HLSL, Java, SQL</p></div>
-        <div class="skill"><h5>Graphics &amp; Rendering</h5><p>DirectX 12, Ray Tracing / Path Tracing, BVH Acceleration, MIS, GGX &amp; Microfacet BSDFs, SDF Sphere Tracing, SIMD (SSE/AVX/AVX2), Multithreading, RenderDoc</p></div>
-        <div class="skill"><h5>Engines &amp; Tools</h5><p>Unreal Engine 5, Niagara, Dear ImGui, FMOD, WinSock, OpenCV, PostgreSQL (pgvector), Flask, Docker, Git</p></div>
-        <div class="skill"><h5>Spoken</h5><p>Turkish (native), English (IELTS 8.0, C1), Japanese (beginner)</p></div>
+        <div class="skill"><h5>Graphics &amp; Rendering</h5><p>DirectX 12, Ray Tracing / Path Tracing, BVH Acceleration, MIS, GGX &amp; Microfacet BSDFs, SDF Sphere Tracing, Linear Algebra, SIMD (SSE/AVX/AVX2), Multithreading, Profiling, Debugging, RenderDoc</p></div>
+        <div class="skill"><h5>Engines &amp; Tools</h5><p>Unreal Engine 5, Blueprints, Niagara, Dear ImGui, Intel Open Image Denoise, FMOD, WinSock, OpenCV, Git</p><p>Spring Boot, Docker, OpenAPI, Flask, PostgreSQL (pgvector), Microsoft SQL Server</p></div>
+        <div class="skill"><h5>Spoken</h5><p>Turkish (native), English (IELTS Academic 8.0), Japanese (beginner)</p></div>
       </div>
     </div>
   </div>
@@ -595,8 +604,11 @@
 </footer>
 
 <script>
-  const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.1});
-  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.1});
+    document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+    document.documentElement.classList.add('reveal-enabled');
+  }
   
   const glow = document.getElementById('glow');
   window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
@@ -605,14 +617,16 @@
   /* REPLACED: the old scroll handler read sec.offsetTop for every section on
      every scroll event, forcing a layout each time. Same result, no reflow. */
   const navLinks = document.querySelectorAll('.navlinks a:not(.cv)');
-  const navIo = new IntersectionObserver((entries)=>{
+  if ('IntersectionObserver' in window) {
+    const navIo = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(!e.isIntersecting) return;
       const id = e.target.getAttribute('id');
       navLinks.forEach(l => l.classList.toggle('active-section', l.getAttribute('href') === '#'+id));
     });
   }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
-  document.querySelectorAll('section[id]').forEach(s => navIo.observe(s));
+    document.querySelectorAll('section[id]').forEach(s => navIo.observe(s));
+  }
 
   /* NEW: YouTube embed. Paste any YouTube link into data-yt and this builds the iframe. */
   document.querySelectorAll('.video[data-yt]').forEach(box=>{
@@ -632,29 +646,37 @@
 
   document.querySelectorAll('.compare').forEach(c=>{
     let drag=false;
-    
-    const set=(clientX)=>{ 
-      const r=c.getBoundingClientRect(); 
-      let p=(clientX-r.left)/r.width*100; 
-      p=Math.max(0,Math.min(100,p)); 
-      c.style.setProperty('--pos', p+'%'); 
-      c.setAttribute('aria-valuenow', Math.round(p)); 
+    const updateValueText=()=>{
+      const position=Number(c.getAttribute('aria-valuenow'));
+      const left=c.querySelector('.cmp-tag.l').textContent;
+      const right=c.querySelector('.cmp-tag.r').textContent;
+      c.setAttribute('aria-valuetext', `${left}: ${position}%; ${right}: ${100-position}%`);
     };
+    const setPosition=(value)=>{
+      const position=Math.max(0,Math.min(100,value));
+      c.style.setProperty('--pos', position+'%');
+      c.setAttribute('aria-valuenow', Math.round(position));
+      updateValueText();
+    };
+    const set=(clientX)=>{
+      const r=c.getBoundingClientRect();
+      if(r.width) setPosition((clientX-r.left)/r.width*100);
+    };
+    updateValueText();
+    c.addEventListener('comparisonchange', updateValueText);
     
     c.addEventListener('pointerdown', e=>{ drag=true; c.setPointerCapture(e.pointerId); set(e.clientX); });
     c.addEventListener('pointermove', e=>{ if(drag) set(e.clientX); });
     c.addEventListener('pointerup', ()=> drag=false);
     c.addEventListener('pointercancel', ()=> drag=false);
+    c.addEventListener('lostpointercapture', ()=> drag=false);
 
     c.addEventListener('keydown', e => {
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-        e.preventDefault(); 
-        let currentPos = parseFloat(c.style.getPropertyValue('--pos')) || 50;
-        currentPos += (e.key === 'ArrowRight' ? 5 : -5); 
-        currentPos = Math.max(0, Math.min(100, currentPos));
-        c.setAttribute('aria-valuenow', Math.round(currentPos)); 
-        c.style.setProperty('--pos', currentPos + '%');
-      }
+      const currentPos=Number(c.getAttribute('aria-valuenow'));
+      const positions={ArrowLeft:currentPos-5, ArrowDown:currentPos-5, ArrowRight:currentPos+5, ArrowUp:currentPos+5, Home:0, End:100};
+      if (!(e.key in positions)) return;
+      e.preventDefault();
+      setPosition(positions[e.key]);
     });
   });
 
@@ -670,20 +692,31 @@
     const btns = picker.querySelectorAll('button');
 
     btns.forEach(btn => {
+      btn.type='button';
+      btn.setAttribute('aria-controls', targetId);
+      btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
       btn.addEventListener('mouseenter', () => {
         if(btn.hasAttribute('data-base')) new Image().src = btn.getAttribute('data-base');
         if(btn.hasAttribute('data-top')) new Image().src = btn.getAttribute('data-top');
       });
 
       btn.addEventListener('click', () => {
-        btns.forEach(b => b.classList.remove('active'));
+        btns.forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
 
         if(btn.hasAttribute('data-base')) baseImg.src = btn.getAttribute('data-base');
         if(btn.hasAttribute('data-top')) topImg.src = btn.getAttribute('data-top');
         
         if(btn.hasAttribute('data-tag-l') && tagL) tagL.textContent = btn.getAttribute('data-tag-l');
         if(btn.hasAttribute('data-tag-r') && tagR) tagR.textContent = btn.getAttribute('data-tag-r');
+        const scene=targetId==='cmp-denoise' ? btn.textContent.trim() : 'Cornell Box';
+        topImg.alt=scene+' — '+tagL.textContent;
+        baseImg.alt=scene+' — '+tagR.textContent;
+        container.dispatchEvent(new Event('comparisonchange'));
       });
     });
   });
