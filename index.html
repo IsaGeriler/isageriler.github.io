@@ -3,723 +3,814 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0a0b0e">
-<title>Isa Geriler · C++ Software Engineer · Graphics &amp; Rendering</title>
-<meta name="description" content="Isa Geriler. C++ software engineer working across graphics, gameplay and systems. Path tracing, software rasterization, SDF sphere tracing and DirectX 12.">
+<meta name="theme-color" content="#0d1112">
+<title>Isa Geriler · Software Engineer · C++ &amp; Systems</title>
+<meta name="description" content="Software engineer with strengths in C++, high-performance programming and systems, and experience across backend APIs, client-server applications, graphics and games.">
 
-<!-- Open Graph Meta Tags (For LinkedIn, Discord, etc. Previews) -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://isageriler.github.io/"> 
-<meta property="og:title" content="Isa Geriler · C++ Software Engineer · Graphics &amp; Rendering">
-<meta property="og:description" content="C++ projects in graphics, gameplay and systems: path tracing, software rasterization, SDF sphere tracing and DirectX 12.">
+<meta property="og:title" content="Isa Geriler · Software Engineer · C++ &amp; Systems">
+<meta property="og:description" content="Software engineer with strengths in C++, high-performance programming and systems, and experience across backend APIs, client-server applications, graphics and games.">
 <meta property="og:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png"> 
 
-<!-- Twitter Card Meta Tags -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Isa Geriler · C++ Software Engineer · Graphics &amp; Rendering">
-<meta name="twitter:description" content="C++ projects in graphics, gameplay and systems: path tracing, software rasterization, SDF sphere tracing and DirectX 12.">
+<meta name="twitter:title" content="Isa Geriler · Software Engineer · C++ &amp; Systems">
+<meta name="twitter:description" content="Software engineer with strengths in C++, high-performance programming and systems, and experience across backend APIs, client-server applications, graphics and games.">
 <meta name="twitter:image" content="https://isageriler.github.io/assets/MaterialsScene128SPP.png">
 
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌑</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" href='data:image/svg+xml,%3Csvg%20xmlns="http://www.w3.org/2000/svg"%20viewBox="0%200%2064%2064"%3E%3Crect%20width="64"%20height="64"%20rx="14"%20fill="%230d1112"/%3E%3Ctext%20x="32"%20y="42"%20text-anchor="middle"%20font-family="sans-serif"%20font-size="30"%20fill="%23b2efd5"%3EIG%3C/text%3E%3C/svg%3E'>
+<link rel="canonical" href="https://isageriler.github.io/"><style>@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/font-1.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/font-2.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/font-3.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/fonts/font-4.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Hanken Grotesk';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/fonts/font-5.ttf) format('truetype');
+}
 
-<style>
-  :root{
-    --bg:#0a0b0e; --bg-2:#101218; --panel:#13161d;
-    --ink:#ECECE8; --muted:#888E9B; --faint:#5A606C;
-    --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.05);
-    --accent:#6FE3D2; --accent-2:#E8A24A;
-    --serif:"Fraunces",Georgia,serif;
-    --sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,sans-serif;
-    --mono:"Space Mono",ui-monospace,Menlo,monospace;
-    --maxw:1120px;
-  }
-  
-  *{box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent}
-  
-  html{
-    scroll-behavior:smooth; scroll-padding-top:80px;
-    scrollbar-width:thin; scrollbar-color:var(--panel) var(--bg);
-  }
-  
-  ::selection { background:var(--accent); color:#06201c; }
-  ::-moz-selection { background:var(--accent); color:#06201c; }
+/* Design tokens */
+:root {
+  color-scheme: dark;
+  --bg: #0d1112; --surface: #141b1c; --surface-raised: #1a2425;
+  --ink: #f0f3ef; --muted: #a4b2b0; --accent: #b2efd5;
+  --line: #2d3a3b; --line-soft: #202c2d;
+  --serif: "Fraunces", Georgia, serif;
+  --sans: "Hanken Grotesk", system-ui, sans-serif;
+  --mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas, monospace;
+  --radius: 12px; --page: 1320px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 108px; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; }
+a { color: inherit; text-decoration: none; text-underline-offset: .25em; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+button:disabled { cursor: wait; }
+img { display: block; max-width: 100%; }
+figure, h1, h2, h3, h4, p { margin: 0; }
+[hidden] { display: none !important; }
+::selection { color: var(--bg); background: var(--accent); }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; border-radius: 3px; }
+.wrap { width: min(var(--page), calc(100% - 96px)); margin-inline: auto; }
+.eyebrow, .mono { font: 500 .75rem/1.6 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.eyebrow { color: var(--accent); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skip-link { position: fixed; z-index: 100; top: 8px; left: 16px; padding: 12px 20px; background: var(--accent); color: var(--bg); border-radius: 5px; transform: translateY(-160%); }
+.skip-link:focus { transform: none; }
 
-  ::-webkit-scrollbar { width:10px; }
-  ::-webkit-scrollbar-track { background:var(--bg); border-left:1px solid var(--line-2); }
-  ::-webkit-scrollbar-thumb { background:var(--panel); border:1px solid var(--line); border-radius:5px; }
-  ::-webkit-scrollbar-thumb:hover { background:var(--faint); }
-  
-  body{background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden}
-  body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
-    background:radial-gradient(60vw 60vw at 78% -10%, rgba(111,227,210,.10), transparent 60%),radial-gradient(50vw 50vw at -10% 25%, rgba(232,162,74,.07), transparent 60%),var(--bg)}
-  body::after{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.035;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+/* Site navigation */
+.site-nav { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid var(--line-soft); background: rgba(13,17,18,.96); }
+@supports (backdrop-filter: blur(16px)) { .site-nav { background: rgba(13,17,18,.87); backdrop-filter: blur(16px); } }
+.nav-inner { min-height: 80px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 600; font-size: 1.0625rem; letter-spacing: -.02em; white-space: nowrap; }
+.brand-mark { display: grid; place-items: center; width: 29px; height: 29px; border: 1px solid var(--accent); color: var(--accent); border-radius: 50%; font: 500 .7rem var(--mono); letter-spacing: -.1em; }
+.navlinks { display: flex; align-items: center; gap: 30px; }
+.navlinks a { position: relative; display: inline-flex; align-items: center; min-height: 44px; color: var(--muted); font-size: .875rem; }
+.navlinks a:hover, .navlinks a[aria-current] { color: var(--ink); }
+.navlinks a[aria-current]::after { content: ""; position: absolute; height: 2px; background: var(--accent); bottom: 3px; left: 0; right: 0; }
+.navlinks .cv { gap: 14px; padding: 0 16px; color: var(--accent); border: 1px solid var(--line); border-radius: 6px; }
+.navlinks .cv:hover { border-color: var(--accent); }
 
-  /* FIXED: the @media block was nested inside this rule, with a declaration
-     after it. Declarations following a nested rule are the fragile part of
-     CSS nesting, and it meant the mobile override never reliably applied. */
-  #glow{position:fixed; width:520px; height:520px; left:0; top:0; z-index:-1; pointer-events:none;
-    background:radial-gradient(circle, rgba(111,227,210,.08), transparent 65%); transform:translate(-50%,-50%); transition:opacity .4s; opacity:0}
-  @media (hover:none) and (pointer:coarse){ #glow{display:none !important} }
-  
-  a{color:inherit; text-decoration:none}
-  
-  a[target="_blank"]:not(.btn)::after {
-    content: " \2197";
-    font-family: var(--sans);
-    font-size: 0.85em;
-    opacity: 0.5;
-    display: inline-block;
-    transform: translateY(-1px);
-  }
-  
-  a:focus-visible, button:focus-visible, .compare:focus-visible { outline:2px solid var(--accent); outline-offset:4px; border-radius:4px; }
-  
-  /* UX FIX: Styled inline code snippet tag */
-  code { font-family:var(--mono); font-size:0.85em; background:rgba(255,255,255,0.06); padding:0.2em 0.4em; border-radius:4px; color:var(--accent); }
-  
-  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px}
-  .mono{font-family:var(--mono); font-size:12.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+/* Introduction */
+.hero { padding-block: 76px 80px; }
+.hero-grid { display: grid; grid-template-columns: .84fr 1.16fr; align-items: center; gap: 72px; }
+.hero h1 { margin-top: 24px; font: 400 clamp(4.5rem, 7.8vw, 7.5rem)/.93 var(--serif); letter-spacing: -.065em; }
+.hero h1 em { display: block; color: var(--accent); font-weight: 400; }
+.hero .lede { margin-top: 28px; max-width: 26ch; font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.45; letter-spacing: -.02em; }
+.hero .discipline { margin-top: 12px; color: var(--muted); font-size: .9375rem; }
+.cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 30px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 18px; min-height: 48px; padding: 10px 20px; border: 1px solid var(--line); border-radius: 6px; font-size: .875rem; font-weight: 600; transition: background .18s, border-color .18s, color .18s; }
+.btn:hover { background: var(--surface-raised); border-color: var(--muted); }
+.btn.solid { background: var(--accent); color: #10251c; border-color: var(--accent); }
+.btn.solid:hover { background: #d4f8e7; border-color: #d4f8e7; }
+.hero-art { min-width: 0; padding: 16px; border: 1px solid var(--line); background: var(--surface); border-radius: var(--radius); }
+.render-meta { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 0 0 14px; color: var(--muted); font: .75rem/1.5 var(--mono); }
+.render-meta .render-label { color: var(--accent); }
+.hero-image { overflow: hidden; border-radius: 5px; background: #18201e; }
+.hero-image img { width: 100%; height: auto; }
+.hero-art figcaption { display: flex; justify-content: space-between; gap: 12px; margin-top: 14px; color: var(--muted); font-size: .8125rem; text-align: left; }
+.hero-art figcaption a { color: var(--ink); text-decoration: underline; }
+.hero-footer { display: flex; flex-wrap: wrap; gap: 16px 36px; margin-top: 44px; padding-top: 22px; border-top: 1px solid var(--line); color: var(--muted); font-size: .875rem; }
+.status { display: inline-flex; align-items: center; gap: 9px; color: var(--ink); }
+.dot { width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: var(--accent); }
+.hero-footer .location { margin-left: auto; }
 
-  nav{position:fixed; top:0; left:0; right:0; z-index:50; backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); background:rgba(10,11,14,.55); border-bottom:1px solid var(--line-2)}
-  nav .wrap{display:flex; align-items:center; justify-content:space-between; height:64px}
-  .brand{font-family:var(--mono); font-weight:700; letter-spacing:.18em; font-size:14px}
-  .brand b{color:var(--accent)}
-  .navlinks{display:flex; gap:26px}
-  
-  .navlinks a{display:inline-flex; align-items:center; min-height:44px; font-family:var(--mono); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); transition:color .2s, border-color .2s; border-bottom:2px solid transparent; padding:4px 0}
-  .navlinks a:hover{color:var(--ink)}
-  .navlinks a.active-section{color:var(--ink); border-color:var(--accent)}
-  .navlinks a.cv{color:var(--accent)}
-  
-  @media(max-width:680px){ 
-    .navlinks{gap:14px} 
-  }
-  @media(max-width:480px){
-    .wrap{padding:0 18px}
-    .brand{font-size:12px; letter-spacing:.1em}
-    .navlinks{gap:10px}
-    .navlinks a{font-size:12px; letter-spacing:0}
-  }
-  @media(max-width:360px){
-    nav .wrap{height:auto; min-height:64px; flex-wrap:wrap; justify-content:center; gap:0 18px; padding-top:8px}
-  }
+/* Project index and case studies */
+.section { padding-block: 72px; border-top: 1px solid var(--line); }
+.section-heading { display: flex; align-items: end; justify-content: space-between; gap: 28px; margin-bottom: 50px; }
+.section-heading h2 { margin-top: 12px; font-size: clamp(2rem, 3vw, 2.8rem); line-height: 1.15; font-weight: 500; letter-spacing: -.045em; }
+.section-heading > p { color: var(--muted); max-width: 33ch; font-size: .9375rem; }
+.work-layout { display: grid; grid-template-columns: 182px minmax(0, 1fr); gap: 46px; align-items: start; }
+.project-nav { position: sticky; top: 110px; padding-top: 4px; }
+.project-nav .eyebrow { margin-bottom: 16px; color: var(--muted); }
+.project-nav a { display: flex; gap: 12px; align-items: baseline; min-height: 44px; padding: 10px 0 10px 12px; border-left: 1px solid var(--line); color: var(--muted); font-size: .875rem; line-height: 1.4; }
+.project-nav a span { flex-shrink: 0; font: .75rem var(--mono); color: var(--muted); }
+.project-nav a:hover, .project-nav a[aria-current] { color: var(--ink); border-color: var(--accent); background: linear-gradient(90deg, rgba(178,239,213,.06), transparent); }
+.project-nav a[aria-current] span { color: var(--accent); }
+.projects { min-width: 0; }
+.project { padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--line); scroll-margin-top: 112px; }
+.project:last-of-type { margin-bottom: 36px; }
+.project-heading { display: flex; align-items: start; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.project-title-line { display: flex; align-items: baseline; gap: 14px; }
+.project-number { color: var(--accent); font: .75rem var(--mono); }
+.project h3 { font-size: clamp(1.4rem, 2.1vw, 1.85rem); font-weight: 500; letter-spacing: -.035em; line-height: 1.2; }
+.project .role { margin-top: 10px; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
+.source-link { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--accent); white-space: nowrap; font-size: .875rem; }
+.source-link:hover { text-decoration: underline; }
+.project-grid { display: grid; grid-template-columns: .84fr 1.16fr; gap: 32px; align-items: start; }
+.project-copy, .project-visual { min-width: 0; }
+.project-summary { color: #dce4e0; font-size: 1rem; line-height: 1.75; }
+.project-summary a, .details-body a { color: var(--accent); text-decoration: underline; }
+.project-note { margin-top: 22px; padding: 18px 0 18px 18px; border-left: 2px solid var(--accent); }
+.note-label { display: block; color: var(--accent); font: .75rem/1.5 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+.project-note p { margin-top: 7px; color: var(--muted); font-size: .9375rem; line-height: 1.6; }
+.metric { display: block; color: var(--accent); font-size: 2.4rem; font-weight: 500; line-height: 1.1; letter-spacing: -.05em; margin-bottom: 7px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 24px; }
+.tags span { padding: 3px 9px; background: var(--surface); border: 1px solid var(--line-soft); border-radius: 4px; color: var(--muted); font-size: .75rem; }
+.project-details { margin-top: 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.project-details > summary { display: flex; justify-content: space-between; gap: 20px; align-items: center; list-style: none; padding: 15px 18px; cursor: pointer; color: var(--muted); font-size: .875rem; }
+.project-details > summary::-webkit-details-marker { display: none; }
+.project-details > summary::after { content: "+"; color: var(--accent); font: 1.25rem var(--mono); }
+.project-details[open] > summary { color: var(--ink); border-bottom: 1px solid var(--line); }
+.project-details[open] > summary::after { content: "−"; }
+.details-body { padding: 22px; }
+.details-body > p { color: var(--muted); }
+.detail { margin: 0; padding-left: 19px; color: var(--muted); font-size: 1rem; }
+.detail li { padding-left: 4px; margin-bottom: 12px; }
+.detail li:last-child { margin-bottom: 0; }
+.detail li::marker { color: var(--accent); }
+.detail b { color: var(--ink); font-weight: 500; }
+code { padding: 2px 5px; background: var(--surface-raised); color: var(--accent); font: .85em var(--mono); border-radius: 4px; overflow-wrap: anywhere; }
 
-  header{padding:128px 0 60px; position:relative}
-  .kicker{margin-bottom:22px}
-  h1{font-family:var(--serif); font-weight:400; font-size:clamp(52px,9vw,108px); line-height:.96; letter-spacing:-.02em}
-  h1 .it{font-style:italic; color:var(--accent)}
-  .lede{font-family:var(--serif); font-size:clamp(20px,2.6vw,27px); color:var(--ink); max-width:32ch; margin:26px 0 0; line-height:1.3}
-  .status{display:inline-flex; align-items:center; gap:9px; max-width:100%; margin-top:30px; padding:8px 15px; border:1px solid var(--line); border-radius:999px; font-family:var(--mono); font-size:12px; letter-spacing:.05em; color:var(--ink)}
-  .dot{flex-shrink:0; width:8px; height:8px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 0 rgba(111,227,210,.6); animation:pulse 2.4s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(111,227,210,.5)}70%{box-shadow:0 0 0 10px rgba(111,227,210,0)}100%{box-shadow:0 0 0 0 rgba(111,227,210,0)}}
-  
-  .cta{display:flex; flex-wrap:wrap; gap:14px; margin-top:34px}
-  .btn{font-family:var(--mono); font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; padding:13px 22px; border-radius:4px; border:1px solid var(--line); transition:.2s; color:var(--ink)}
-  .btn:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-2px)}
-  /* UX FIX: Tactile active state for clicks */
-  .btn:active{transform:translateY(0); border-color:var(--accent)}
-  .btn.solid{background:var(--accent); color:#06201c; border-color:var(--accent)}
-  .btn.solid:hover{background:#8ff0e1; color:#06201c}
-  .hero-shot{margin-top:60px}
+/* Images, native comparisons and video */
+.media { min-width: 0; }
+.details-body > .media { margin-top: 26px; }
+.shot { overflow: hidden; background: #080c0d; border: 1px solid var(--line); border-radius: 8px; }
+.shot img { width: 100%; height: auto; }
+.shot.r169, .shot.r32, .shot.wide, .shot.natural { aspect-ratio: auto; }
+.media.two, .media.three { display: grid; gap: 12px; }
+.media.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.media.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.media.two .shot, .media.three .shot { aspect-ratio: 3/2; display: grid; align-items: center; }
+.media.two img, .media.three img { height: 100%; object-fit: contain; }
+figcaption { margin-top: 12px; color: var(--muted); font-size: .8125rem; line-height: 1.6; }
+.sub-cap { margin-top: 8px; color: var(--muted); font-size: .75rem; }
+.compare { overflow: hidden; background: #080c0d; border: 1px solid var(--line); border-radius: 8px; }
+.compare-stage { position: relative; aspect-ratio: var(--aspect, 16/9); overflow: hidden; }
+.compare-stage img { width: 100%; height: 100%; object-fit: contain; }
+.compare-stage .cmp-top { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0); }
+.cmp-handle { position: absolute; inset: 0 auto 0 var(--pos, 50%); width: 2px; transform: translateX(-1px); background: var(--accent); pointer-events: none; }
+.cmp-handle::after { content: "↔"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 34px; height: 34px; border: 1px solid var(--accent); border-radius: 50%; color: var(--accent); background: #10201be6; font-size: 1rem; }
+.compare-controls { padding: 0 14px 8px; border-top: 1px solid var(--line); background: var(--surface); }
+.range-row { display: flex; align-items: center; gap: 14px; }
+.range-row input { display: block; min-width: 0; width: 100%; height: 44px; margin: 0; accent-color: var(--accent); cursor: ew-resize; }
+.range-row output { min-width: 4ch; font: .75rem var(--mono); color: var(--accent); text-align: right; }
+.compare-legend { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; padding: 9px 12px; color: var(--muted); border-top: 1px solid var(--line); font-size: .75rem; background: var(--surface); }
+.compare-legend .cmp-tag:first-child { color: var(--accent); }
+.picker { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.picker button { min-height: 44px; padding: 9px 12px; color: var(--muted); background: transparent; border: 1px solid var(--line); border-radius: 5px; font-size: .875rem; }
+.picker button:hover { color: var(--ink); border-color: var(--muted); }
+.picker button[aria-pressed="true"] { color: var(--accent); background: #b2efd50c; border-color: var(--accent); }
+.media-status { margin-top: 8px; font-size: .8125rem; color: var(--accent); }
+.image-error { padding: 18px; color: var(--muted); font-size: .875rem; background: var(--surface); }
+.video { aspect-ratio: 16/9; position: relative; overflow: hidden; background: linear-gradient(140deg, #1d2a27, #0a1011); border: 1px solid var(--line); border-radius: 8px; }
+.video iframe { width: 100%; height: 100%; border: 0; position: absolute; inset: 0; }
+.video-poster { display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 13px; position: absolute; inset: 0; padding: 20px; text-align: center; }
+.play-icon { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: var(--accent); color: #10251c; font-size: 1.25rem; }
+.video-poster strong { font-size: 1.125rem; font-weight: 500; }
+.video-poster small { color: var(--muted); font-size: .8125rem; }
+.video-poster:hover .play-icon { background: #d4f8e7; }
 
-  /* UX FIX: Mobile above-the-fold layout adjustment */
-  @media(max-width:680px){
-    header{padding:104px 0 40px;}
-    .hero-shot{margin-top:40px;}
-  }
+/* Additional projects and background */
+.more-heading { margin-bottom: 22px; font-size: 1.45rem; font-weight: 500; letter-spacing: -.035em; }
+.additional-projects { scroll-margin-top: 112px; }
+.more { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.card { padding: 24px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.card .role { color: var(--muted); font-size: .75rem; line-height: 1.6; }
+.card h4 { margin-top: 12px; font-weight: 500; font-size: 1.2rem; line-height: 1.3; letter-spacing: -.02em; }
+.card p { margin-top: 14px; color: var(--muted); font-size: 1rem; line-height: 1.7; }
+.card a { color: var(--accent); text-decoration: underline; }
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; }
+.about-copy p { font-size: 1.125rem; line-height: 1.8; color: #dce4e0; }
+.about-copy p+p { margin-top: 22px; }
+.about-copy .hl { color: var(--accent); }
+.education-note { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--muted); font-size: .875rem; }
+.education-note strong { display: block; color: var(--ink); font-weight: 500; margin-bottom: 5px; }
+.skills { display: grid; gap: 22px; }
+.skill { display: grid; grid-template-columns: 125px minmax(0,1fr); gap: 20px; padding-bottom: 20px; border-bottom: 1px solid var(--line-soft); }
+.skill h5 { margin: 0; color: var(--accent); font-size: .8125rem; font-weight: 500; line-height: 1.6; }
+.skill p { color: var(--muted); font-size: .9375rem; line-height: 1.75; }
+.skill p+p { margin-top: 8px; }
+.contact { padding-block: 86px; }
+.contact-grid { display: flex; justify-content: space-between; align-items: center; gap: 50px; }
+.contact h2 { margin-top: 16px; font: 400 clamp(2.5rem, 5.4vw, 4.5rem)/1.05 var(--serif); letter-spacing: -.04em; }
+.contact p { margin-top: 18px; max-width: 56ch; color: var(--muted); }
+.contact .links { display: flex; justify-content: end; flex-wrap: wrap; gap: 10px; max-width: 360px; }
+.footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding-block: 26px; border-top: 1px solid var(--line); color: var(--muted); font-size: .8125rem; }
+.footer-inner a { min-height: 44px; display: inline-flex; align-items: center; }
 
-  .shot{position:relative; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
-  .shot.wide{aspect-ratio:4/1}
-  .shot.r169{aspect-ratio:16/9}
-  .shot.r32{aspect-ratio:3/2}          /* NEW: matches raw UE captures (1.49 / 1.65) with less cropping */
-  .shot.natural{aspect-ratio:auto}
-  .shot.natural img{height:auto}
-  
-  .shot img{width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease, opacity .4s ease; opacity:1}
-  
-  .shot.empty {
-    background: var(--panel);
-    animation: skeletonPulse 1.5s ease-in-out infinite;
-  }
-  .shot.empty img { opacity:0; display:block; }
-  
-  @keyframes skeletonPulse {
-    0% { opacity: 0.5; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0.5; }
-  }
-  
-  .shot .tag{position:absolute; left:12px; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px}
-  
-  figcaption{font-family:var(--sans); font-size:13.5px; color:var(--muted); text-align:center; margin-top:10px; font-style:italic; max-width:75ch; margin-inline:auto}
-  .sub-cap{font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; color:var(--muted); text-transform:uppercase; margin-top:10px; text-align:center}
-
-  /* NEW: video. Plain YouTube embed. */
-  .video{position:relative; aspect-ratio:16/9; border-radius:8px; overflow:hidden; background:var(--bg-2); border:1px solid var(--line)}
-  .video iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
-
-  /* Dynamic comparison slider */
-  .compare{
-    position:relative; border-radius:8px; overflow:hidden; border:1px solid var(--line); 
-    --pos:50%; cursor:ew-resize; background:var(--bg-2); touch-action:pan-y;
-    -webkit-user-select:none; user-select:none; -webkit-touch-callout:none;
-  }
-  .compare:active{cursor:grabbing}
-  .compare img{display:block; pointer-events:none}
-  .compare .cmp-base{width:100%; height:auto}
-  .compare .cmp-top{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
-  .compare .cmp-handle{position:absolute; top:0; bottom:0; left:var(--pos); width:2px; background:var(--accent); transform:translateX(-1px); pointer-events:none}
-  .compare .cmp-handle::after{content:"\2194"; position:absolute; top:50%; left:50%; width:36px; height:36px; transform:translate(-50%,-50%); border:2px solid var(--accent); border-radius:50%; background:rgba(10,11,14,.65); color:var(--accent); font-family:var(--mono); font-size:14px; display:flex; align-items:center; justify-content:center}
-  .compare .cmp-tag{position:absolute; bottom:12px; font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--ink); background:rgba(10,11,14,.7); padding:5px 9px; border-radius:4px; pointer-events:none}
-  .compare .cmp-tag.l{left:12px} .compare .cmp-tag.r{right:12px}
-
-  .picker{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:14px}
-  .picker button{
-    background:rgba(10,11,14,.5); border:1px solid var(--line); color:var(--muted); font-family:var(--mono); 
-    min-height:44px; font-size:12px; letter-spacing:.08em; text-transform:uppercase; padding:8px 16px; border-radius:999px; 
-    cursor:pointer; transition:all .2s;
-    -webkit-user-select:none; user-select:none;
-  }
-  .picker button:hover{border-color:rgba(111,227,210,.5); color:var(--ink)}
-  .picker button.active{background:rgba(111,227,210,.1); border-color:var(--accent); color:var(--accent)}
-
-  section{padding:78px 0; position:relative}
-  .sec-head{display:flex; align-items:baseline; gap:18px; margin-bottom:42px}
-  .sec-head h2{font-family:var(--serif); font-weight:400; font-size:clamp(28px,4vw,40px); letter-spacing:-.01em}
-  .sec-head .num{font-family:var(--mono); color:var(--accent); font-size:13px; letter-spacing:.1em}
-  .rule{height:1px; background:var(--line); flex:1}
-
-  .proj{margin-bottom:84px}
-  .proj .idx{font-family:var(--mono); color:var(--accent-2); font-size:13px; letter-spacing:.12em}
-  .proj h3{font-family:var(--serif); font-weight:500; font-size:clamp(24px,3vw,32px); margin:8px 0 4px; line-height:1.1}
-  .proj h3 a{border-bottom:1px solid transparent; transition:.2s}
-  .proj h3 a:hover{border-color:var(--accent); color:var(--accent)}
-  .proj .role{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
-  
-  .proj .lead{color:#D3D7DD; margin:16px 0 0; font-size:17px; line-height:1.7}
-  .proj .lead a, ul.detail li a { color:var(--accent); transition:color .2s, text-decoration .2s; }
-  .proj .lead a:hover, ul.detail li a:hover { color:var(--ink); text-decoration:underline; text-underline-offset:4px; }
-  
-  .callout{margin:20px 0 0; padding:16px 20px; border-left:3px solid var(--accent); background:linear-gradient(90deg,rgba(111,227,210,.07),transparent); border-radius:0 6px 6px 0}
-  .callout.warn{border-left-color:var(--accent-2); background:linear-gradient(90deg,rgba(232,162,74,.08),transparent)}
-  .callout .label{font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); display:block; margin-bottom:6px}
-  .callout.warn .label{color:var(--accent-2)}
-  .callout p{color:#C7CBD2; font-size:15px; line-height:1.65; margin:0}
-  ul.detail{list-style:none; margin:18px 0 0; padding:0}
-  ul.detail li{position:relative; padding-left:18px; color:#C7CBD2; font-size:15.5px; line-height:1.65; margin:9px 0}
-  ul.detail li::before{content:"\203A"; position:absolute; left:0; color:var(--accent)}
-  ul.detail b{color:var(--ink); font-weight:600}
-  
-  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:20px}
-  .tags span{
-    font-family:var(--mono); font-size:11px; letter-spacing:.04em; color:var(--muted); 
-    border:1px solid var(--line); padding:5px 10px; border-radius:5px;
-    background:rgba(255,255,255,0.02); transition:color .2s, border-color .2s, background .2s; cursor:default;
-  }
-  .tags span:hover { color:var(--ink); border-color:rgba(111,227,210,.3); background:rgba(111,227,210,.05); }
-  
-  .media{margin-top:24px}
-  .media.two{display:grid; grid-template-columns:1fr 1fr; gap:14px}
-  .media.three{display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px}
-  .proj:hover .shot img{transform:scale(1.03)}
-  @media(max-width:680px){ .media.two,.media.three{grid-template-columns:1fr} }
-
-  .more{display:grid; grid-template-columns:1fr 1fr; gap:24px}
-  .card{border:1px solid var(--line); border-radius:8px; padding:26px; background:linear-gradient(180deg,var(--panel),transparent); transition:.25s}
-  .card:hover{border-color:rgba(111,227,210,.4); transform:translateY(-3px)}
-  .card h4{font-family:var(--serif); font-weight:500; font-size:21px; margin-bottom:4px}
-  .card .role{font-family:var(--mono); font-size:11px; letter-spacing:.08em; color:var(--muted); text-transform:uppercase}
-  .card p{color:#B9BEC7; font-size:14.5px; margin:14px 0 0; line-height:1.65}
-  @media(max-width:680px){ .more{grid-template-columns:1fr} }
-
-  .about{display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:start}
-  .about p{font-size:18px; line-height:1.8; color:#D3D7DD}
-  .about p+p{margin-top:20px}
-  .about p .hl{color:var(--accent)}
-  .skills{display:flex; flex-direction:column; gap:20px}
-  .skill h5{font-family:var(--mono); font-size:11.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:8px}
-  .skill p{font-size:15px; color:#C7CBD2; line-height:1.6}
-  @media(max-width:820px){ .about{grid-template-columns:1fr; gap:36px} }
-
-  .contact{text-align:center; padding:104px 0}
-  .contact h2{font-family:var(--serif); font-weight:400; font-size:clamp(32px,6vw,64px); letter-spacing:-.02em; line-height:1.05}
-  .contact .links{display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:36px}
-  footer{border-top:1px solid var(--line-2); padding:30px 0; text-align:center}
-  footer .mono{font-size:11px}
-
-  .rv{opacity:1; transform:none; transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1)}
-  html.reveal-enabled .rv:not(.in){opacity:0; transform:translateY(22px)}
-  .rv.in{opacity:1; transform:none}
-  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
-  @media(prefers-reduced-motion:reduce){
-    html{scroll-behavior:auto}
-    *, *::before, *::after{animation:none !important; transition:none !important}
-    html.reveal-enabled .rv:not(.in){opacity:1;transform:none}
-    #glow{display:none}
-    .proj:hover .shot img, .card:hover, .btn:hover{transform:none}
-  }
-
-  /* Print optimizations */
-  @media print {
-    html.reveal-enabled .rv:not(.in){opacity:1;transform:none}
-    body { background: white !important; color: black !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    body::before, body::after, #glow, nav, .status, .cta, .picker, .cmp-handle { display: none !important; }
-    header { padding: 40px 0; }
-    section { padding: 40px 0; border-top: 1px solid #eee; }
-    .callout, .card { border: 1px solid #ccc !important; background: transparent !important; page-break-inside: avoid; }
-    .shot, .compare, .video { border: 1px solid #ccc !important; page-break-inside: avoid; }
-    h1, h2, h3, h4, p, li, span, div { color: black !important; }
-    a { text-decoration: underline; color: #000 !important; }
-    .compare .cmp-top { clip-path: inset(0 0 0 0) !important; }
-    .compare .cmp-tag { display: none !important; }
-  }
-</style>
-</head>
-<body>
-<div id="glow"></div>
-
-<nav>
-  <div class="wrap">
-    <a href="#top" class="brand">ISA <b>GERILER</b></a>
-    <div class="navlinks">
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="assets/CV-IsaGeriler.pdf" class="cv" download>CV &#8595;</a>
+/* Responsive layout */
+@media (min-width: 1500px) { .hero-grid { gap: 96px; } }
+@media (max-width: 1150px) {
+  .wrap { width: calc(100% - 64px); }
+  .hero-grid { gap: 40px; }
+  .work-layout { grid-template-columns: 150px minmax(0,1fr); gap: 30px; }
+  .project-grid { grid-template-columns: 1fr; gap: 24px; }
+  .project-note { max-width: 60ch; }
+  .project-visual { width: 100%; }
+  .about { gap: 45px; }
+}
+@media (max-width: 820px) {
+  .hero { padding-block: 48px 54px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero h1 { font-size: clamp(4.5rem, 12vw, 6rem); }
+  .hero h1 em { display: inline; }
+  .hero .lede { max-width: 36ch; }
+  .hero-footer { margin-top: 28px; }
+  .section { padding-block: 54px; }
+  .section-heading { margin-bottom: 32px; }
+  .work-layout { display: block; }
+  .project-nav { position: static; display: flex; flex-wrap: wrap; gap: 8px; padding: 0 0 28px; }
+  .project-nav .eyebrow { width: 100%; margin-bottom: 4px; }
+  .project-nav a { border: 1px solid var(--line); border-radius: 5px; padding: 10px 12px; gap: 8px; }
+  .project-grid { grid-template-columns: .84fr 1.16fr; gap: 24px; }
+  .about { grid-template-columns: 1fr; }
+  .contact-grid { align-items: start; flex-direction: column; gap: 28px; }
+  .contact .links { justify-content: start; max-width: none; }
+}
+@media (max-width: 640px) {
+  .wrap { width: calc(100% - 40px); }
+  .nav-inner { min-height: 72px; gap: 12px; }
+  .brand { font-size: .9375rem; }
+  .brand-mark { display: none; }
+  .navlinks { gap: 14px; }
+  .navlinks a { font-size: .875rem; }
+  .navlinks .cv { padding: 0 10px; gap: 6px; }
+  .hero h1 { font-size: clamp(3.5rem, 13.5vw, 5rem); }
+  .hero h1 em { display: block; }
+  .hero .lede { font-size: 1.3125rem; }
+  .hero-art { padding: 10px; }
+  .render-meta { font-size: .75rem; gap: 8px; }
+  .hero-art figcaption { flex-direction: column; gap: 4px; }
+  .hero-footer { gap: 10px 20px; }
+  .hero-footer .location { margin-left: 0; width: 100%; }
+  .section-heading { display: block; }
+  .section-heading > p { margin-top: 18px; max-width: 40ch; }
+  .project-grid { grid-template-columns: 1fr; }
+  .project-heading { gap: 16px; flex-wrap: wrap; }
+  .project-heading .source-link { min-height: 44px; }
+  .project h3 { font-size: 1.5rem; }
+  .project-title-line { gap: 10px; }
+  .project { margin-bottom: 36px; padding-bottom: 36px; }
+  .details-body { padding: 18px; }
+  .media.two, .media.three, .more { grid-template-columns: 1fr; }
+  .media.two .shot, .media.three .shot { aspect-ratio: auto; }
+  .skill { grid-template-columns: 1fr; gap: 8px; }
+  .footer-inner { align-items: start; flex-direction: column; gap: 8px; }
+}
+@media (max-width: 370px) {
+  .nav-inner { flex-wrap: wrap; justify-content: center; gap: 0 16px; padding-block: 6px; }
+  .navlinks { gap: 18px; }
+  html { scroll-padding-top: 120px; }
+  .cta .btn { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+@media print {
+  :root { color-scheme: light; --bg: #fff; --surface: #fff; --ink: #111; --muted: #333; --accent: #145441; --line: #aaa; --line-soft: #ddd; }
+  body { font-size: 11pt; }
+  .wrap { width: 100%; }
+  .site-nav, .project-nav, .cta, .compare-controls, .picker, .skip-link, .video, .footer-inner a { display: none !important; }
+  .hero, .section, .contact { padding-block: 24px; }
+  .hero-grid, .work-layout, .project-grid, .about { display: block; }
+  .hero h1 { font-size: 44pt; }
+  .hero h1 em { display: inline; }
+  .hero-art { max-width: 500px; margin-top: 24px; }
+  .project { break-inside: auto; }
+  .shot, .compare, .project-heading, .card { break-inside: avoid; }
+  .project-visual { margin-top: 18px; max-width: 540px; }
+  .project-summary, .about-copy p { color: #222; }
+  a { text-decoration: underline; }
+  .skills { margin-top: 24px; }
+}
+</style></head>
+<body id="top">
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav" aria-label="Main navigation"><div class="wrap nav-inner">
+  <a class="brand" href="#top" aria-label="Isa Geriler, back to top"><span class="brand-mark" aria-hidden="true">IG</span>Isa Geriler</a>
+  <div class="navlinks"><a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact</a><a href="assets/CV-IsaGeriler.pdf" class="cv" download>CV <span aria-hidden="true">↘</span></a></div>
+</div></nav>
+<header class="hero"><div class="wrap">
+  <div class="hero-grid">
+    <div class="hero-copy"><p class="eyebrow">Software Engineer</p><h1>Isa <em>Geriler</em></h1>
+      <p class="lede">I build efficient software, from systems to applications.</p><p class="discipline">C++ &amp; performance · Backend · Systems · Graphics</p>
+      <div class="cta"><a href="#work" class="btn solid">Explore my work <span aria-hidden="true">↘</span></a><a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a><a href="assets/CV-IsaGeriler.pdf" class="btn" download>Download CV</a></div>
     </div>
-  </div>
-</nav>
-
-<header id="top">
-  <div class="wrap">
-    <div class="kicker mono rv">C++ Software Engineer · Graphics / Rendering</div>
-    <h1 class="rv d1">Isa <span class="it">Geriler</span></h1>
-    <p class="lede rv d2">I build renderers and the math underneath them.</p>
-    <div class="status rv d3"><span class="dot" aria-hidden="true"></span><span>Finished my masters at Warwick · Open to work</span></div>
-    <div class="cta rv d4">
-      <a href="#work" class="btn solid">View work</a>
-      <a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a>
-      <a href="assets/CV-IsaGeriler.pdf" class="btn" download>Download CV</a>
-    </div>
-
-    <figure class="hero-shot rv d4">
-      <div class="shot wide empty">
-        <img src="assets/Banner.png" alt="A strip of frames from my ray tracer"
-             onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')">
-      </div>
-      <figcaption>A few frames from my own ray tracer.</figcaption>
+    <figure class="hero-art"><div class="render-meta"><span class="render-label">Light transport / 01</span><span>C++ · CPU renderer</span></div>
+      <div class="hero-image"><img src="assets/Kitchen16SPPDenoised.png" width="1280" height="720" alt="Kitchen interior rendered at 16 samples per pixel and denoised with Intel Open Image Denoise" fetchpriority="high" decoding="async"></div>
+      <figcaption><span>16 samples per pixel + Intel OIDN</span><a href="#light-transport">Explore the renderer ↗</a></figcaption>
     </figure>
   </div>
-</header>
-
-<section id="work">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="num">01</span><h2>Selected Work</h2><span class="rule"></span></div>
-
-    <article class="proj rv">
-      <span class="idx">001</span>
-      <h3><a href="https://github.com/IsaGeriler/RTBase_5749205" target="_blank" rel="noopener">Path Tracer &amp; Light Transport Renderer</a></h3>
-      <div class="role">C++ · Multithreading · Intel Open Image Denoise · University of Warwick · 2026</div>
-      <p class="lead">Extended a CPU path tracer in C++ with light tracing, instant radiosity, and material models for metal, glass and layered surfaces to explore light transport and material behaviour.</p>
-      <div class="callout">
-        <span class="label">Why it matters</span>
-        <p>Simulates highly realistic lighting and materials using industry-standard math and data structures, dramatically reducing render times and visual noise through spatial optimizations and Intel AI denoising.</p>
+  <div class="hero-footer"><span class="status"><span class="dot" aria-hidden="true"></span>Open to work</span><span>MSc Games Engineering · Dissertation submitted, awaiting results</span><span class="location">Leamington Spa, UK</span></div>
+</div></header>
+<main id="main" tabindex="-1">
+<section class="section" id="work" aria-labelledby="work-title"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">01 / Portfolio</p><h2 id="work-title">Selected work</h2></div><p>Systems, applications, graphics and games.<br>The results, and how I built them.</p></div>
+  <div class="work-layout"><nav class="project-nav" aria-label="Project index"><p class="eyebrow">Explore projects</p><a href="#light-transport"><span aria-hidden="true">01</span>Light transport</a><a href="#rasterizer-optimisation"><span aria-hidden="true">02</span>Rasterizer optimisation</a><a href="#frontrooms"><span aria-hidden="true">03</span>Frontrooms</a><a href="#skyfire-uprising"><span aria-hidden="true">04</span>Skyfire Uprising</a><a href="#rasterizer-foundations"><span aria-hidden="true">05</span>Rasterizer foundations</a><a href="#directx-framework"><span aria-hidden="true">06</span>DirectX 12</a><a href="#offline-ray-tracer"><span aria-hidden="true">07</span>Offline ray tracer</a><a href="#applications"><span aria-hidden="true">+</span>Applications</a></nav>
+    <div class="projects">
+    <article class="project" id="light-transport" aria-labelledby="light-transport-title">
+      <div class="project-heading"><div>
+        <div class="project-title-line"><span class="project-number" aria-hidden="true">01</span><h3 id="light-transport-title">Path Tracer &amp; Light Transport Renderer</h3></div>
+        <p class="role">C++ · Multithreading · Intel OIDN · Warwick · 2026</p>
+      </div><a class="source-link" href="https://github.com/IsaGeriler/RTBase_5749205" target="_blank" rel="noopener" aria-label="View Path Tracer &amp; Light Transport Renderer source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+      <div class="project-grid">
+        <div class="project-copy"><p class="project-summary">I extended a CPU path tracer with light tracing, instant radiosity, and material models for metal, glass and layered surfaces. The renderer combines a Binned SAH BVH with 32 × 32 tiled rendering across CPU threads.</p>
+          <aside class="project-note"><span class="note-label">16 samples per pixel</span><p>Denoised results across four test scenes, using colour, albedo and normal buffers with Intel Open Image Denoise.</p></aside>
+          <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
+        </div>
+        <div class="project-visual"><figure class="media">
+        <div class="compare" id="cmp-denoise">
+          <div class="compare-stage" style="--aspect:1280/720;--pos:50%"><img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Kitchen rendered at 16 samples per pixel and denoised with Intel OIDN" loading="lazy" decoding="async" width="1280" height="720" draggable="false">
+          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Kitchen reference rendered at 128 samples per pixel" loading="lazy" decoding="async" width="1280" height="720" draggable="false">
+          <span class="cmp-handle" aria-hidden="true" hidden=""></span></div><div class="compare-legend"><span class="cmp-tag l">128 spp reference</span>
+          <span class="cmp-tag r">16 spp + OIDN</span>
+        </div><div class="compare-controls" hidden>
+          <label class="sr-only" for="cmp-denoise-range">Denoising comparison: adjust the visible share of each image</label>
+          <div class="range-row"><input type="range" id="cmp-denoise-range" min="0" max="100" step="1" value="50" aria-controls="cmp-denoise"><output for="cmp-denoise-range" aria-hidden="true">50%</output></div>
+        </div></div>
+        <div class="picker" data-target="cmp-denoise" hidden="" role="group" aria-label="Choose comparison scene">
+          <button data-top="assets/Kitchen128SPP.png" data-base="assets/Kitchen16SPPDenoised.png" type="button" aria-controls="cmp-denoise" aria-pressed="true" data-scene="Kitchen">Kitchen</button>
+          <button data-top="assets/Bathroom128SPP.png" data-base="assets/Bathroom16SPPDenoised.png" type="button" aria-controls="cmp-denoise" aria-pressed="false" data-scene="Bathroom">Bathroom</button>
+          <button data-top="assets/Classroom128SPP.png" data-base="assets/Classroom16SPPDenoised.png" type="button" aria-controls="cmp-denoise" aria-pressed="false" data-scene="Classroom">Classroom</button>
+          <button data-top="assets/Sibenik128SPP.png" data-base="assets/Sibenik16SPPDenoised.png" type="button" aria-controls="cmp-denoise" aria-pressed="false" data-scene="Sibenik">Sibenik</button>
+        </div>
+        <p class="media-status" role="status" aria-live="polite" aria-atomic="true"></p><figcaption>128 spp reference and 16 spp denoised with Intel OIDN. Drag the divider or use the slider to compare.</figcaption>
+      </figure></div>
       </div>
-      <ul class="detail">
+      <details class="project-details"><summary>Implementation &amp; additional renders</summary><div class="details-body"><ul class="detail">
         <li><b>Architecture:</b> Three integrators in one engine: Path Tracing, Light Tracing, and Instant Radiosity (which uses a Halton quasi-Monte Carlo sampler relying on prime bases for the Radical Inverse).</li>
         <li><b>Material framework:</b> GGX microfacets (Conductor BSDF, sampled proportionally to the NDF), Plastic (Phong), Diffuse, Oren-Nayar, Glass, Mirror, and a Layered BSDF evaluating Beer's Law for attenuation.</li>
         <li><b>Performance:</b> Rendering distributed across CPU threads in 32 × 32 tiles, with a Binned SAH BVH (surface area heuristic bounding volume hierarchy) to reduce geometry searches and Multiple Importance Sampling (MIS) for latitude-longitude environment maps.</li>
         <li><b>Denoising:</b> Integrated Intel Open Image Denoise using colour, albedo and normal buffers, producing denoised images at 16 samples per pixel across four test scenes.</li>
-      </ul>
-      <div class="tags"><span>C++</span><span>Multithreading</span><span>BVH</span><span>MIS</span><span>PBR Math</span><span>Intel OIDN</span></div>
-      
-      <figure class="media">
-        <div class="compare" id="cmp-denoise" tabindex="0" role="slider" aria-label="Denoising comparison" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <img class="cmp-base" src="assets/Kitchen16SPPDenoised.png" alt="Kitchen rendered at 16 samples per pixel and denoised with Intel OIDN">
-          <img class="cmp-top" src="assets/Kitchen128SPP.png" alt="Kitchen reference rendered at 128 samples per pixel">
-          <div class="cmp-handle"></div>
-          <span class="cmp-tag l">128 spp reference</span>
-          <span class="cmp-tag r">16 spp + OIDN</span>
-        </div>
-        <div class="picker" data-target="cmp-denoise">
-          <button class="active" data-top="assets/Kitchen128SPP.png" data-base="assets/Kitchen16SPPDenoised.png">Kitchen</button>
-          <button data-top="assets/Bathroom128SPP.png" data-base="assets/Bathroom16SPPDenoised.png">Bathroom</button>
-          <button data-top="assets/Classroom128SPP.png" data-base="assets/Classroom16SPPDenoised.png">Classroom</button>
-          <button data-top="assets/Sibenik128SPP.png" data-base="assets/Sibenik16SPPDenoised.png">Sibenik</button>
-        </div>
-        <figcaption>Drag to compare a 128 spp reference with a 16 spp render denoised by Intel OIDN. Focus the comparison and use the arrow keys to adjust it.</figcaption>
-      </figure>
-
-      <figure class="media">
-        <div class="compare" id="cmp-cornell" tabindex="0" role="slider" aria-label="Cornell Box light transport comparison" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <img class="cmp-base" src="assets/CornellBoxLT.png" alt="Cornell Box rendered with light tracing">
-          <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Cornell Box rendered with path tracing">
-          <div class="cmp-handle"></div>
-          <span class="cmp-tag l">Path Tracing</span>
+      </ul><figure class="media">
+        <div class="compare" id="cmp-cornell">
+          <div class="compare-stage" style="--aspect:1024/1024;--pos:50%"><img class="cmp-base" src="assets/CornellBoxLT.png" alt="Cornell Box rendered with light tracing" loading="lazy" decoding="async" width="1024" height="1024" draggable="false">
+          <img class="cmp-top" src="assets/CornellBoxPT.png" alt="Cornell Box rendered with path tracing" loading="lazy" decoding="async" width="1024" height="1024" draggable="false">
+          <span class="cmp-handle" aria-hidden="true" hidden=""></span></div><div class="compare-legend"><span class="cmp-tag l">Path Tracing</span>
           <span class="cmp-tag r">Light Tracing</span>
+        </div><div class="compare-controls" hidden>
+          <label class="sr-only" for="cmp-cornell-range">Cornell Box light transport comparison: adjust the visible share of each image</label>
+          <div class="range-row"><input type="range" id="cmp-cornell-range" min="0" max="100" step="1" value="50" aria-controls="cmp-cornell"><output for="cmp-cornell-range" aria-hidden="true">50%</output></div>
+        </div></div>
+        <div class="picker" data-target="cmp-cornell" hidden="" role="group" aria-label="Choose light transport comparison">
+          <button data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" data-base="assets/CornellBoxLT.png" data-tag-r="Light Tracing" type="button" aria-controls="cmp-cornell" aria-pressed="true" data-scene="Cornell Box">PT vs LT</button>
+          <button data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity" type="button" aria-controls="cmp-cornell" aria-pressed="false" data-scene="Cornell Box">PT vs IR</button>
+          <button data-top="assets/CornellBoxLT.png" data-tag-l="Light Tracing" data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity" type="button" aria-controls="cmp-cornell" aria-pressed="false" data-scene="Cornell Box">LT vs IR</button>
         </div>
-        <div class="picker" data-target="cmp-cornell">
-          <button class="active" 
-            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" 
-            data-base="assets/CornellBoxLT.png" data-tag-r="Light Tracing">PT vs LT</button>
-          <button 
-            data-top="assets/CornellBoxPT.png" data-tag-l="Path Tracing" 
-            data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity">PT vs IR</button>
-          <button 
-            data-top="assets/CornellBoxLT.png" data-tag-l="Light Tracing" 
-            data-base="assets/CornellBoxIR.png" data-tag-r="Instant Radiosity">LT vs IR</button>
-        </div>
-        <figcaption>Comparing integrators in the Cornell Box: Path Tracing, Light Tracing, and Instant Radiosity.</figcaption>
-      </figure>
-
-      <figure class="media">
-        <div class="shot r169 empty"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+        <p class="media-status" role="status" aria-live="polite" aria-atomic="true"></p><figcaption>The same Cornell Box scene rendered with different light transport methods.</figcaption>
+      </figure><figure class="media">
+        <div class="shot r169"><img src="assets/MaterialsScene128SPP.png" alt="Materials test scene" loading="lazy" decoding="async" width="1280" height="720" draggable="false"></div>
         <figcaption>Materials test: GGX conductor, Plastic, Oren-Nayar, Glass, and Mirror BSDFs.</figcaption>
-      </figure>
+      </figure></div></details>
     </article>
-
-    <article class="proj rv">
-      <span class="idx">002</span>
-      <h3><a href="https://github.com/IsaGeriler/WM9M4AssignmentRasterizer5749205" target="_blank" rel="noopener">Software Rasterizer Optimisation</a></h3>
-      <div class="role">C++ · SIMD · Multithreading · University of Warwick · 2026</div>
-      <p class="lead">Optimised a supplied CPU rasterizer by profiling bottlenecks, applying SIMD instructions, and caching transformed vertices to avoid repeated calculations. Sequential optimisations cut mean execution time by <b>49.3%</b>: the 1,600-object benchmark scene fell from 86.4 s to 43.8 s across 10 runs on an Intel Core Ultra 7 155H. I also evaluated a thread pool across three test scenes to investigate CPU scaling.</p>
-      <div class="callout warn">
-        <span class="label">Hardware profiling · the "thread plateau"</span>
-        <p>I profiled how performance scales with thread count on my Intel Core Ultra 7 155H. In the Scene 3 results below, speedup peaks at roughly 2.8× around 6 threads, then degrades. This thread-scaling experiment is separate from the sequential optimisation benchmark above; thread count alone does not establish the cause of the plateau.</p>
-      </div>
-      <div class="tags"><span>C++</span><span>SIMD (SSE/AVX)</span><span>Multithreading</span><span>Performance Profiling</span></div>
-      
-      <figure class="media">
-        <div class="shot r169 empty"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+    <article class="project" id="rasterizer-optimisation" aria-labelledby="rasterizer-optimisation-title">
+      <div class="project-heading"><div>
+        <div class="project-title-line"><span class="project-number" aria-hidden="true">02</span><h3 id="rasterizer-optimisation-title">Software Rasterizer Optimisation</h3></div>
+        <p class="role">C++ · SIMD · Multithreading · Warwick · 2026</p>
+      </div><a class="source-link" href="https://github.com/IsaGeriler/WM9M4AssignmentRasterizer5749205" target="_blank" rel="noopener" aria-label="View Software Rasterizer Optimisation source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+      <div class="project-grid">
+        <div class="project-copy"><p class="project-summary">I profiled a supplied CPU rasterizer, applied SIMD instructions, and cached transformed vertices to avoid repeated calculations. A separate thread-pool experiment explored CPU scaling across three scenes.</p>
+          <aside class="project-note"><strong class="metric">49.3%</strong><span class="note-label">Lower mean execution time</span><p>86.4 s → 43.8 s in the 1,600-object scene, across 10 runs on an Intel Core Ultra 7 155H.</p></aside>
+          <div class="tags"><span>C++</span><span>SIMD (SSE/AVX)</span><span>Multithreading</span><span>Performance Profiling</span></div>
+        </div>
+        <div class="project-visual"><figure class="media">
+        <div class="shot r169"><img src="assets/Scene3Speedup.png" alt="Speedup vs. thread count, peaking near 6 then degrading" loading="lazy" decoding="async" width="717" height="430" draggable="false"></div>
         <figcaption>Scene 3 thread-pool profiling: speedup peaks around 6 threads, then declines as more workers are added.</figcaption>
-      </figure>
-      
-      <figure class="media">
+      </figure></div>
+      </div>
+      <details class="project-details"><summary>Benchmark context &amp; test scenes</summary><div class="details-body"><p>The thread-pool chart is a separate experiment from the sequential optimisation result. Scene 3 peaks at roughly 2.8× speedup around six threads and then declines. These results alone do not establish which cores the scheduler used or the cause of the plateau.</p><figure class="media">
         <div class="media three">
           <div>
-            <div class="shot r169 empty"><img src="assets/Scene1.png" alt="Rasterizer scene 1" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r169"><img src="assets/Scene1.png" alt="Rasterizer scene 1" loading="lazy" decoding="async" width="1538" height="1200" draggable="false"></div>
             <div class="sub-cap">Scene 1</div>
           </div>
           <div>
-            <div class="shot r169 empty"><img src="assets/Scene2.png" alt="Rasterizer scene 2" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r169"><img src="assets/Scene2.png" alt="Rasterizer scene 2" loading="lazy" decoding="async" width="1538" height="1200" draggable="false"></div>
             <div class="sub-cap">Scene 2</div>
           </div>
           <div>
-            <div class="shot r169 empty"><img src="assets/Scene3.png" alt="Rasterizer scene 3" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r169"><img src="assets/Scene3.png" alt="Rasterizer scene 3" loading="lazy" decoding="async" width="1538" height="1200" draggable="false"></div>
             <div class="sub-cap">Scene 3</div>
           </div>
         </div>
-      </figure>
+      </figure></div></details>
     </article>
-
-    <!-- ============================ NEW: FRONTROOMS ============================ -->
-    <article class="proj rv">
-      <span class="idx">003</span>
-      <h3><a href="https://github.com/IsaGeriler/StealthHorrorGame" target="_blank" rel="noopener">Frontrooms</a></h3>
-      <div class="role">Individual game · Unreal Engine 5 · C++ / HLSL / Blueprints · University of Warwick · 2026</div>
-      <p class="lead">A stealth-horror game whose core mechanic is a denoiser. Enemies are signed distance fields sphere-traced in HLSL and hidden under visual noise. Holding still lets the image resolve and reveals where they are, but holding still is also what lets them close the distance.</p>
-      <div class="callout">
-        <span class="label">Why it matters</span>
-        <p>It began as a critical literature review of SDF rendering and denoising, and the research became the design rather than a footnote to it. Sample convergence is normally invisible plumbing; here the convergence rate is the risk/reward curve the player is reading. Same territory as the Intel OIDN work in 001, turned into a mechanic instead of a post-process.</p>
+    <article class="project" id="frontrooms" aria-labelledby="frontrooms-title">
+      <div class="project-heading"><div>
+        <div class="project-title-line"><span class="project-number" aria-hidden="true">03</span><h3 id="frontrooms-title">Frontrooms</h3></div>
+        <p class="role">Individual game · UE5 · C++ / HLSL / Blueprints · 2026</p>
+      </div><a class="source-link" href="https://github.com/IsaGeriler/StealthHorrorGame" target="_blank" rel="noopener" aria-label="View Frontrooms source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+      <div class="project-grid">
+        <div class="project-copy"><p class="project-summary">A stealth-horror game with a denoising-inspired mechanic. Standing still clears the visual noise hiding the enemies, but also allows them to approach. Visibility and player risk are directly connected.</p>
+          <aside class="project-note"><span class="note-label">Research into gameplay</span><p>A literature review of SDF rendering and denoising informed the mechanic. Enemy vision, pursuit and retreat run in C++; the enemies are sphere-traced in HLSL.</p></aside>
+          <div class="tags"><span>Unreal Engine 5</span><span>C++</span><span>HLSL</span><span>SDF Sphere Tracing</span><span>Denoising</span><span>Game AI</span></div>
+        </div>
+        <div class="project-visual"><figure class="media">
+        <div class="video"><a class="video-poster" href="https://youtu.be/2l4lNxIRDQw" target="_blank" rel="noopener" data-video-id="2l4lNxIRDQw">
+          <span class="play-icon" aria-hidden="true">▶</span><strong>Watch Frontrooms</strong><small>Gameplay playthrough · Play video</small>
+        </a></div>
+        <figcaption>The noise clears while the player holds still, and the enemy closes the distance.</figcaption>
+      </figure></div>
       </div>
-      <ul class="detail">
+      <details class="project-details"><summary>Rendering, AI &amp; playtest iteration</summary><div class="details-body"><ul class="detail">
         <li><b>Enemy rendering:</b> enemies are signed distance fields sphere-traced in an HLSL shader, each with independently configurable appearance parameters, so a new silhouette is authored as SDF parameters rather than as a mesh.</li>
         <li><b>The mechanic:</b> screen-space noise resolves while the player holds still, tying denoise convergence directly to enemy visibility and to how much ground the enemy gains while you wait.</li>
         <li><b>AI:</b> enemy vision, pursuit and retreat written in C++, with debug draw visualization used to verify detection state during development.</li>
-        <li><b>Iteration:</b> built in the open with fortnightly demos to staff and peers. Movement speeds were retuned and a tutorial added directly off the back of playtest feedback.</li>
-      </ul>
-      <div class="tags"><span>Unreal Engine 5</span><span>C++</span><span>HLSL</span><span>SDF Sphere Tracing</span><span>Denoising</span><span>Game AI</span></div>
-
-      <figure class="media">
-        <div class="video" data-yt="https://youtu.be/2l4lNxIRDQw" data-title="Frontrooms playthrough"></div>
-        <figcaption>The noise clears while the player holds still, and the enemy closes the distance.</figcaption>
-      </figure>
+        <li><b>Iteration:</b> presented in fortnightly demos to staff and peers. Movement speeds were retuned and a tutorial added directly off the back of playtest feedback.</li>
+      </ul></div></details>
     </article>
-
-    <!-- ============================ NEW: SKYFIRE UPRISING ============================ -->
-    <article class="proj rv">
-      <span class="idx">004</span>
-      <h3>Skyfire Uprising · Level 2</h3>
-      <div class="role">Team game · Unreal Engine 5.4 · Tech Art &amp; Group Lead · University of Warwick · 2026</div>
-      <p class="lead">Led a six-person group responsible for Level 2 within a 42-person international team split across seven level teams. I coordinated the group's work and kept the level consistent with the shared art direction while developing its weather, materials, lighting, and damage-feedback post-process stack.</p>
-      <div class="callout">
-        <span class="label">Shipping inside a 42-person studio</span>
-        <p>Seven groups each owned a level against one shared art direction, so anything I wrote had to survive other people's hands. Every material exposed its parameters upward, letting teammates tune rain intensity, wetness and fog against their own set dressing without opening a shader graph or coming back to me.</p>
+    <article class="project" id="skyfire-uprising" aria-labelledby="skyfire-uprising-title">
+      <div class="project-heading"><div>
+        <div class="project-title-line"><span class="project-number" aria-hidden="true">04</span><h3 id="skyfire-uprising-title">Skyfire Uprising · Level 2</h3></div>
+        <p class="role">Team game · UE5 · Technical art &amp; group lead · 2026</p>
+      </div></div>
+      <div class="project-grid">
+        <div class="project-copy"><p class="project-summary">I led the six-person Level 2 group within a 42-person international team. Alongside coordinating the group’s work and shared art direction, I built the level’s water, rain, wetness materials, fog and lighting.</p>
+          <aside class="project-note"><span class="note-label">Built for teammates to use</span><p>Exposed material parameters let the team integrate and tune the effects without editing shader logic.</p></aside>
+          <div class="tags"><span>Unreal Engine 5.4</span><span>HLSL</span><span>Niagara</span><span>Post-Processing</span><span>Volumetric Fog</span><span>Team Lead</span></div>
+        </div>
+        <div class="project-visual"><figure class="media">
+        <div class="compare" id="cmp-wetness">
+          <div class="compare-stage" style="--aspect:1659/1007;--pos:50%"><img class="cmp-base" src="assets/AfterWetness.png" alt="The same courtyard in rain, with the wetness layer active" loading="lazy" decoding="async" width="1659" height="1007" draggable="false">
+          <img class="cmp-top" src="assets/BeforeWetness.png" alt="A dry courtyard before the wetness layer is applied" loading="lazy" decoding="async" width="1660" height="1008" draggable="false">
+          <span class="cmp-handle" aria-hidden="true" hidden=""></span></div><div class="compare-legend"><span class="cmp-tag l">Dry base materials</span>
+          <span class="cmp-tag r">Rain + wetness layer</span>
+        </div><div class="compare-controls" hidden>
+          <label class="sr-only" for="cmp-wetness-range">Wetness comparison slider: adjust the visible share of each image</label>
+          <div class="range-row"><input type="range" id="cmp-wetness-range" min="0" max="100" step="1" value="50" aria-controls="cmp-wetness"><output for="cmp-wetness-range" aria-hidden="true">50%</output></div>
+        </div></div>
+        <figcaption>Dry base materials compared with rain and the reusable wetness layer.</figcaption>
+      </figure></div>
       </div>
-      <ul class="detail">
+      <details class="project-details"><summary>Weather, lighting &amp; player feedback</summary><div class="details-body"><ul class="detail">
         <li><b>Weather &amp; materials:</b> Gerstner wave water, a Niagara rain system with splashes and puddle accumulation, and a reusable wetness layer that darkens albedo and drops roughness across the level's surfaces.</li>
         <li><b>Lighting &amp; atmosphere:</b> volumetric fog tuned across the whole level footprint, and interior lighting passes for the warehouse spaces the level routes players through.</li>
         <li><b>Damage feedback:</b> a full post-process state stack — a red screen-space response on taking damage, a chromatic-aberration and slice-displacement glitch on death, and a grid overlay marking respawn invulnerability.</li>
         <li><b>Performance:</b> Cull Distance Volumes used to scale the level's draw load across a large outdoor footprint.</li>
-      </ul>
-      <div class="tags"><span>Unreal Engine 5.4</span><span>HLSL</span><span>Niagara</span><span>Post-Processing</span><span>Volumetric Fog</span><span>Team Lead</span></div>
-
-      <figure class="media">
-        <div class="compare" id="cmp-wetness" tabindex="0" role="slider" aria-label="Wetness comparison slider" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <img class="cmp-base" src="assets/AfterWetness.png" alt="The same courtyard in rain, with the wetness layer active">
-          <img class="cmp-top" src="assets/BeforeWetness.png" alt="A dry courtyard before the wetness layer is applied">
-          <div class="cmp-handle"></div>
-          <span class="cmp-tag l">Dry base materials</span>
-          <span class="cmp-tag r">Rain + wetness layer</span>
-        </div>
-        <figcaption>Drag to compare: the wetness layer darkens albedo and drops roughness, so the rain system has something to read against.</figcaption>
-      </figure>
-
-      <figure class="media">
+      </ul><figure class="media">
         <div class="media three">
           <div>
-            <div class="shot r169 empty"><img src="assets/TakeDamage.png" alt="Red screen-space post-process on taking damage" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r169"><img src="assets/TakeDamage.png" alt="Red screen-space post-process on taking damage" loading="lazy" decoding="async" width="1658" height="1012" draggable="false"></div>
             <div class="sub-cap">Taking damage</div>
           </div>
           <div>
-            <div class="shot r169 empty"><img src="assets/Death.png" alt="Chromatic aberration and slice displacement glitch on death" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r169"><img src="assets/Death.png" alt="Chromatic aberration and slice displacement glitch on death" loading="lazy" decoding="async" width="1661" height="999" draggable="false"></div>
             <div class="sub-cap">Death</div>
           </div>
           <div>
-            <div class="shot r169 empty"><img src="assets/Invincibility.png" alt="Grid overlay marking respawn invulnerability" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r169"><img src="assets/Invincibility.png" alt="Grid overlay marking respawn invulnerability" loading="lazy" decoding="async" width="1483" height="1000" draggable="false"></div>
             <div class="sub-cap">Invulnerable</div>
           </div>
         </div>
         <figcaption>One post-process stack, three readable player states: hit, dead, and briefly invulnerable after respawn.</figcaption>
-      </figure>
-
-      <figure class="media">
+      </figure><figure class="media">
         <div class="media two">
           <div>
-            <div class="shot r32 empty"><img src="assets/FogGodView.png" alt="The whole level footprint seen through volumetric fog" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r32"><img src="assets/FogGodView.png" alt="The whole level footprint seen through volumetric fog" loading="lazy" decoding="async" width="1476" height="992" draggable="false"></div>
             <div class="sub-cap">Volumetric fog · level footprint</div>
           </div>
           <div>
-            <div class="shot r32 empty"><img src="assets/WarehouseLighted.png" alt="Warehouse interior lighting pass" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+            <div class="shot r32"><img src="assets/WarehouseLighted.png" alt="Warehouse interior lighting pass" loading="lazy" decoding="async" width="1480" height="992" draggable="false"></div>
             <div class="sub-cap">Warehouse interior lighting</div>
           </div>
         </div>
         <figcaption>Fog tuned across the full level footprint, and the interior lighting pass for the warehouses.</figcaption>
-      </figure>
+      </figure></div></details>
     </article>
-
-    <article class="proj rv">
-      <span class="idx">005</span>
-      <h3><a href="https://github.com/IsaGeriler/Rasterizer" target="_blank" rel="noopener">Software Rasterizer (Foundations)</a></h3>
-      <div class="role">C++</div>
-      <p class="lead">An engine built entirely from scratch to deeply understand the math behind graphics APIs. Instead of using existing math libraries (like GLM), I wrote the matrix, vector, and homogeneous-coordinate mathematics myself. Implements the full Model-View-Projection (MVP) chain, perspective-correct interpolation, depth buffering (Z-buffer), and Lambertian lighting, parsing .gem meshes to render pixel-perfect geometry.</p>
-      <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
-      <figure class="media">
-        <div class="compare" id="cmp-bunny" tabindex="0" role="slider" aria-label="Stanford bunny shading comparison" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-          <img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny geometry">
-          <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny shaded">
-          <div class="cmp-handle"></div>
-          <span class="cmp-tag l">Lambertian Shaded</span>
-          <span class="cmp-tag r">Wireframe / Geometry</span>
+    <article class="project" id="rasterizer-foundations" aria-labelledby="rasterizer-foundations-title">
+      <div class="project-heading"><div>
+        <div class="project-title-line"><span class="project-number" aria-hidden="true">05</span><h3 id="rasterizer-foundations-title">Software Rasterizer · Foundations</h3></div>
+        <p class="role">C++ · 3D maths · CPU rendering</p>
+      </div><a class="source-link" href="https://github.com/IsaGeriler/Rasterizer" target="_blank" rel="noopener" aria-label="View Software Rasterizer · Foundations source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+      <div class="project-grid">
+        <div class="project-copy"><p class="project-summary">A software rasterizer built from scratch to understand the maths behind graphics APIs. I wrote the vector, matrix and homogeneous-coordinate operations, then implemented the model-view-projection pipeline, depth buffering and Lambertian lighting.</p>
+          <aside class="project-note"><span class="note-label">From geometry to pixels</span><p>Perspective-correct interpolation and a custom .gem mesh parser connect the mathematical foundations to the final image.</p></aside>
+          <div class="tags"><span>C++</span><span>3D Math</span><span>MVP Pipeline</span><span>Z-buffer</span></div>
         </div>
-        <figcaption>Stanford bunny parsed from a .gem mesh: Drag to compare shaded rendering vs. raw geometry.</figcaption>
-      </figure>
-    </article>
-
-    <article class="proj rv">
-      <span class="idx">006</span>
-      <h3><a href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener">DirectX 12 Rendering Framework</a></h3>
-      <div class="role">C++ · DirectX 12 · HLSL · 2025</div>
-      <p class="lead">Built a framework to load and display 3D models, using GPU instancing to draw repeated instances of each mesh in a single draw call. Camera controls, surface mapping and animated grass support interactive scene exploration.</p>
-      <div class="callout">
-        <span class="label">From CPU rendering to DirectX 12</span>
-        <p>Working with an explicit GPU API brought together resource binding, memory management and synchronisation. I used RenderDoc to inspect the framework's rendering.</p>
+        <div class="project-visual"><figure class="media">
+        <div class="compare" id="cmp-bunny">
+          <div class="compare-stage" style="--aspect:1280/939;--pos:50%"><img class="cmp-base" src="assets/BunnyGeometry.jpg" alt="Stanford bunny geometry" loading="lazy" decoding="async" width="1280" height="939" draggable="false">
+          <img class="cmp-top" src="assets/BunnyShaded.jpg" alt="Stanford bunny shaded" loading="lazy" decoding="async" width="1280" height="941" draggable="false">
+          <span class="cmp-handle" aria-hidden="true" hidden=""></span></div><div class="compare-legend"><span class="cmp-tag l">Lambertian Shaded</span>
+          <span class="cmp-tag r">Wireframe / Geometry</span>
+        </div><div class="compare-controls" hidden>
+          <label class="sr-only" for="cmp-bunny-range">Stanford bunny shading comparison: adjust the visible share of each image</label>
+          <div class="range-row"><input type="range" id="cmp-bunny-range" min="0" max="100" step="1" value="50" aria-controls="cmp-bunny"><output for="cmp-bunny-range" aria-hidden="true">50%</output></div>
+        </div></div>
+        <figcaption>The Stanford bunny: Lambertian shading compared with raw geometry.</figcaption>
+      </figure></div>
       </div>
-      <ul class="detail">
+      <details class="project-details"><summary>Pipeline implementation</summary><div class="details-body"><p>The full pipeline includes model, view and projection transforms, homogeneous-coordinate mathematics, perspective-correct interpolation, a Z-buffer and Lambertian lighting. The implementation uses a custom maths library and parses .gem meshes.</p></div></details>
+    </article>
+    <article class="project" id="directx-framework" aria-labelledby="directx-framework-title">
+      <div class="project-heading"><div>
+        <div class="project-title-line"><span class="project-number" aria-hidden="true">06</span><h3 id="directx-framework-title">DirectX 12 Rendering Framework</h3></div>
+        <p class="role">C++ · DirectX 12 · HLSL · 2025</p>
+      </div><a class="source-link" href="https://github.com/IsaGeriler/WM9M2Assignment5749205" target="_blank" rel="noopener" aria-label="View DirectX 12 Rendering Framework source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+      <div class="project-grid">
+        <div class="project-copy"><p class="project-summary">A rendering framework for loading and displaying 3D models. GPU instancing draws repeated instances of each mesh in a single draw call; camera controls, normal mapping, parallax occlusion mapping and animated grass support scene exploration.</p>
+          <aside class="project-note"><span class="note-label">Framework complete · successor in progress</span><p>I inspected rendering with RenderDoc. A separate DX12 Engine project re-architects the framework and remains a work in progress.</p></aside>
+          <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Instancing</span><span>RenderDoc</span></div>
+        </div>
+        <div class="project-visual"><figure class="media">
+        <div class="shot r169"><img src="assets/AfterRoughnessMapping.png" alt="DirectX 12 rendering framework with roughness mapping" loading="lazy" decoding="async" width="1918" height="1125" draggable="false"></div>
+        <figcaption>Render from the DirectX 12 framework. The separate DX12 Engine re-architecture remains a work in progress.</figcaption>
+      </figure></div>
+      </div>
+      <details class="project-details"><summary>Framework features &amp; DX12 Engine progress</summary><div class="details-body"><ul class="detail">
         <li><b>Framework features:</b> GPU instancing, camera controls, normal mapping, parallax occlusion mapping and animated grass.</li>
         <li><b>Further development (WIP):</b> my separate <a href="https://github.com/IsaGeriler/DX12Engine" target="_blank" rel="noopener">DX12 Engine</a> re-architects this framework, with ongoing work on Descriptor Heaps, Root Signatures and Pipeline State Objects (PSOs).</li>
-      </ul>
-      <div class="tags"><span>C++</span><span>HLSL</span><span>DirectX 12</span><span>GPU Instancing</span><span>RenderDoc</span></div>
-      <figure class="media">
-        <div class="shot r169 empty"><img src="assets/AfterRoughnessMapping.png" alt="DirectX 12 rendering framework with roughness mapping" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
-        <figcaption>Render from the DirectX 12 framework. The separate DX12 Engine re-architecture remains a work in progress.</figcaption>
-      </figure>
+      </ul></div></details>
     </article>
-
-    <article class="proj rv">
-      <span class="idx">007</span>
-      <h3><a href="https://github.com/IsaGeriler/RayTracer" target="_blank" rel="noopener">Offline Ray Tracer (WIP)</a></h3>
-      <div class="role">C++ · In progress</div>
-      <p class="lead">A proving ground for light-transport math based on the <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025) architecture. I extended the base engine with Motion Blur and a custom Bounding Volume Hierarchy (BVH) to drastically reduce spatial-intersection costs. The per-pixel render loop and the BVH build (sorting was parallelized via C++17's <code>std::execution::par</code>) are both parallelized to maximize CPU utilization.</p>
-      <div class="tags"><span>C++</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
-      <figure class="media">
-        <div class="shot r169 empty"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" onerror="this.parentNode.classList.add('empty')" onload="this.parentNode.classList.remove('empty')"></div>
+    <article class="project" id="offline-ray-tracer" aria-labelledby="offline-ray-tracer-title">
+      <div class="project-heading"><div>
+        <div class="project-title-line"><span class="project-number" aria-hidden="true">07</span><h3 id="offline-ray-tracer-title">Offline Ray Tracer</h3></div>
+        <p class="role">C++ · BVH acceleration · Motion blur · Work in progress</p>
+      </div><a class="source-link" href="https://github.com/IsaGeriler/RayTracer" target="_blank" rel="noopener" aria-label="View Offline Ray Tracer source on GitHub">Source <span aria-hidden="true">↗</span></a></div>
+      <div class="project-grid">
+        <div class="project-copy"><p class="project-summary">A place to explore light-transport maths, built on the Ray Tracing in One Weekend architecture. I extended it with motion blur, a custom BVH, and parallel rendering and BVH sorting.</p>
+          <aside class="project-note"><span class="note-label">Learning through implementation</span><p>The per-pixel render loop and C++17 parallel sorting explore how spatial acceleration and CPU parallelism affect rendering.</p></aside>
+          <div class="tags"><span>C++</span><span>Ray Tracing</span><span>Motion Blur</span><span>BVH Acceleration</span></div>
+        </div>
+        <div class="project-visual"><figure class="media">
+        <div class="shot r169"><img src="assets/RTMB.jpg" alt="Offline ray tracer with motion blur" loading="lazy" decoding="async" width="1200" height="675" draggable="false"></div>
         <figcaption>Integrated motion blur.</figcaption>
-      </figure>
-    </article>
-
-    <div class="sec-head rv" style="margin-top:8px"><span class="num">+</span><h2 style="font-size:clamp(22px,3vw,30px)">Also Built</h2><span class="rule"></span></div>
-    <div class="more">
-      <div class="card rv">
+      </figure></div>
+      </div>
+      <details class="project-details"><summary>Architecture &amp; more frames</summary><div class="details-body"><p>Based on <em>Ray Tracing in One Weekend</em> (Shirley et al., 2025). The per-pixel render loop is parallelised, and BVH sorting uses C++17’s <code>std::execution::par</code>. This project remains a work in progress.</p><figure class="media">
+      <div class="shot wide">
+        <img src="assets/Banner.png" alt="A strip of frames from my ray tracer" loading="lazy" decoding="async" width="4128" height="1024" draggable="false">
+      </div>
+      <figcaption>A few frames from my own ray tracer.</figcaption>
+    </figure></div></details>
+    </article><div class="additional-projects" id="applications"><h3 class="more-heading">Applications &amp; networking</h3><div class="more">
+      <div class="card">
         <span class="role">C++ · Networking · University of Warwick · 2026</span>
         <h4>Client-Server Chat Application</h4>
         <p>A multiuser desktop chat application built with C++, multithreading and WinSock. The server handles username validation, public broadcasts and private message routing, connected to a Dear ImGui client interface and FMOD audio notifications. <a href="https://github.com/IsaGeriler/WM9M4AssignmentChatRoom5749205" target="_blank" rel="noopener">Source</a></p>
       </div>
-      <div class="card rv d1">
+      <div class="card">
         <span class="role">Python · Team Graduation Project · IEEE SIU 2025 · Isik University</span>
         <h4>Face Recognition for Authentication</h4>
         <p>Co-developed an authentication prototype using Python, OpenCV, FaceNet, Flask and PostgreSQL, with face matching, a staff dashboard, access permissions and two-factor authentication. Selected for the IEEE SIU 2025 Undergraduate Projects Competition and presented as a poster.</p>
       </div>
-    </div>
+    </div></div></div>
   </div>
-</section>
-
-<section id="about">
-  <div class="wrap">
-    <div class="sec-head rv"><span class="num">02</span><h2>About</h2><span class="rule"></span></div>
-    <div class="about">
-      <div class="rv">
-        <p>I'm a C++ software engineer working across graphics, gameplay and systems, based in Leamington Spa, UK. I graduated in Software Engineering from Isik University in July 2025 and am completing an MSc in Games Engineering at <span class="hl">WMG, University of Warwick</span> (September 2025–September 2026). I spend most of my time on real-time rendering and computer graphics: writing renderers, reading papers, and figuring out why the image looks wrong. I play video games too (shocking, I know 🎮), and I'm aiming to specialize as a Graphics Programmer.</p>
-        <p>My MSc dissertation is <span class="hl">Path Guiding in Primary Sample Space via BSDF Inversion</span>, supervised by Dr. Thomas Bashford-Rogers. My literature review of signed distance field rendering and denoising also informed the core mechanic and renderer of Frontrooms.</p>
-      </div>
-      <div class="skills rv d2" id="skills">
-        <div class="skill"><h5>Languages</h5><p>C++, Python, HLSL, Java, SQL</p></div>
-        <div class="skill"><h5>Graphics &amp; Rendering</h5><p>DirectX 12, Ray Tracing / Path Tracing, BVH Acceleration, MIS, GGX &amp; Microfacet BSDFs, SDF Sphere Tracing, Linear Algebra, SIMD (SSE/AVX/AVX2), Multithreading, Profiling, Debugging, RenderDoc</p></div>
-        <div class="skill"><h5>Engines &amp; Tools</h5><p>Unreal Engine 5, Blueprints, Niagara, Dear ImGui, Intel Open Image Denoise, FMOD, WinSock, OpenCV, Git</p><p>Spring Boot, Docker, OpenAPI, Flask, PostgreSQL (pgvector), Microsoft SQL Server</p></div>
-        <div class="skill"><h5>Spoken</h5><p>Turkish (native), English (IELTS Academic 8.0), Japanese (beginner)</p></div>
-      </div>
-    </div>
+</div></section>
+<section class="section" id="about" aria-labelledby="about-title"><div class="wrap">
+  <div class="section-heading"><div><p class="eyebrow">02 / Background</p><h2 id="about-title">About me</h2></div></div>
+  <div class="about"><div class="about-copy">
+    <p>I’m a software engineer based in Leamington Spa, UK. My core strengths are <span class="hl">C++, high-performance programming and systems programming</span>, supported by a broad software engineering foundation.</p>
+    <p>Across internships and projects, I’ve built client-server applications, authentication prototypes and backend REST APIs, alongside graphics and games. This work brings together performance profiling, debugging, data handling and system design.</p>
+    <p>I hold a BSc in Software Engineering from Isik University. I’ve submitted my MSc Games Engineering dissertation at WMG, University of Warwick, and am awaiting results. The dissertation, <span class="hl">Path Guiding in Primary Sample Space via BSDF Inversion</span>, was supervised by Dr. Thomas Bashford-Rogers.</p>
+    <div class="education-note"><strong>MSc Games Engineering · Warwick, WMG</strong>September 2025–September 2026<br><br><strong>BSc Software Engineering · Isik University</strong>August 2020–July 2025</div>
   </div>
-</section>
-
-<section id="contact" class="contact">
-  <div class="wrap">
-    <div class="mono rv" style="margin-bottom:18px">Let's talk rendering</div>
-    <h2 class="rv d1">Get in touch.</h2>
-    <div class="links rv d2">
-      <a href="mailto:gerilerisaberk@gmail.com" class="btn solid">Email me</a>
-      <a href="https://www.linkedin.com/in/isa-geriler/" class="btn" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:Isa.Geriler@warwick.ac.uk" class="btn">Warwick email</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap mono">© 2026 Isa Geriler · Built with care, not templates</div>
-</footer>
-
+  <div class="skills" id="skills">
+    <div class="skill"><h5>Languages</h5><p>C++, HLSL, Python, Java, SQL</p></div>
+    <div class="skill"><h5>Graphics &amp; systems</h5><p>DirectX 12, ray tracing, path tracing, BVH acceleration, MIS, GGX / microfacet BSDFs, SDF sphere tracing, linear algebra, SIMD (SSE/AVX/AVX2), multithreading, profiling and debugging</p></div>
+    <div class="skill"><h5>Engines &amp; tools</h5><p>Unreal Engine 5, Blueprints, Niagara, RenderDoc, Dear ImGui, Intel Open Image Denoise, FMOD, WinSock, OpenCV, Git</p></div>
+    <div class="skill"><h5>Backend &amp; data</h5><p>Spring Boot, Docker, OpenAPI, Flask, PostgreSQL (pgvector), Microsoft SQL Server</p></div>
+    <div class="skill"><h5>Spoken languages</h5><p>Turkish (native), English (IELTS Academic 8.0), Japanese (beginner)</p></div>
+  </div></div>
+</div></section>
+<section class="section contact" id="contact" aria-labelledby="contact-title"><div class="wrap contact-grid">
+  <div><p class="eyebrow">03 / Contact</p><h2 id="contact-title">Let’s talk software.</h2><p>Open to full-time, graduate and long-term internship opportunities in software engineering, backend, systems, graphics and engine programming.</p></div>
+  <div class="links"><a href="mailto:gerilerisaberk@gmail.com" class="btn solid">Email me</a><a href="https://www.linkedin.com/in/isa-geriler/" class="btn" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/IsaGeriler" class="btn" target="_blank" rel="noopener">GitHub</a><a href="mailto:Isa.Geriler@warwick.ac.uk" class="btn">Warwick email</a></div>
+</div></section>
+</main>
+<footer><div class="wrap footer-inner"><span>© 2026 Isa Geriler</span><a href="#top">Back to top ↑</a></div></footer>
 <script>
-  if ('IntersectionObserver' in window) {
-    const io = new IntersectionObserver((es)=>{ es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.1});
-    document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-    document.documentElement.classList.add('reveal-enabled');
+(() => {
+  'use strict';
+
+  // Cache decoded pairs; failed requests can be retried.
+  const imageCache = new Map();
+  function loadImage(src) {
+    if (imageCache.has(src)) return imageCache.get(src);
+    const promise = new Promise((resolve, reject) => {
+      const image = new Image();
+      const timer = setTimeout(() => reject(new Error('Image request timed out')), 20000);
+      image.onload = async () => {
+        try {
+          if (typeof image.decode === 'function') await image.decode();
+          if (!image.naturalWidth) throw new Error('Invalid image');
+          resolve(image);
+        } catch (error) { reject(error); }
+        finally { clearTimeout(timer); }
+      };
+      image.onerror = () => { clearTimeout(timer); reject(new Error('Image unavailable')); };
+      image.src = src;
+    }).catch(error => { imageCache.delete(src); throw error; });
+    imageCache.set(src, promise);
+    return promise;
   }
-  
-  const glow = document.getElementById('glow');
-  window.addEventListener('pointermove', (e)=>{ glow.style.opacity=.9; glow.style.left=e.clientX+'px'; glow.style.top=e.clientY+'px'; });
-  window.addEventListener('pointerleave', ()=> glow.style.opacity=0);
 
-  /* REPLACED: the old scroll handler read sec.offsetTop for every section on
-     every scroll event, forcing a layout each time. Same result, no reflow. */
-  const navLinks = document.querySelectorAll('.navlinks a:not(.cv)');
-  if ('IntersectionObserver' in window) {
-    const navIo = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(!e.isIntersecting) return;
-      const id = e.target.getAttribute('id');
-      navLinks.forEach(l => l.classList.toggle('active-section', l.getAttribute('href') === '#'+id));
+  // Native range inputs provide keyboard, touch and assistive-technology support.
+  document.querySelectorAll('.compare').forEach(comparison => {
+    const stage = comparison.querySelector('.compare-stage');
+    const range = comparison.querySelector('input[type="range"]');
+    const output = comparison.querySelector('output');
+    const base = comparison.querySelector('.cmp-base');
+    const top = comparison.querySelector('.cmp-top');
+    const left = comparison.querySelector('.cmp-tag.l');
+    const right = comparison.querySelector('.cmp-tag.r');
+    const controls = comparison.querySelector('.compare-controls');
+    const figure = comparison.closest('figure');
+    const picker = figure.querySelector('.picker');
+    const status = figure.querySelector('.media-status');
+    let requestVersion = 0;
+    let pointerId = null;
+
+    const updatePosition = () => {
+      const value = Math.max(0, Math.min(100, Number(range.value)));
+      stage.style.setProperty('--pos', `${value}%`);
+      output.value = `${value}%`;
+      range.setAttribute('aria-valuetext', `${left.textContent}: ${value}%; ${right.textContent}: ${100 - value}%`);
+    };
+    controls.hidden = false;
+    comparison.querySelector('.cmp-handle').hidden = false;
+    stage.style.touchAction = 'pan-y';
+    stage.style.cursor = 'ew-resize';
+    range.addEventListener('input', updatePosition);
+    updatePosition();
+
+    const updatePointer = event => {
+      const box = stage.getBoundingClientRect();
+      if (!box.width) return;
+      range.value = String(Math.round(Math.max(0, Math.min(100, (event.clientX - box.left) / box.width * 100))));
+      updatePosition();
+    };
+    stage.addEventListener('pointerdown', event => {
+      if (!event.isPrimary || event.button !== 0) return;
+      pointerId = event.pointerId;
+      stage.setPointerCapture(pointerId);
+      range.focus({preventScroll: true});
+      updatePointer(event);
     });
-  }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
-    document.querySelectorAll('section[id]').forEach(s => navIo.observe(s));
-  }
-
-  /* NEW: YouTube embed. Paste any YouTube link into data-yt and this builds the iframe. */
-  document.querySelectorAll('.video[data-yt]').forEach(box=>{
-    const raw = (box.getAttribute('data-yt') || '').trim();
-    const id = /^[\w-]{11}$/.test(raw)
-      ? raw
-      : (raw.match(/(?:youtu\.be\/|[?&]v=|\/embed\/|\/shorts\/|\/live\/)([\w-]{11})/) || [])[1];
-    if(!id) return;
-    const f = document.createElement('iframe');
-    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?rel=0';
-    f.title = box.getAttribute('data-title') || 'Video';
-    f.loading = 'lazy';
-    f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    f.allowFullscreen = true;
-    box.appendChild(f);
-  });
-
-  document.querySelectorAll('.compare').forEach(c=>{
-    let drag=false;
-    const updateValueText=()=>{
-      const position=Number(c.getAttribute('aria-valuenow'));
-      const left=c.querySelector('.cmp-tag.l').textContent;
-      const right=c.querySelector('.cmp-tag.r').textContent;
-      c.setAttribute('aria-valuetext', `${left}: ${position}%; ${right}: ${100-position}%`);
-    };
-    const setPosition=(value)=>{
-      const position=Math.max(0,Math.min(100,value));
-      c.style.setProperty('--pos', position+'%');
-      c.setAttribute('aria-valuenow', Math.round(position));
-      updateValueText();
-    };
-    const set=(clientX)=>{
-      const r=c.getBoundingClientRect();
-      if(r.width) setPosition((clientX-r.left)/r.width*100);
-    };
-    updateValueText();
-    c.addEventListener('comparisonchange', updateValueText);
-    
-    c.addEventListener('pointerdown', e=>{ drag=true; c.setPointerCapture(e.pointerId); set(e.clientX); });
-    c.addEventListener('pointermove', e=>{ if(drag) set(e.clientX); });
-    c.addEventListener('pointerup', ()=> drag=false);
-    c.addEventListener('pointercancel', ()=> drag=false);
-    c.addEventListener('lostpointercapture', ()=> drag=false);
-
-    c.addEventListener('keydown', e => {
-      const currentPos=Number(c.getAttribute('aria-valuenow'));
-      const positions={ArrowLeft:currentPos-5, ArrowDown:currentPos-5, ArrowRight:currentPos+5, ArrowUp:currentPos+5, Home:0, End:100};
-      if (!(e.key in positions)) return;
-      e.preventDefault();
-      setPosition(positions[e.key]);
+    stage.addEventListener('pointermove', event => {
+      if (event.pointerId === pointerId) updatePointer(event);
     });
-  });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(type => {
+      stage.addEventListener(type, () => { pointerId = null; });
+    });
 
-  document.querySelectorAll('.picker').forEach(picker => {
-    const targetId = picker.getAttribute('data-target');
-    const container = document.getElementById(targetId);
-    if(!container) return;
-
-    const baseImg = container.querySelector('.cmp-base');
-    const topImg = container.querySelector('.cmp-top');
-    const tagL = container.querySelector('.cmp-tag.l');
-    const tagR = container.querySelector('.cmp-tag.r');
-    const btns = picker.querySelectorAll('button');
-
-    btns.forEach(btn => {
-      btn.type='button';
-      btn.setAttribute('aria-controls', targetId);
-      btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
-      btn.addEventListener('mouseenter', () => {
-        if(btn.hasAttribute('data-base')) new Image().src = btn.getAttribute('data-base');
-        if(btn.hasAttribute('data-top')) new Image().src = btn.getAttribute('data-top');
-      });
-
-      btn.addEventListener('click', () => {
-        btns.forEach(b => {
-          b.classList.remove('active');
-          b.setAttribute('aria-pressed', 'false');
-        });
-        btn.classList.add('active');
-        btn.setAttribute('aria-pressed', 'true');
-
-        if(btn.hasAttribute('data-base')) baseImg.src = btn.getAttribute('data-base');
-        if(btn.hasAttribute('data-top')) topImg.src = btn.getAttribute('data-top');
-        
-        if(btn.hasAttribute('data-tag-l') && tagL) tagL.textContent = btn.getAttribute('data-tag-l');
-        if(btn.hasAttribute('data-tag-r') && tagR) tagR.textContent = btn.getAttribute('data-tag-r');
-        const scene=targetId==='cmp-denoise' ? btn.textContent.trim() : 'Cornell Box';
-        topImg.alt=scene+' — '+tagL.textContent;
-        baseImg.alt=scene+' — '+tagR.textContent;
-        container.dispatchEvent(new Event('comparisonchange'));
+    if (!picker) return;
+    picker.hidden = false;
+    const buttons = [...picker.querySelectorAll('button')];
+    buttons.forEach(button => {
+      button.addEventListener('click', async () => {
+        const version = ++requestVersion;
+        const scene = button.dataset.scene || 'Cornell Box';
+        status.textContent = `Loading ${button.textContent.trim()}…`;
+        comparison.setAttribute('aria-busy', 'true');
+        try {
+          const [nextBase, nextTop] = await Promise.all([
+            loadImage(button.dataset.base), loadImage(button.dataset.top)
+          ]);
+          if (version !== requestVersion) return;
+          // Swap only after both images have decoded; never mix different scenes.
+          base.src = nextBase.src;
+          top.src = nextTop.src;
+          base.width = nextBase.naturalWidth;
+          base.height = nextBase.naturalHeight;
+          top.width = nextTop.naturalWidth;
+          top.height = nextTop.naturalHeight;
+          base.hidden = top.hidden = false;
+          stage.style.setProperty('--aspect', `${nextBase.naturalWidth} / ${nextBase.naturalHeight}`);
+          if (button.dataset.tagL) left.textContent = button.dataset.tagL;
+          if (button.dataset.tagR) right.textContent = button.dataset.tagR;
+          top.alt = `${scene} — ${left.textContent}`;
+          base.alt = `${scene} — ${right.textContent}`;
+          buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+          const error = figure.querySelector('.image-error');
+          if (error) error.remove();
+          updatePosition();
+          status.textContent = `${button.textContent.trim()} comparison ready.`;
+        } catch {
+          if (version === requestVersion) status.textContent = `Could not load ${button.textContent.trim()}. The previous comparison is still shown.`;
+        } finally {
+          if (version === requestVersion) comparison.removeAttribute('aria-busy');
+        }
       });
     });
   });
+
+  // Images are visible by default, including without JavaScript.
+  document.querySelectorAll('img').forEach(image => {
+    const showError = () => {
+      const figure = image.closest('figure');
+      if (!figure || figure.querySelector('.image-error')) return;
+      const message = document.createElement('p');
+      message.className = 'image-error';
+      message.setAttribute('role', 'status');
+      message.textContent = 'This image is unavailable. Please reload the page to try again.';
+      figure.appendChild(message);
+    };
+    image.addEventListener('error', showError);
+    if (image.complete && image.naturalWidth === 0) showError();
+  });
+
+  // Load the existing video only when requested; the link also works without JS.
+  document.querySelectorAll('.video-poster').forEach(link => {
+    link.addEventListener('click', event => {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
+      const id = link.dataset.videoId;
+      if (!/^[\w-]{11}$/.test(id || '')) return;
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&autoplay=1`;
+      frame.title = 'Frontrooms playthrough';
+      frame.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+      event.preventDefault();
+      link.parentElement.replaceChildren(frame);
+      frame.focus();
+    });
+  });
+
+  // One scheduled update per frame keeps both navigation indexes in sync.
+  const sections = [...document.querySelectorAll('main > section[id]')];
+  const projects = [...document.querySelectorAll('.project[id], #applications')];
+  const navLinks = [...document.querySelectorAll('.navlinks a[href^="#"]')];
+  const projectLinks = [...document.querySelectorAll('.project-nav a')];
+  let pendingFrame = false;
+  const setCurrent = (links, id, value) => links.forEach(link => {
+    if (link.getAttribute('href') === `#${id}`) link.setAttribute('aria-current', value);
+    else link.removeAttribute('aria-current');
+  });
+  const updateNavigation = () => {
+    pendingFrame = false;
+    const boundary = Math.min(window.innerHeight * .32, 240);
+    const visibleSection = sections.filter(section => section.getBoundingClientRect().top <= boundary).at(-1);
+    const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
+    setCurrent(navLinks, atBottom ? 'contact' : visibleSection?.id, 'location');
+    const activeProject = projects.filter(project => project.getBoundingClientRect().top <= boundary).at(-1);
+    setCurrent(projectLinks, visibleSection?.id === 'work' ? (activeProject || projects[0])?.id : null, 'location');
+  };
+  const scheduleNavigation = () => {
+    if (!pendingFrame) { pendingFrame = true; requestAnimationFrame(updateNavigation); }
+  };
+  window.addEventListener('scroll', scheduleNavigation, {passive: true});
+  window.addEventListener('resize', scheduleNavigation);
+  document.querySelectorAll('details').forEach(details => details.addEventListener('toggle', scheduleNavigation));
+  window.addEventListener('load', scheduleNavigation, {once: true});
+  scheduleNavigation();
+
+  // Include the existing technical notes in print, then restore the reading state.
+  const printState = new Map();
+  window.addEventListener('beforeprint', () => {
+    document.querySelectorAll('details').forEach(details => {
+      if (!printState.has(details)) printState.set(details, details.open);
+      details.open = true;
+    });
+    document.querySelectorAll('img[loading="lazy"]').forEach(image => { image.loading = 'eager'; });
+  });
+  window.addEventListener('afterprint', () => {
+    printState.forEach((open, details) => { details.open = open; });
+    printState.clear();
+    scheduleNavigation();
+  });
+})();
+
 </script>
-</body>
-</html>
+</body></html>
